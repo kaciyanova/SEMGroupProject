@@ -1,6 +1,6 @@
 # Contributor Covenant Code of Conduct
 
-* Give at least a day's notice if you're not gonna be able to make a lab session, or let the rest of the team know if something's come up as soon as possible
+* Give at least a days notice if you're going to be late or are not able to make a lab session, or let the rest of the team know if something's come up as soon as possible
 * If you're late/not ready for code reviews buy the other two takeout
 * If you won't be able to Make a code review give at least maybe 24 hrs notice so we can contact Kevin about it
 * If you go entirely MIA for a week you're getting reported
@@ -51,12 +51,14 @@ threatening, offensive, or harmful.
 
 ## Scope
 
-This Code of Conduct applies both within project spaces and in public spaces
+This code of conduct applies both within project space and in public space
 when an individual is representing the project or its community. Examples of
 representing a project or community include using an official project e-mail
 address, posting via an official social media account, or acting as an appointed
 representative at an online or offline event. Representation of a project may be
 further defined and clarified by project maintainers.
+
+
 
 ## Enforcement
 
