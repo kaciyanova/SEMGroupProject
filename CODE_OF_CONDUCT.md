@@ -1,15 +1,10 @@
 # Contributor Covenant Code of Conduct
 
-##Rough Suggestions That We Can Edit/Discuss Into Something Usable
-* don't be a twat lmao
-* give maybe at least a day's notice if you're not gonna be able to make a lab session, or let the rest of the team know if something's come up as soon as possible
-* if you're late/not ready for code reviews you buy the other two takeout because a 40% cap is ROUGH
-* if you won't be able to Make a code review give at least maybe 48 hrs notice so we can contact kevin about it
-* if you go entirely m.i.a. for a week you're getting reported
-* if anyone feels anyone is not doing enough then bring it up and let's please Talk About It without getting pissy and stressed
-    * actually same if anyone has any sort of problem
-    
-##below is the rest of the code of conduct template 
+* Give at least a day's notice if you're not gonna be able to make a lab session, or let the rest of the team know if something's come up as soon as possible
+* If you're late/not ready for code reviews buy the other two takeout
+* If you won't be able to Make a code review give at least maybe 24 hrs notice so we can contact Kevin about it
+* If you go entirely MIA for a week you're getting reported
+
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as
