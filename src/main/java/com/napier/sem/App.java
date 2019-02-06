@@ -105,6 +105,12 @@ public class App
                 emp.emp_no = rset.getInt("emp_no");
                 emp.first_name = rset.getString("first_name");
                 emp.last_name = rset.getString("last_name");
+               // emp.title = rset.getString("title");
+                //TODO find out why it's not getting the employee title except i guess it doesn't matter that much since we'll be using a different db for this anyway
+                emp.salary = rset.getInt("salary");
+                emp.dept_name = rset.getString("dept_name");
+                emp.manager = rset.getString("manager");
+
                 return emp;
             }
             else
@@ -126,7 +132,7 @@ public class App
                     emp.emp_no + " "
                             + emp.first_name + " "
                             + emp.last_name + "\n"
-                            + emp.title + "\n"
+                           // + emp.title + "\n"
                             + "Salary:" + emp.salary + "\n"
                             + emp.dept_name + "\n"
                             + "Manager: " + emp.manager + "\n");
