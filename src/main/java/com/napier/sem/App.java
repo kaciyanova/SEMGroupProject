@@ -11,10 +11,10 @@ public class App
 
         // Connect to database
         a.connect();
-        // Get Employee
-        Employee emp = a.getEmployee(255530);
+        // Get City
+        City city = a.getCity(255530);
         // Display results
-        a.displayEmployee(emp);
+        a.displayCity(city);
 
         // Disconnect from database
         a.disconnect();
@@ -50,7 +50,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/Citys?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -84,7 +84,7 @@ public class App
             }
         }
     }
-    public Employee getEmployee(int ID)
+    public City getCity(int cityID)
     {
         try
         {
@@ -92,26 +92,23 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT emp_no, first_name, last_name "
-                            + "FROM employees "
-                            + "WHERE emp_no = " + ID;
+                    "SELECT ID, Name, CountryCode "
+                            + "FROM city "
+                            + "WHERE ID = " + cityID;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             if (rset.next())
             {
-                Employee emp = new Employee();
-                emp.emp_no = rset.getInt("emp_no");
-                emp.first_name = rset.getString("first_name");
-                emp.last_name = rset.getString("last_name");
-               // emp.title = rset.getString("title");
-                //TODO find out why it's not getting the employee title except i guess it doesn't matter that much since we'll be using a different db for this anyway
-                emp.salary = rset.getInt("salary");
-                emp.dept_name = rset.getString("dept_name");
-                emp.manager = rset.getString("manager");
+                City city = new City();
+                city.ID = rset.getInt("emp_no");
+                city.Name = rset.getString("first_name");
+                city.CountryCode = rset.getString("last_name");
+                city.District = rset.getString("salary");
+                city.Population = rset.getInt("dept_name");
 
-                return emp;
+                return city;
             }
             else
                 return null;
@@ -119,23 +116,21 @@ public class App
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get City details");
             return null;
         }
     }
 
-    public void displayEmployee(Employee emp)
+    public void displayCity(City city)
     {
-        if (emp != null)
+        if (city != null)
         {
             System.out.println(
-                    emp.emp_no + " "
-                            + emp.first_name + " "
-                            + emp.last_name + "\n"
-                           // + emp.title + "\n"
-                            + "Salary:" + emp.salary + "\n"
-                            + emp.dept_name + "\n"
-                            + "Manager: " + emp.manager + "\n");
+                    city.ID + " "
+                            + city.Name + " "
+                            + "Country code:" + city.CountryCode + "\n"
+                            + "District:" + city.District + "\n"
+                            + "Population:" +city.Population + "\n");
         }
     }
 }
