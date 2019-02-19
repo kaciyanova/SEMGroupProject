@@ -14,7 +14,7 @@ rectangle "HR System" {
 
     usecase UCa as "Print salaries"
 
-    HR - UC4
+    HR - UC5
     UC4 ..> UCa : include
     UC4 - Database
     UC5 - UC4
