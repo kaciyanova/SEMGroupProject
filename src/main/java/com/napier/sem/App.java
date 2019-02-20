@@ -12,7 +12,7 @@ public class App
         // Connect to database
         a.connect();
         // Get City
-        City city = a.getCity(255530);
+        City city = a.getCity(1);
         // Display results
         a.displayCity(city);
 
@@ -50,7 +50,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/Citys?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -102,11 +102,11 @@ public class App
             if (rset.next())
             {
                 City city = new City();
-                city.ID = rset.getInt("emp_no");
-                city.Name = rset.getString("first_name");
-                city.CountryCode = rset.getString("last_name");
-                city.District = rset.getString("salary");
-                city.Population = rset.getInt("dept_name");
+                city.ID = rset.getInt("ID");
+                city.Name = rset.getString("Name");
+                city.CountryCode = rset.getString("CountryCode");
+                city.District = rset.getString("District");
+                city.Population = rset.getInt("Population");
 
                 return city;
             }
