@@ -103,10 +103,10 @@ public class App
             {
                 City city = new City();
                 city.ID = rset.getInt("ID");
-                city.Name = rset.getString("Name");
-                city.CountryCode = rset.getString("CountryCode");
-                city.District = rset.getString("District");
-                city.Population = rset.getInt("Population");
+               // city.Name = rset.getString("Name");
+               // city.CountryCode = rset.getString("CountryCode");
+                //city.District = rset.getString("District");
+               // city.Population = rset.getInt("Population");
 
                 return city;
             }
@@ -127,10 +127,11 @@ public class App
         {
             System.out.println(
                     city.ID + " "
-                            + city.Name + " "
-                            + "Country code:" + city.CountryCode + "\n"
-                            + "District:" + city.District + "\n"
-                            + "Population:" +city.Population + "\n");
+                          //  + city.Name + " "
+                          //  + "Country code:" + city.CountryCode + "\n"
+                          //  + "District:" + city.District + "\n"
+                           // + "Population:" +city.Population + "\n"
+                    );
         }
     }
 }
