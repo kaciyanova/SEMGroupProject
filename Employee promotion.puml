@@ -1,0 +1,21 @@
+@startuml
+
+
+actor HR as "HR Advisor"
+actor employee as "Employee"
+
+
+rectangle "HR Promotion System" {
+
+
+    usecase UC5 as "Employee file"
+
+    usecase UC4 as "Employee promotion request"
+
+    usecase UCa as "Update promotion request"
+
+    HR - UC5
+    UC5 ..> UCa : include
+    UC4 - employee
+    UC5 - UC4
+@enduml

@@ -1,16 +1,18 @@
 @startuml
+:Main Admin: as Admin
+(Use the application) as (Use)
 
 actor HR as "HR Advisor"
 
 rectangle Database
 
-rectangle "HR Salary System" {
+rectangle "HR Salary System(HR Salary file)" {
 
 
     usecase UC5 as "Creating HR file"
 
     usecase UC4 as "Get salaries
-    by role"
+    from HR employees"
 
     usecase UCa as "Print salaries"
 
@@ -18,6 +20,4 @@ rectangle "HR Salary System" {
     UC4 ..> UCa : include
     UC4 - Database
     UC5 - UC4
-}
-
 @enduml
