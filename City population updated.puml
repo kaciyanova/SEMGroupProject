@@ -1,0 +1,23 @@
+@startuml
+actor User as "Member"
+
+rectangle Database
+
+rectangle "Population System" {
+
+
+    usecase UC5 as "City"
+
+    usecase UC4 as "Overall Population"
+
+    usecase UC6 as "Country"
+
+    usecase UC7 as "Name"
+
+    User - UC5
+    UC5 ..> UC4
+    UC7 - UC6 : include
+    UC4 - UC7 : include
+
+
+@enduml

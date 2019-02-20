@@ -1,0 +1,28 @@
+@startuml
+actor User as "Member"
+
+rectangle User_Database
+
+rectangle "Population System" {
+
+
+    usecase UC5 as "Top number populated countries"
+
+
+
+    usecase UC4 as "Region or Continent"
+
+   
+
+    usecase UC7 as "Display"
+
+
+
+    User - UC5
+    User_Database - UC5
+    UC5 ..> UC4
+
+    UC4 ..> UC7 : include
+
+@enduml
+@enduml
