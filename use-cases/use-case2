@@ -1,0 +1,51 @@
+ # USE CASE: As a user I want to be able to produce a report of all the capital cities in the world, or a given continent, region, or district organised by population.
+## CHARACTERISTIC INFORMATION
+
+### Goal in Context
+As a user I want to be able to produce a report of all the capital cities in the world, or a given continent, region, or district organised by population.
+
+### Scope
+Organisation
+
+### Level
+Primary
+
+### Preconditions
+
+We have access to the population information required & access to the names of capital cities(Regions, District).
+
+### Success End Condition
+
+User can access capital cities, regional or district population organised by population.
+
+### Failed End Condition
+
+User cannot access pital cities, regional or district population organised by population.
+
+
+### Primary Actor
+
+User
+
+### Trigger
+
+A request for access to population per continent information is made.
+
+## MAIN SUCCESS SCENARIO
+
+1. User requests population information for given capital city, region or district.
+2. Population(Capital city, region or district) information is shown to user.
+
+## EXTENSIONS
+
+
+2. **Condition**: action of sub use case
+1. Population information for required continent is unavailable.
+
+## SUB-VARIATIONS
+
+None
+
+## SCHEDULE
+
+Final release
