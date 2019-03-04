@@ -1,6 +1,7 @@
 package com.napier.sem;
 
-public class Country {
+public class Country
+{
     /**
      * Country code
      */
@@ -26,6 +27,7 @@ public class Country {
      */
     public int Population;
 
-    //Capital city ID
-    public int Capital;
+    public int CapitalID;
+
+    public City Capital;
 }

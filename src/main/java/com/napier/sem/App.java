@@ -2,7 +2,6 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class App
 {
@@ -11,15 +10,18 @@ public class App
         // Create new Application
         App a = new App();
 
-        // Connect to database
-        a.Connect();
-        // Get City
-//        City city = a.GetCity(1);
-        // Display results
-//        a.DisplayCity(city);
+        // connect to database
+        a.connect();
 
-        // Disconnect from database
-        a.Disconnect();
+        ArrayList<Country> countries=a.getCountries();
+        ArrayList<City> cities=a.getCities();
+        ArrayList<Language> languages=a.getLanguages();
+
+        // disconnect from database
+        a.disconnect();
+
+        //TODO write some user input thing
+
     }
 
     /**
@@ -28,9 +30,9 @@ public class App
     private Connection con = null;
 
     /**
-     * Connect to the MySQL database.
+     * connect to the MySQL database.
      */
-    public void Connect()
+    public void connect()
     {
         try {
             // Load Database driver
@@ -46,12 +48,12 @@ public class App
             try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
-                // Connect to database
+                // connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to Connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
@@ -60,9 +62,9 @@ public class App
     }
 
     /**
-     * Disconnect from the MySQL database.
+     * disconnect from the MySQL database.
      */
-    public void Disconnect()
+    public void disconnect()
     {
         if (con != null) {
             try {
@@ -74,13 +76,8 @@ public class App
         }
     }
 
-    public void GetWorldInfo()
-    {
-        //pulling all from db since amount of data is small
-    }
-
     //gets list of all countries in db
-    public List<Country> GetCountries()
+    public ArrayList<Country> getCountries()
     {
         try {
             // Create an SQL statement
@@ -105,7 +102,7 @@ public class App
                 country.Continent = results.getString("Continent");
                 country.Region = results.getString("Region");
                 country.Population = results.getInt("Population");
-                country.Capital=results.getInt("Capital");
+                country.CapitalID = results.getInt("Capital");
 
                 countries.add(country);
             }
@@ -117,7 +114,7 @@ public class App
         }
     }
 
-    public ArrayList<City> GetCities()
+    public ArrayList<City> getCities()
     {
         try {
             // Create an SQL statement
@@ -153,7 +150,7 @@ public class App
         }
     }
 
-    public ArrayList<Language> GetLanguages()
+    public ArrayList<Language> getLanguages()
     {
         try {
             // Create an SQL statement
@@ -187,17 +184,4 @@ public class App
         }
     }
 
-
-    public void DisplayCity(City city)
-    {
-        if (city != null) {
-            System.out.println(
-                    city.ID + " "
-                    //  + city.Name + " "
-                    //  + "Country code:" + city.CountryCode + "\n"
-                    //  + "District:" + city.District + "\n"
-                    // + "Population:" +city.Population + "\n"
-            );
-        }
-    }
 }
