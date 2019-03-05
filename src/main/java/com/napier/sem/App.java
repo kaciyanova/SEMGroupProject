@@ -25,6 +25,12 @@ public class App
 
         //TODO write some user input thing
 
+
+    }
+
+    public void testResports(ArrayList<Country> countries,ArrayList<City> cities){
+Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries));
+        Report.writeToCSV("~/cityreport.csv",Report.GenerateCityReports(cities));
     }
 
 
@@ -183,27 +189,25 @@ public class App
         }
     }
 
-    //Sets country name on cities
+    //Sets country on cities
     public void setCityCountry(ArrayList<Country> countries, ArrayList<City> cities)
     {
-        cities.forEach(city -> city.Country = getCountryName(city.CountryCode, countries));
+        cities.forEach(city -> city.Country = getCountry(city.CountryCode, countries));
 
     }
 
-        public String getCountryName(String countryCode, ArrayList<Country> countries)
+        public Country getCountry(String countryCode, ArrayList<Country> countries)
     {
-        String countryName = "";
         try {
-            Country cityCountry = countries.stream()
+            return countries.stream()
                     .filter((country) -> country.Code == countryCode)
                     .findFirst()
                     .orElseThrow(() -> new Exception("Country not found"));
 
-            countryName = cityCountry.Name;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return countryName;
     }
 
     //Sets whether city is a capital or not

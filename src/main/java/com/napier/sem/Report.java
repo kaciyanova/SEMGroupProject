@@ -10,43 +10,32 @@ import java.util.ArrayList;
 public class Report
 {
     //Creates country report from given list of countries
-    public ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries, ArrayList<City> cities)
+    public static ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
         report.add(new String[]{"Country Code", "Name", "Continent", "Region", "Population", "Capital"});
 
-        countries.forEach(country -> report.add(GenerateCountryReport(country, cities)));
+        countries.forEach(country -> report.add(GenerateCountryReport(country)));
 
         return report;
     }
 
     //Creates country report from given list of cities
-    public ArrayList<String[]> GenerateCityReports(ArrayList<City> cities, ArrayList<Country> countries)
+    public static ArrayList<String[]> GenerateCityReports(ArrayList<City> cities)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
         report.add(new String[]{"Name", "Country", "Population"});
 //TODO decide if city and capital city ones should be split off into different methods or if an if is fine
-        cities.forEach(city -> report.add(GenerateCityReport(city, countries)));
+        cities.forEach(city -> report.add(GenerateCityReport(city)));
 
         return report;
     }
 
     //Creates report line for single country
-    String[] GenerateCountryReport(Country country, ArrayList<City> cities)
+    static String[] GenerateCountryReport(Country country)
     {
-        String capitalName = "";
-        try {
-            City capital = cities.stream()
-                    .filter((city) -> city.ID == country.CapitalID)
-                    .findFirst()
-                    .orElseThrow(() -> new Exception("Capital city not found"));
-
-            capitalName = capital.Name;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return new String[]
                 {
@@ -55,24 +44,24 @@ public class Report
                         country.Continent,
                         country.Region,
                         Integer.toString(country.Population),
-                        capitalName};
+                        country.Capital.Name};
     }
 
     //Creates report line for single city
-    String[] GenerateCityReport(City city, ArrayList<Country> countries)
+    static String[] GenerateCityReport(City city)
     {
         if (city.Capital) {
             return new String[]
                     {
                             city.Name,
-                            city.Country,
+                            city.Country.Name,
                             Integer.toString(city.Population)
                     };
         } else {
             return new String[]
                     {
                             city.Name,
-                            city.Country,
+                            city.Country.Name,
                             city.District,
                             Integer.toString(city.Population)
                     };

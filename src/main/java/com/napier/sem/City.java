@@ -23,8 +23,8 @@ public class City
      */
     public String CountryCode;
 
-    //City's country name
-    public String Country;
+    //City's country
+    public Country Country;
 
     /**
      * City's District
