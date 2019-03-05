@@ -25,10 +25,11 @@ public class App
 
         //TODO write some user input thing
 
-
+a.testReports(countries,cities);
     }
 
-    public void testResports(ArrayList<Country> countries,ArrayList<City> cities){
+
+    public void testReports(ArrayList<Country> countries, ArrayList<City> cities){
 Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries));
         Report.writeToCSV("~/cityreport.csv",Report.GenerateCityReports(cities));
     }
@@ -83,6 +84,7 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
     //gets list of all countries in db
     public ArrayList<Country> getCountries()
     {
+        System.out.println("Pulling countries from DB");
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
@@ -120,6 +122,7 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
 
     public ArrayList<City> getCities()
     {
+        System.out.println("Pulling cities from DB");
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
@@ -157,6 +160,7 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
 
     public ArrayList<Language> getLanguages()
     {
+        System.out.println("Pulling languages from DB");
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
