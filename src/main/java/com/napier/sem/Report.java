@@ -27,7 +27,7 @@ public class Report
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
         report.add(new String[]{"Name", "Country", "Population"});
-
+//TODO decide if city and capital city ones should be split off into different methods or if an if is fine
         cities.forEach(city -> report.add(GenerateCityReport(city, countries)));
 
         return report;
@@ -41,7 +41,7 @@ public class Report
             City capital = cities.stream()
                     .filter((city) -> city.ID == country.CapitalID)
                     .findFirst()
-                    .orElseThrow(() -> new Exception("Capital city  not found"));
+                    .orElseThrow(() -> new Exception("Capital city not found"));
 
             capitalName = capital.Name;
         } catch (Exception e) {
@@ -61,23 +61,23 @@ public class Report
     //Creates report line for single city
     String[] GenerateCityReport(City city, ArrayList<Country> countries)
     {
-        String countryName = "";
-        try {
-            Country cityCountry = countries.stream()
-                    .filter((country) -> country.Code == city.CountryCode)
-                    .findFirst()
-                    .orElseThrow(() -> new Exception("Country not found"));
+        if (city.Capital) {
+            return new String[]
+                    {
+                            city.Name,
+                            city.Country,
+                            Integer.toString(city.Population)
+                    };
+        } else {
+            return new String[]
+                    {
+                            city.Name,
+                            city.Country,
+                            city.District,
+                            Integer.toString(city.Population)
+                    };
 
-            countryName = cityCountry.Name;
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
-        return new String[]
-                {city.Name,
-                        countryName,
-                        Integer.toString(city.Population)
-                };
     }
 
 

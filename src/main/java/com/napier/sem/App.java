@@ -13,25 +13,25 @@ public class App
         // connect to database
         a.connect();
 
-        ArrayList<Country> countries=a.getCountries();
-        ArrayList<City> cities=a.getCities();
-        ArrayList<Language> languages=a.getLanguages();
+        ArrayList<Country> countries = a.getCountries();
+        ArrayList<City> cities = a.getCities();
+        ArrayList<Language> languages = a.getLanguages();
 
         // disconnect from database
         a.disconnect();
+
+        a.setCityCountry(countries, cities);
+        a.setCapitalCities(countries, cities);
 
         //TODO write some user input thing
 
     }
 
-    /**
-     * Connection to MySQL database.
-     */
+
+    //     Connection to MySQL database.
     private Connection con = null;
 
-    /**
-     * connect to the MySQL database.
-     */
+    // connect to the MySQL database.
     public void connect()
     {
         try {
@@ -61,9 +61,7 @@ public class App
         }
     }
 
-    /**
-     * disconnect from the MySQL database.
-     */
+    //disconnect from the MySQL database.
     public void disconnect()
     {
         if (con != null) {
@@ -139,6 +137,7 @@ public class App
                 city.CountryCode = results.getString("CountryCode");
                 city.District = results.getString("District");
                 city.Population = results.getInt("Population");
+                city.Capital = false;
 
                 cities.add(city);
             }
@@ -184,4 +183,33 @@ public class App
         }
     }
 
+    //Sets country name on cities
+    public void setCityCountry(ArrayList<Country> countries, ArrayList<City> cities)
+    {
+        cities.forEach(city -> city.Country = getCountryName(city.CountryCode, countries));
+
+    }
+
+        public String getCountryName(String countryCode, ArrayList<Country> countries)
+    {
+        String countryName = "";
+        try {
+            Country cityCountry = countries.stream()
+                    .filter((country) -> country.Code == countryCode)
+                    .findFirst()
+                    .orElseThrow(() -> new Exception("Country not found"));
+
+            countryName = cityCountry.Name;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countryName;
+    }
+
+    //Sets whether city is a capital or not
+    public void setCapitalCities(ArrayList<Country> countries, ArrayList<City> cities)
+    {
+        //Checks and sets whether city is a capital
+        cities.forEach(city -> city.Capital = countries.stream().anyMatch((country) -> country.CapitalID == city.ID));
+    }
 }
