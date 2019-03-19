@@ -86,7 +86,7 @@ public class App
             String selectString =
                     "SELECT Code, Name, Continent, Region,Population,Capital "
                             + "FROM country "
-                            + "ORDER BY country.Code ASC";
+                            + "ORDER BY country.Population DESC ";
             ;
 
             // Execute SQL statement
@@ -123,7 +123,7 @@ public class App
             String selectString =
                     "SELECT ID, CountryCode, Name, Continent, District,Population "
                             + "FROM country "
-                            + "ORDER BY country.Code ASC";
+                            + "ORDER BY country.Population DESC";
             ;
 
             // Execute SQL statement
@@ -159,7 +159,7 @@ public class App
             String selectString =
                     "SELECT CountryCode, Name, Percentage "
                             + "FROM country "
-                            + "ORDER BY country.Code ASC";
+                            + "ORDER BY country.Population DESC";
             ;
 
             // Execute SQL statement
