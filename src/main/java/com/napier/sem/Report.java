@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Report
 {
     //Creates country report from given list of countries
-    public ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries, ArrayList<City> cities)
+    public static ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries, ArrayList<City> cities)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
@@ -34,7 +34,7 @@ public class Report
     }
 
     //Creates report line for single country
-    String[] GenerateCountryReport(Country country)
+    static String[] GenerateCountryReport(Country country)
     {
         return new String[]
                 {
@@ -47,7 +47,7 @@ public class Report
     }
 
     //Creates report line for single city
-    String[] GenerateCityReport(City city, ArrayList<Country> countries)
+    static String[] GenerateCityReport(City city, ArrayList<Country> countries)
     {
               return new String[]
                 {city.Name,
