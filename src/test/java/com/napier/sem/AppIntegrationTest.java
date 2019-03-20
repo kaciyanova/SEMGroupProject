@@ -19,28 +19,51 @@ public class AppIntegrationTest
         app.connect("localhost:33060");
     }
 
-    @Test
-    void testGetCountries()
+       @Test
+    void getCountriesTestEmpty()
     {
-        ArrayList<Country> countries = app.getCountries();
-        assertNotNull(countries);
-        assertFalse(countries.isEmpty());
+        assertFalse(app.getCountries().isEmpty());
     }
 
     @Test
-    void testGetCities()
+    void getCountriesTestNull()
     {
-        ArrayList<City> cities = app.getCities();
-        assertNotNull(cities);
-        assertFalse(cities.isEmpty());
-
+        assertNotNull(app.getCountries());
+    }
+    @Test
+    void getCitiesTestNull()
+    {
+        assertNotNull(app.getCities());
     }
 
     @Test
-    void testGetLanguages()
+    void getCitiesTestEmpty()
     {
-        ArrayList<Language> languages = app.getLanguages();
-        assertNotNull(languages);
-        assertFalse(languages.isEmpty());
+                assertFalse(app.getCities().isEmpty());
     }
+    @Test
+    void getLanguagesTestEmpty()
+    {
+        assertFalse(app.getLanguages().isEmpty());
+    }
+    @Test
+    void getLanguagesTestNull()
+    {
+        assertNotNull(app.getLanguages());
+    }
+//do all methods need to be public Just so they can be tested??? like this one is called by a public method and nowhere else
+    //does each class need its own testing file like AppIntegrationTest ReportIntegrationTest etc
+    @Test
+    void getCapitalCityTestNull()
+    {
+        app.getCapitalCity(null,null);
+    }
+
+//    @Test
+//    void getCapitalCityTestEmpty()
+//    {
+//        Country country = new Country();
+//        ArrayList<City> cities = new ArrayList<City>();
+//        app.getCapitalCity(country,cities);
+//    }
 }

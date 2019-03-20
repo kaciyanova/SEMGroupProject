@@ -22,13 +22,14 @@ public class AppTest
     }
 
     @Test
-    void GenerateCityReportTestNull()
+    void assignCapitalsAndCountriesTestNull()
     {
+        Report.
         app.assignCapitalsAndCountries(null,null);
     }
 
     @Test
-    void GenerateCityReportTestEmpty()
+    void assignCapitalsAndCountriesTestEmpty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
         ArrayList<City> cities = new ArrayList<City>();
