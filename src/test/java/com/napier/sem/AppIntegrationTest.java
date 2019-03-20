@@ -51,19 +51,6 @@ public class AppIntegrationTest
     {
         assertNotNull(app.getLanguages());
     }
-//do all methods need to be public Just so they can be tested??? like this one is called by a public method and nowhere else
-    //does each class need its own testing file like AppIntegrationTest ReportIntegrationTest etc
-    @Test
-    void getCapitalCityTestNull()
-    {
-        app.getCapitalCity(null,null);
-    }
 
-//    @Test
-//    void getCapitalCityTestEmpty()
-//    {
-//        Country country = new Country();
-//        ArrayList<City> cities = new ArrayList<City>();
-//        app.getCapitalCity(country,cities);
-//    }
+
 }

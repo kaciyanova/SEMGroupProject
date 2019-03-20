@@ -16,16 +16,26 @@ public class AppTest
     static void init()
     {
         app = new App();
-//        ArrayList<Country> countries = app.getCountries();
-//        ArrayList<City> cities = app.getCities();
-//        ArrayList<Language> languages = app.getLanguages();
+    }
+
+    @Test
+    void getCapitalCityTestNull()
+    {
+        app.getCapitalCity(null, null);
+    }
+
+    @Test
+    void getCapitalCityTestEmpty()
+    {
+        Country country = new Country();
+        ArrayList<City> cities = new ArrayList<City>();
+        app.getCapitalCity(country, cities);
     }
 
     @Test
     void assignCapitalsAndCountriesTestNull()
     {
-        Report.
-        app.assignCapitalsAndCountries(null,null);
+        app.assignCapitalsAndCountries(null, null);
     }
 
     @Test
@@ -34,6 +44,6 @@ public class AppTest
         ArrayList<Country> countries = new ArrayList<Country>();
         ArrayList<City> cities = new ArrayList<City>();
 
-        app.assignCapitalsAndCountries(countries,cities);
+        app.assignCapitalsAndCountries(countries, cities);
     }
 }
