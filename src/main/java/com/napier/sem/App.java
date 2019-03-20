@@ -11,8 +11,14 @@ public class App
         App a = new App();
 
         // connect to database
-        a.connect("localhost:33060");
-
+        if (args.length < 1)
+        {
+            a.connect("localhost:3306");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
         ArrayList<Country> countries = a.getCountries();
         ArrayList<City> cities = a.getCities();
         ArrayList<Language> languages = a.getLanguages();
