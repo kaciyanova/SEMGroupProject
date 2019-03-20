@@ -28,23 +28,6 @@ public class App
 
         a.assignCapitalsAndCountries(countries, cities);
 
-        ArrayList<Country> countriess = countries;
-        ArrayList<City> citiess = cities;
-        for (int i = 0; i < 10; i++) {
-            System.out.println("city on og country: " + countries.get(i).Capital.Name);
-            System.out.println("city on maybe new country: " + countriess.get(i).Capital.Name);
-
-
-            System.out.println("Country on og city: "+ cities.get(i).Country.Name);
-            Country countryoncity = citiess.get(i).Country;
-            if (countryoncity != null) {
-                System.out.println("Country on maybe new city: " + citiess.get(i).Country.Name);
-
-            } else {
-                System.out.println("no country on city: " + citiess.get(i).Name);
-            }
-
-        }
         //TODO write some user input thing
     }
 
