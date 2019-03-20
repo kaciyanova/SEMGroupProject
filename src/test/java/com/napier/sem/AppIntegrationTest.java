@@ -24,5 +24,23 @@ public class AppIntegrationTest
     {
         ArrayList<Country> countries = app.getCountries();
         assertNotNull(countries);
+        assertFalse(countries.isEmpty());
+    }
+
+    @Test
+    void testGetCities()
+    {
+        ArrayList<City> cities = app.getCities();
+        assertNotNull(cities);
+        assertFalse(cities.isEmpty());
+
+    }
+
+    @Test
+    void testGetLanguages()
+    {
+        ArrayList<Language> languages = app.getLanguages();
+        assertNotNull(languages);
+        assertFalse(languages.isEmpty());
     }
 }
