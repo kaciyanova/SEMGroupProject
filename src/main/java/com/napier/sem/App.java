@@ -229,8 +229,8 @@ public class App
     //Assigns capital cities to each country & vice versa
     public void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
     {
-        if (countries.isEmpty()||cities.isEmpty()){
-            System.out.println("Cities or countries empty");
+        if (countries==null||cities==null){
+            System.out.println("Cities and/or countries null");
             return;
         }
         countries.forEach(country -> country.Capital = getCapitalCity(country, cities));
