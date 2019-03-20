@@ -221,8 +221,13 @@ public class App
     }
 
     //gets capital city of country
-    City getCapitalCity(Country country, ArrayList<City> cities)
+    public City getCapitalCity(Country country, ArrayList<City> cities)
     {
+        if (country==null||cities==null){
+            System.out.println("City and/or countries null");
+            return null;
+        }
+
         try {
             City capital = cities.stream()
                     .filter((city) -> city.ID == country.CapitalID)

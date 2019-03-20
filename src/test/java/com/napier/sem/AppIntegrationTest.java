@@ -20,27 +20,65 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testGetCountries()
+    void assignCapitalsAndCountriesTestNull()
     {
-        ArrayList<Country> countries = app.getCountries();
-        assertNotNull(countries);
-        assertFalse(countries.isEmpty());
+        app.assignCapitalsAndCountries(null,null);
     }
 
     @Test
-    void testGetCities()
+    void assignCapitalsAndCountriesTestEmpty()
     {
-        ArrayList<City> cities = app.getCities();
-        assertNotNull(cities);
-        assertFalse(cities.isEmpty());
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ArrayList<City> cities = new ArrayList<City>();
 
+        app.assignCapitalsAndCountries(countries,cities);
     }
 
     @Test
-    void testGetLanguages()
+    void getCountriesTestEmpty()
     {
-        ArrayList<Language> languages = app.getLanguages();
-        assertNotNull(languages);
-        assertFalse(languages.isEmpty());
+        assertFalse(app.getCountries().isEmpty());
     }
+
+    @Test
+    void getCountriesTestNull()
+    {
+        assertNotNull(app.getCountries());
+    }
+    @Test
+    void getCitiesTestNull()
+    {
+        assertNotNull(app.getCities());
+    }
+
+    @Test
+    void getCitiesTestEmpty()
+    {
+                assertFalse(app.getCities().isEmpty());
+    }
+    @Test
+    void getLanguagesTestEmpty()
+    {
+        assertFalse(app.getLanguages().isEmpty());
+    }
+    @Test
+    void getLanguagesTestNull()
+    {
+        assertNotNull(app.getLanguages());
+    }
+//do all methods need to be public Just so they can be tested??? like this one is called by a public method and nowhere else
+    //does each class need its own testing file like AppIntegrationTest ReportIntegrationTest etc
+    @Test
+    void getCapitalCityTestNull()
+    {
+        app.getCapitalCity(null,null);
+    }
+
+//    @Test
+//    void getCapitalCityTestEmpty()
+//    {
+//        Country country = new Country();
+//        ArrayList<City> cities = new ArrayList<City>();
+//        app.getCapitalCity(country,cities);
+//    }
 }
