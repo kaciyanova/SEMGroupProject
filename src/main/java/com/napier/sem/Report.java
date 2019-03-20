@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Report
 {
     //Creates country report from given list of countries
-    public ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries, ArrayList<City> cities)
+    public static ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries, ArrayList<City> cities)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header

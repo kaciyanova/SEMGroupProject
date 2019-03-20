@@ -27,7 +27,7 @@ public class App
         a.disconnect();
 
         a.assignCapitalsAndCountries(countries, cities);
-
+Report.GenerateCountryReports(countries, cities);
         //TODO write some user input thing
     }
 
