@@ -16,7 +16,7 @@ public class Report
         //Report header
         report.add(new String[]{"Country Code", "Name", "Continent", "Region", "Population", "Capital"});
 
-        countries.forEach(country -> report.add(GenerateCountryReport(country, cities)));
+        countries.forEach(country -> report.add(GenerateCountryReport(country)));
 
         return report;
     }
@@ -34,20 +34,8 @@ public class Report
     }
 
     //Creates report line for single country
-    String[] GenerateCountryReport(Country country, ArrayList<City> cities)
+    String[] GenerateCountryReport(Country country)
     {
-        String capitalName = "";
-        try {
-            City capital = cities.stream()
-                    .filter((city) -> city.ID == country.CapitalID)
-                    .findFirst()
-                    .orElseThrow(() -> new Exception("Capital city  not found"));
-
-            capitalName = capital.Name;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         return new String[]
                 {
                         country.Code,
@@ -55,27 +43,15 @@ public class Report
                         country.Continent,
                         country.Region,
                         Integer.toString(country.Population),
-                        capitalName};
+                        country.Capital.Name};
     }
 
     //Creates report line for single city
     String[] GenerateCityReport(City city, ArrayList<Country> countries)
     {
-        String countryName = "";
-        try {
-            Country cityCountry = countries.stream()
-                    .filter((country) -> country.Code == city.CountryCode)
-                    .findFirst()
-                    .orElseThrow(() -> new Exception("Country not found"));
-
-            countryName = cityCountry.Name;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return new String[]
+              return new String[]
                 {city.Name,
-                        countryName,
+                        city.Country.Name,
                         Integer.toString(city.Population)
                 };
     }

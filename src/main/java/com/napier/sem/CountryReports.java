@@ -22,30 +22,16 @@ public class CountryReports
             case World:
                 return countries;
             case Continent:
-                return countries.stream()
-                        .filter((country) -> country.Continent == Area).collect(Collectors.toCollection(Collectors.toList()));
+                return (ArrayList<Country>) countries.stream()
+                        .filter((country) -> country.Continent == Area).collect(Collectors.toList());
 
-                break;
             case Region:
-                break;
+                return (ArrayList<Country>) countries.stream()
+                        .filter((country) -> country.Region == Area).collect(Collectors.toList());
             default: {
                 return countries;
             }
         }
-
-
-//        public void whenSortingEntitiesByName_thenCorrectlySorted ()
-//        {
-//            List<Human> humans = Lists.newArrayList(
-//                    new Human("Sarah", 10),
-//                    new Human("Jack", 12)
-//            );
-//
-//            humans.sort(
-//                    (Human h1, Human h2) -> h1.getName().compareTo(h2.getName()));
-//
-//            assertThat(humans.get(0), equalTo(new Human("Jack", 12)));
-//        }
-
-
     }
+
+}

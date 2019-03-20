@@ -13,15 +13,33 @@ public class App
         // connect to database
         a.connect();
 
-        ArrayList<Country> countries=a.getCountries();
-        ArrayList<City> cities=a.getCities();
-        ArrayList<Language> languages=a.getLanguages();
+        ArrayList<Country> countries = a.getCountries();
+        ArrayList<City> cities = a.getCities();
+        ArrayList<Language> languages = a.getLanguages();
 
         // disconnect from database
         a.disconnect();
 
-        //TODO write some user input thing
+        a.assignCapitalsAndCountries(countries, cities);
 
+        ArrayList<Country> countriess = countries;
+        ArrayList<City> citiess = cities;
+        for (int i = 0; i < 10; i++) {
+            System.out.println("city on og country: " + countries.get(i).Capital.Name);
+            System.out.println("city on maybe new country: " + countriess.get(i).Capital.Name);
+
+
+            System.out.println("Country on og city: "+ cities.get(i).Country.Name);
+            Country countryoncity = citiess.get(i).Country;
+            if (countryoncity != null) {
+                System.out.println("Country on maybe new city: " + citiess.get(i).Country.Name);
+
+            } else {
+                System.out.println("no country on city: " + citiess.get(i).Name);
+            }
+
+        }
+        //TODO write some user input thing
     }
 
     /**
@@ -32,7 +50,7 @@ public class App
     /**
      * connect to the MySQL database.
      */
-    public void connect()
+    void connect()
     {
         try {
             // Load Database driver
@@ -64,7 +82,7 @@ public class App
     /**
      * disconnect from the MySQL database.
      */
-    public void disconnect()
+    void disconnect()
     {
         if (con != null) {
             try {
@@ -77,7 +95,7 @@ public class App
     }
 
     //gets list of all countries in db
-    public ArrayList<Country> getCountries()
+    ArrayList<Country> getCountries()
     {
         try {
             // Create an SQL statement
@@ -106,6 +124,8 @@ public class App
 
                 countries.add(country);
             }
+            System.out.println("Countries fetch successful");
+
             return countries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -114,16 +134,17 @@ public class App
         }
     }
 
-    public ArrayList<City> getCities()
+    //gets list of all cities in db
+    ArrayList<City> getCities()
     {
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
             // Create string for SQL statement
             String selectString =
-                    "SELECT ID, CountryCode, Name, Continent, District,Population "
-                            + "FROM country "
-                            + "ORDER BY country.Population DESC";
+                    "SELECT ID, CountryCode, Name, District,Population "
+                            + "FROM city "
+                            + "ORDER BY city.Population DESC";
             ;
 
             // Execute SQL statement
@@ -134,14 +155,17 @@ public class App
 
             while (results.next()) {
                 City city = new City();
-                city.ID = results.getInt("Code");
+                city.ID = results.getInt("ID");
                 city.Name = results.getString("Name");
                 city.CountryCode = results.getString("CountryCode");
                 city.District = results.getString("District");
                 city.Population = results.getInt("Population");
 
                 cities.add(city);
+
             }
+            System.out.println("Cities fetch successful");
+
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -150,16 +174,17 @@ public class App
         }
     }
 
-    public ArrayList<Language> getLanguages()
+    //gets list of all cities in db
+    ArrayList<Language> getLanguages()
     {
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
             // Create string for SQL statement
             String selectString =
-                    "SELECT CountryCode, Name, Percentage "
-                            + "FROM country "
-                            + "ORDER BY country.Population DESC";
+                    "SELECT CountryCode, Language, Percentage "
+                            + "FROM countrylanguage "
+                            + "ORDER BY countrylanguage.CountryCode ASC";
             ;
 
             // Execute SQL statement
@@ -170,12 +195,14 @@ public class App
 
             while (results.next()) {
                 Language language = new Language();
-                language.Name = results.getString("Name");
+                language.Name = results.getString("Language");
                 language.CountryCode = results.getString("CountryCode");
-                language.Percentage = results.getFloat("Population");
+                language.Percentage = results.getFloat("Percentage");
 
                 languages.add(language);
             }
+            System.out.println("Languages fetch successful");
+
             return languages;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -184,4 +211,58 @@ public class App
         }
     }
 
+    //Assigns capital cities to each country & vice versa
+    public void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
+    {
+        countries.forEach(country -> country.Capital = getCapitalCity(country, cities));
+        cities.forEach(city -> city.Country = getCountry(city, countries));
+    }
+
+    //gets capital city of country
+    City getCapitalCity(Country country, ArrayList<City> cities)
+    {
+        try {
+            City capital = cities.stream()
+                    .filter((city) -> city.ID == country.CapitalID)
+                    .findFirst()
+                    .orElse(null);
+
+            if (capital == null) {
+                System.out.println("Capital city of " + country.Name + " not found");
+            } else {
+                System.out.println("Capital city of " + country.Name + " is " + country.Capital.Name);
+
+            }
+//TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
+
+            return capital;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    //gets capital city of country
+    Country getCountry(City city , ArrayList<Country> countries)
+    {
+        try {
+            Country cityCountry = countries.stream()
+                    .filter((country) -> country.Code == city.CountryCode)
+                    .findFirst()
+                    .orElse(null);
+
+            if (cityCountry == null) {
+                System.out.println("Country of " + city.Name + " not found");
+            } else {
+                System.out.println("Country of " + city.Name + " is " + city.Country.Name);
+
+            }
+//TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
+
+            return cityCountry;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
