@@ -11,8 +11,14 @@ public class App
         App a = new App();
 
         // connect to database
-        a.connect();
-
+        if (args.length < 1)
+        {
+            a.connect("localhost:3306");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
         ArrayList<Country> countries = a.getCountries();
         ArrayList<City> cities = a.getCities();
         ArrayList<Language> languages = a.getLanguages();
@@ -20,56 +26,78 @@ public class App
         // disconnect from database
         a.disconnect();
 
-        a.setCityCountry(countries, cities);
-        a.setCapitalCities(countries, cities);
+        a.assignCapitalsAndCountries(countries, cities);
 
+        ArrayList<Country> countriess = countries;
+        ArrayList<City> citiess = cities;
+        for (int i = 0; i < 10; i++) {
+            System.out.println("city on og country: " + countries.get(i).Capital.Name);
+            System.out.println("city on maybe new country: " + countriess.get(i).Capital.Name);
+
+
+            System.out.println("Country on og city: "+ cities.get(i).Country.Name);
+            Country countryoncity = citiess.get(i).Country;
+            if (countryoncity != null) {
+                System.out.println("Country on maybe new city: " + citiess.get(i).Country.Name);
+
+            } else {
+                System.out.println("no country on city: " + citiess.get(i).Name);
+            }
+
+        }
         //TODO write some user input thing
-
-a.testReports(countries,cities);
     }
 
-
-    public void testReports(ArrayList<Country> countries, ArrayList<City> cities){
-Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries));
-        Report.writeToCSV("~/cityreport.csv",Report.GenerateCityReports(cities));
-    }
-
-
-    //     Connection to MySQL database.
+    /**
+     * Connection to MySQL database.
+     */
     private Connection con = null;
 
-    // connect to the MySQL database.
-    public void connect()
+    /**
+     * connect to the MySQL database.
+     */
+    public void connect(String location)
     {
-        try {
+        try
+        {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i) {
+        for (int i = 0; i < retries; ++i)
+        {
             System.out.println("Connecting to database...");
-            try {
+            try
+            {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
-                // connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/employees?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            } catch (SQLException sqle) {
+            }
+            catch (SQLException sqle)
+            {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
+            }
+            catch (InterruptedException ie)
+            {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
     }
 
-    //disconnect from the MySQL database.
-    public void disconnect()
+    /**
+     * disconnect from the MySQL database.
+     */
+    void disconnect()
     {
         if (con != null) {
             try {
@@ -82,9 +110,8 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
     }
 
     //gets list of all countries in db
-    public ArrayList<Country> getCountries()
+    ArrayList<Country> getCountries()
     {
-        System.out.println("Pulling countries from DB");
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
@@ -92,7 +119,7 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
             String selectString =
                     "SELECT Code, Name, Continent, Region,Population,Capital "
                             + "FROM country "
-                            + "ORDER BY country.Code ASC";
+                            + "ORDER BY country.Population DESC ";
             ;
 
             // Execute SQL statement
@@ -112,6 +139,8 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
 
                 countries.add(country);
             }
+            System.out.println("Countries fetch successful");
+
             return countries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -120,17 +149,17 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
         }
     }
 
-    public ArrayList<City> getCities()
+    //gets list of all cities in db
+    ArrayList<City> getCities()
     {
-        System.out.println("Pulling cities from DB");
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
             // Create string for SQL statement
             String selectString =
-                    "SELECT ID, CountryCode, Name, Continent, District,Population "
-                            + "FROM country "
-                            + "ORDER BY country.Code ASC";
+                    "SELECT ID, CountryCode, Name, District,Population "
+                            + "FROM city "
+                            + "ORDER BY city.Population DESC";
             ;
 
             // Execute SQL statement
@@ -141,15 +170,17 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
 
             while (results.next()) {
                 City city = new City();
-                city.ID = results.getInt("Code");
+                city.ID = results.getInt("ID");
                 city.Name = results.getString("Name");
                 city.CountryCode = results.getString("CountryCode");
                 city.District = results.getString("District");
                 city.Population = results.getInt("Population");
-                city.Capital = false;
 
                 cities.add(city);
+
             }
+            System.out.println("Cities fetch successful");
+
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -158,17 +189,17 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
         }
     }
 
-    public ArrayList<Language> getLanguages()
+    //gets list of all cities in db
+    ArrayList<Language> getLanguages()
     {
-        System.out.println("Pulling languages from DB");
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
             // Create string for SQL statement
             String selectString =
-                    "SELECT CountryCode, Name, Percentage "
-                            + "FROM country "
-                            + "ORDER BY country.Code ASC";
+                    "SELECT CountryCode, Language, Percentage "
+                            + "FROM countrylanguage "
+                            + "ORDER BY countrylanguage.CountryCode ASC";
             ;
 
             // Execute SQL statement
@@ -179,12 +210,14 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
 
             while (results.next()) {
                 Language language = new Language();
-                language.Name = results.getString("Name");
+                language.Name = results.getString("Language");
                 language.CountryCode = results.getString("CountryCode");
-                language.Percentage = results.getFloat("Population");
+                language.Percentage = results.getFloat("Percentage");
 
                 languages.add(language);
             }
+            System.out.println("Languages fetch successful");
+
             return languages;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -193,31 +226,62 @@ Report.writeToCSV("~/countryreport.csv",Report.GenerateCountryReports(countries)
         }
     }
 
-    //Sets country on cities
-    public void setCityCountry(ArrayList<Country> countries, ArrayList<City> cities)
+    //Assigns capital cities to each country & vice versa
+    public void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
     {
-        cities.forEach(city -> city.Country = getCountry(city.CountryCode, countries));
-
+        if (countries.isEmpty()||cities.isEmpty()){
+            System.out.println("Cities or countries empty");
+            return;
+        }
+        countries.forEach(country -> country.Capital = getCapitalCity(country, cities));
+        cities.forEach(city -> city.Country = getCountry(city, countries));
     }
 
-        public Country getCountry(String countryCode, ArrayList<Country> countries)
+    //gets capital city of country
+    City getCapitalCity(Country country, ArrayList<City> cities)
     {
         try {
-            return countries.stream()
-                    .filter((country) -> country.Code == countryCode)
+            City capital = cities.stream()
+                    .filter((city) -> city.ID == country.CapitalID)
                     .findFirst()
-                    .orElseThrow(() -> new Exception("Country not found"));
+                    .orElse(null);
 
+            if (capital == null) {
+                System.out.println("Capital city of " + country.Name + " not found");
+            } else {
+                System.out.println("Capital city of " + country.Name + " is " + country.Capital.Name);
+
+            }
+//TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
+
+            return capital;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    //Sets whether city is a capital or not
-    public void setCapitalCities(ArrayList<Country> countries, ArrayList<City> cities)
+    //gets capital city of country
+    Country getCountry(City city , ArrayList<Country> countries)
     {
-        //Checks and sets whether city is a capital
-        cities.forEach(city -> city.Capital = countries.stream().anyMatch((country) -> country.CapitalID == city.ID));
+        try {
+            Country cityCountry = countries.stream()
+                    .filter((country) -> country.Code == city.CountryCode)
+                    .findFirst()
+                    .orElse(null);
+
+            if (cityCountry == null) {
+                System.out.println("Country of " + city.Name + " not found");
+            } else {
+                System.out.println("Country of " + city.Name + " is " + city.Country.Name);
+
+            }
+//TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
+
+            return cityCountry;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Report
 {
     //Creates country report from given list of countries
-    public static ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries)
+    public ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries, ArrayList<City> cities)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
@@ -22,21 +22,20 @@ public class Report
     }
 
     //Creates country report from given list of cities
-    public static ArrayList<String[]> GenerateCityReports(ArrayList<City> cities)
+    public ArrayList<String[]> GenerateCityReports(ArrayList<City> cities, ArrayList<Country> countries)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
         report.add(new String[]{"Name", "Country", "Population"});
-//TODO decide if city and capital city ones should be split off into different methods or if an if is fine
-        cities.forEach(city -> report.add(GenerateCityReport(city)));
+
+        cities.forEach(city -> report.add(GenerateCityReport(city, countries)));
 
         return report;
     }
 
     //Creates report line for single country
-    static String[] GenerateCountryReport(Country country)
+    String[] GenerateCountryReport(Country country)
     {
-
         return new String[]
                 {
                         country.Code,
@@ -48,25 +47,13 @@ public class Report
     }
 
     //Creates report line for single city
-    static String[] GenerateCityReport(City city)
+    String[] GenerateCityReport(City city, ArrayList<Country> countries)
     {
-        if (city.Capital) {
-            return new String[]
-                    {
-                            city.Name,
-                            city.Country.Name,
-                            Integer.toString(city.Population)
-                    };
-        } else {
-            return new String[]
-                    {
-                            city.Name,
-                            city.Country.Name,
-                            city.District,
-                            Integer.toString(city.Population)
-                    };
-
-        }
+              return new String[]
+                {city.Name,
+                        city.Country.Name,
+                        Integer.toString(city.Population)
+                };
     }
 
 
