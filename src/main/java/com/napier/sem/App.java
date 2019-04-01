@@ -2,8 +2,6 @@ package com.napier.sem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
@@ -13,30 +11,24 @@ import java.util.ArrayList;
 @RestController
 public class App
 {
-
-
     public static void main(String[] args)
     {
-        // Create new Application
-        App a = new App();
-
-        // connect to database
+        // Connect to database
         if (args.length < 1) {
-            a.connect("localhost:3306");
+            connect("localhost:33060");
         } else {
-            a.connect(args[0]);
+            connect(args[0]);
         }
 
         SpringApplication.run(App.class, args);
 
-        ArrayList<Country> countries = a.getCountries();
-        ArrayList<City> cities = a.getCities();
-        ArrayList<Language> languages = a.getLanguages();
-
+        ArrayList<Country> countries = getCountries();
+        ArrayList<City> cities = getCities();
+        ArrayList<Language> languages = getLanguages();
         // disconnect from database
-        a.disconnect();
+        disconnect();
 
-        a.assignCapitalsAndCountries(countries, cities);
+        assignCapitalsAndCountries(countries, cities);
         Report.GenerateCountryReports(countries, cities);
         //TODO write some user input thing
     }
@@ -70,7 +62,7 @@ public class App
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
@@ -94,7 +86,7 @@ public class App
     }
 
     //gets list of all countries in db
-    ArrayList<Country> getCountries()
+    static ArrayList<Country> getCountries()
     {
         try {
             // Create an SQL statement
@@ -104,7 +96,6 @@ public class App
                     "SELECT Code, Name, Continent, Region,Population,Capital "
                             + "FROM country "
                             + "ORDER BY country.Population DESC ";
-            ;
 
             // Execute SQL statement
             ResultSet results = query.executeQuery(selectString);
@@ -134,7 +125,7 @@ public class App
     }
 
     //gets list of all cities in db
-    ArrayList<City> getCities()
+    static ArrayList<City> getCities()
     {
         try {
             // Create an SQL statement
@@ -144,7 +135,6 @@ public class App
                     "SELECT ID, CountryCode, Name, District,Population "
                             + "FROM city "
                             + "ORDER BY city.Population DESC";
-            ;
 
             // Execute SQL statement
             ResultSet results = query.executeQuery(selectString);
@@ -174,7 +164,7 @@ public class App
     }
 
     //gets list of all cities in db
-    ArrayList<Language> getLanguages()
+    static ArrayList<Language> getLanguages()
     {
         try {
             // Create an SQL statement
@@ -184,7 +174,6 @@ public class App
                     "SELECT CountryCode, Language, Percentage "
                             + "FROM countrylanguage "
                             + "ORDER BY countrylanguage.CountryCode ASC";
-            ;
 
             // Execute SQL statement
             ResultSet results = query.executeQuery(selectString);
@@ -211,7 +200,7 @@ public class App
     }
 
     //Assigns capital cities to each country & vice versa
-    public void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
+    public static void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
     {
         if (countries == null || cities == null) {
             System.out.println("Cities and/or countries null");
@@ -222,7 +211,7 @@ public class App
     }
 
     //gets capital city of country
-    public City getCapitalCity(Country country, ArrayList<City> cities)
+    public static City getCapitalCity(Country country, ArrayList<City> cities)
     {
         if (country == null || cities == null) {
             System.out.println("City and/or countries null");
@@ -251,7 +240,7 @@ public class App
     }
 
     //gets capital city of country
-    Country getCountry(City city, ArrayList<Country> countries)
+    static Country getCountry(City city, ArrayList<Country> countries)
     {
         try {
             Country cityCountry = countries.stream()
