@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 
 public class AppTest
@@ -14,13 +15,13 @@ public class AppTest
     }
 
     @Test
-    void getCapitalCityTestNull()
+    static void getCapitalCityTestNull()
     {
         App.getCapitalCity(null, null);
     }
 
     @Test
-    void getCapitalCityTestEmpty()
+    static void getCapitalCityTestEmpty()
     {
         Country country = new Country();
         ArrayList<City> cities = new ArrayList<City>();
@@ -28,13 +29,13 @@ public class AppTest
     }
 
     @Test
-    void assignCapitalsAndCountriesTestNull()
+    static void assignCapitalsAndCountriesTestNull()
     {
         App.assignCapitalsAndCountries(null, null);
     }
 
     @Test
-    void assignCapitalsAndCountriesTestEmpty()
+    static void assignCapitalsAndCountriesTestEmpty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();
         ArrayList<City> cities = new ArrayList<City>();
