@@ -11,6 +11,8 @@ public class CountryReports
         World,
         Continent,
         Region
+        Population
+        capital
     }
 
     public ArrayList<Country> GetCountriesInAreaByPopulation(App a, ArrayList<Country> countries, Scope scope, String Area)
