@@ -7,30 +7,29 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
-public class CountryReports
-{
-    ArrayList<Country> countries;
+public class CountryReports {
 
-    public enum Scope
-    {
+    static ArrayList<Country> countries;
+
+    public enum Scope {
         World,
         Continent,
         Region
     }
 
     @RequestMapping("world")
-    public void WorldPopulation(@RequestParam(value="topN") String topN){
-//        try{
-        if (topN==null|| toString().isEmpty()){
-            GetCountriesInAreaByPopulation(countries,Scope.World,"",250);
+    public static void WorldPopulation(@RequestParam(value = "topN", defaultValue = "250") String topNStr) {
+        int topN;
+        try {
+            topN = Integer.parseInt(topNStr);
+        } catch (Exception ex) {
+            System.out.println("String cannot be converted to int");
+            topN = 250;
         }
-        else {
-            GetCountriesInAreaByPopulation(countries,Scope.World,"",Integer.parseInt(topN));
-        }
+        GetCountriesInAreaByPopulation(countries, Scope.World, "", topN);
     }
 
-    public ArrayList<Country> GetCountriesInAreaByPopulation( ArrayList<Country> countries, Scope scope, String Area, int topN)
-    {
+    public static ArrayList<Country> GetCountriesInAreaByPopulation(ArrayList<Country> countries, Scope scope, String Area, int topN) {
         //ensures countries are in order of population descending
         countries.stream().sorted((c1, c2) -> c2.Population - (c1.Population));
 
