@@ -13,8 +13,10 @@ public class App
 {
     public static void main(String[] args)
     {
+String cloudEndpoint="localhost:35.242.172.149:3306";
         // Connect to database
         if (args.length < 1) {
+//            connect(cloudEndpoint);
             connect("localhost:33060");
         } else {
             connect(args[0]);
