@@ -12,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -82,6 +81,7 @@ public class App
             }
         }
     }
+
 
     /**
      * disconnect from the MySQL database.
@@ -297,7 +297,8 @@ public class App
         ArrayList<Country> requestedCountries= GetCountriesInAreaByPopulation(countries, Scope.World, "", topN);
 
         ArrayList<String[]> reportArray=GenerateCountryReports(requestedCountries);
-        return (Arrays.toString(reportArray));
+        return "test";
+        //return (Arrays.toString(reportArray));
     }
 
     public static ArrayList<Country> GetCountriesInAreaByPopulation(ArrayList<Country> countries, Scope scope, String Area, int topN)
