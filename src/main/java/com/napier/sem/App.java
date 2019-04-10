@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class App {
@@ -37,6 +38,13 @@ public class App {
         disconnect();
 
         assignCapitalsAndCountries(countries, cities);
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Enter how many countries to report");
+        String topN = in.nextLine();
+
+        getWorldPopulation(topN);
 
     }
 
@@ -272,7 +280,7 @@ public class App {
     //COUNTRY REPORTS
 
     //Gets all or top n country reports in world and writes to csv file
-    public void getWorldPopulation(String topN) {
+    public static void getWorldPopulation(String topN) {
         int numberOfCountriesToGet;
         if (topN == null || topN == "all" || topN == "") {
             numberOfCountriesToGet = 250;
