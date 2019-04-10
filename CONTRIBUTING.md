@@ -15,5 +15,7 @@
  
 * If you feel like you have a possible better solution or fix for our project please let us know and we will look into this.
 
+* Bug reporting template: https://github.com/kaciyanova/SEMGroupProject/blob/master/.github/ISSUE_TEMPLATE/bug_report.md
+
 Thank you - Project Team
 
