@@ -5,13 +5,21 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static com.napier.sem.App.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AppTest {
 
+    public static ArrayList<Country> countries;
+    public static ArrayList<City> cities;
+    public static ArrayList<Language> languages;
+
     @BeforeAll
     static void init() {
 
+        countries = getCountries();
+        cities = getCities();
+        languages = getLanguages();
     }
 
     @Test

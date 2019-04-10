@@ -355,7 +355,7 @@ public class App {
                             country.Name,
                             country.Continent,
                             country.Region,
-                            Integer.toString(country.Population),
+//                            Integer.toString(country.Population),
                             country.Capital.Name};
         }
         catch (Exception ex){
