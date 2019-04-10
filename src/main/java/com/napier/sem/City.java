@@ -32,5 +32,7 @@ public class City
     public int Population;
 
     public Country Country;
+    public Country getCountry() { return this.Country; }
+    public void setCountry(Country Country) { this.Country = Country; }
 }
 

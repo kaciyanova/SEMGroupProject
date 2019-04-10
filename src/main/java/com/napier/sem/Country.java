@@ -30,4 +30,6 @@ public class Country
     public int CapitalID;
 
     public City Capital;
+    public City getCapital() { return this.Capital; }
+    public void setCapital(City Capital) { this.Capital = Capital; }
 }

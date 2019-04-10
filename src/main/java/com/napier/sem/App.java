@@ -13,15 +13,18 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class App {
+public class App
+{
     public static ArrayList<Country> countries;
     public static ArrayList<City> cities;
     public static ArrayList<Language> languages;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         String cloudEndpoint = "35.242.172.149:3306";
         // Connect to database
         if (args.length < 1) {
@@ -56,7 +59,8 @@ public class App {
     /**
      * connect to the MySQL database.
      */
-    public static void connect(String location) {
+    public static void connect(String location)
+    {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -87,7 +91,8 @@ public class App {
     /**
      * disconnect from the MySQL database.
      */
-    public static void disconnect() {
+    public static void disconnect()
+    {
         if (con != null) {
             try {
                 // Close connection
@@ -99,7 +104,8 @@ public class App {
     }
 
     //gets list of all countries in db
-    static ArrayList<Country> getCountries() {
+    static ArrayList<Country> getCountries()
+    {
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
@@ -137,7 +143,8 @@ public class App {
     }
 
     //gets list of all cities in db
-    static ArrayList<City> getCities() {
+    static ArrayList<City> getCities()
+    {
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
@@ -175,7 +182,8 @@ public class App {
     }
 
     //gets list of all cities in db
-    static ArrayList<Language> getLanguages() {
+    static ArrayList<Language> getLanguages()
+    {
         try {
             // Create an SQL statement
             Statement query = con.createStatement();
@@ -210,17 +218,19 @@ public class App {
     }
 
     //Assigns capital cities to each country & vice versa
-    public static void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities) {
+    public static void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
+    {
         if (countries == null || cities == null) {
             System.out.println("Cities and/or countries null");
             return;
         }
-        countries.forEach(country -> country.Capital = getCapitalCity(country, cities));
-        cities.forEach(city -> city.Country = getCountry(city, countries));
+        countries.forEach(country -> country.setCapital(getCapitalCity(country, cities)));
+        cities.forEach(city -> city.setCountry(getCountry(city, countries)));
     }
 
     //gets capital city of country
-    public static City getCapitalCity(Country country, ArrayList<City> cities) {
+    public static City getCapitalCity(Country country, ArrayList<City> cities)
+    {
         if (country == null || cities == null) {
             System.out.println("City and/or countries null");
             return null;
@@ -248,7 +258,8 @@ public class App {
     }
 
     //gets capital city of country
-    static Country getCountry(City city, ArrayList<Country> countries) {
+    static Country getCountry(City city, ArrayList<Country> countries)
+    {
         try {
             Country cityCountry = countries.stream()
                     .filter((country) -> country.Code == city.CountryCode)
@@ -271,7 +282,8 @@ public class App {
     }
 
     //enum for area scopes
-    public enum Scope {
+    public enum Scope
+    {
         World,
         Continent,
         Region
@@ -280,7 +292,8 @@ public class App {
     //COUNTRY REPORTS
 
     //Gets all or top n country reports in world and writes to csv file
-    public static void getWorldPopulation(String topN) {
+    public static void getWorldPopulation(String topN)
+    {
         int numberOfCountriesToGet;
         if (topN == null || topN == "all" || topN == "") {
             numberOfCountriesToGet = 250;
@@ -293,7 +306,7 @@ public class App {
                 numberOfCountriesToGet = 250;
             }
         }
-        ArrayList<Country> requestedCountries = GetCountriesInAreaByPopulation(countries, Scope.World, "", numberOfCountriesToGet);
+        List<Country> requestedCountries = GetCountriesInAreaByPopulation(countries, Scope.World, "", numberOfCountriesToGet);
 
         ArrayList<String[]> reports = GenerateCountryReports(requestedCountries);
 
@@ -303,19 +316,20 @@ public class App {
     }
 
     //returns list of countries in given area sorted by population
-    public static ArrayList<Country> GetCountriesInAreaByPopulation(ArrayList<Country> countries, Scope scope, String Area, int n) {
+    public static List<Country> GetCountriesInAreaByPopulation(ArrayList<Country> countries, Scope scope, String Area, int n)
+    {
         //ensures countries are in order of population descending
         countries.stream().sorted((c1, c2) -> c2.Population - (c1.Population));
 
         switch (scope) {
             case World:
-                return countries;
+                return countries.subList(0, n);
             case Continent:
-                return (ArrayList<Country>) countries.stream()
+                return countries.stream()
                         .filter((country) -> country.Continent == Area).collect(Collectors.toList());
 
             case Region:
-                return (ArrayList<Country>) countries.stream()
+                return countries.stream()
                         .filter((country) -> country.Region == Area).collect(Collectors.toList());
             default: {
                 return countries;
@@ -325,7 +339,8 @@ public class App {
 
 
     //Creates country report from given list of countries
-    public static ArrayList<String[]> GenerateCountryReports(ArrayList<Country> requestedCountries) {
+    public static ArrayList<String[]> GenerateCountryReports(List<Country> requestedCountries)
+    {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
         report.add(new String[]{"Country Code", "Name", "Continent", "Region", "Population", "Capital"});
@@ -336,7 +351,8 @@ public class App {
     }
 
     //Creates country report from given list of cities
-    public ArrayList<String[]> GenerateCityReports(ArrayList<City> cities) {
+    public ArrayList<String[]> GenerateCityReports(List<City> cities)
+    {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //Report header
         report.add(new String[]{"Name", "Country", "Population"});
@@ -347,18 +363,26 @@ public class App {
     }
 
     //Creates report line for single country
-    static String[] GenerateCountryReport(Country country) {
+    static String[] GenerateCountryReport(Country country)
+    {
         try {
+            String capitalName;
+
+            if (country.Capital == null) {
+                capitalName = "N/A";
+            } else {
+                capitalName = country.Capital.Name;
+            }
+
             return new String[]
                     {
                             country.Code,
                             country.Name,
                             country.Continent,
                             country.Region,
-//                            Integer.toString(country.Population),
-                            country.Capital.Name};
-        }
-        catch (Exception ex){
+                            Integer.toString(country.Population),
+                            capitalName};
+        } catch (Exception ex) {
             System.out.println(ex);
             return new String[]{};
         }
@@ -366,7 +390,8 @@ public class App {
     }
 
     //Creates report line for single city
-    static String[] GenerateCityReport(City city) {
+    static String[] GenerateCityReport(City city)
+    {
         return new String[]
                 {city.Name,
                         city.Country.Name,
@@ -376,7 +401,8 @@ public class App {
 
 
     //writes string array to CSV file
-    public static void writeToCSV(String filePath, ArrayList<String[]> report) {
+    public static void writeToCSV(String filePath, ArrayList<String[]> report)
+    {
 
         // first create file object for file placed at location
         // specified by filepath
