@@ -40,25 +40,25 @@ public class AppTest {
     }
 
     @Test
-    static void WorldPopulationTestEmpty() {
-        CountryReports.WorldPopulation("");
+    static void getWorldPopulationTestEmpty() {
+        App.getWorldPopulation("");
     }
 
     @Test
-    static void WorldPopulationTestNull(){
-        CountryReports.WorldPopulation(null);
+    static void getWorldPopulationTestNull(){
+        App.getWorldPopulation(null);
     }
 
     @Test
-    static void WorldPopulationTestInvalidString(){
+    static void getWorldPopulationTestInvalidString(){
         String notInt="dkfjgh";
         assertThrows(RuntimeException.class, () -> {
-            CountryReports.WorldPopulation(notInt);
+            App.getWorldPopulation(notInt);
         });
     }
 
     @Test
-    static void WorldPopulationTestNormal(){
-        CountryReports.WorldPopulation("5");
+    static void getWorldPopulationTestNormal(){
+        App.getWorldPopulation("5");
     }
 }
