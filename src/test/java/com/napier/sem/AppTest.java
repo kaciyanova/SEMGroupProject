@@ -2,44 +2,63 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 
-public class AppTest
-{
-    static App app;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class AppTest {
 
     @BeforeAll
-    static void init()
-    {
-        app = new App();
+    static void init() {
+
     }
 
     @Test
-    void getCapitalCityTestNull()
-    {
-        app.getCapitalCity(null, null);
+    static void getCapitalCityTestNull() {
+        App.getCapitalCity(null, null);
     }
 
     @Test
-    void getCapitalCityTestEmpty()
-    {
+    static void getCapitalCityTestEmpty() {
         Country country = new Country();
         ArrayList<City> cities = new ArrayList<City>();
-        app.getCapitalCity(country, cities);
+        App.getCapitalCity(country, cities);
     }
 
     @Test
-    void assignCapitalsAndCountriesTestNull()
-    {
-        app.assignCapitalsAndCountries(null, null);
+    static void assignCapitalsAndCountriesTestNull() {
+        App.assignCapitalsAndCountries(null, null);
     }
 
     @Test
-    void assignCapitalsAndCountriesTestEmpty()
-    {
+    static void assignCapitalsAndCountriesTestEmpty() {
         ArrayList<Country> countries = new ArrayList<Country>();
         ArrayList<City> cities = new ArrayList<City>();
 
-        app.assignCapitalsAndCountries(countries, cities);
+        App.assignCapitalsAndCountries(countries, cities);
+    }
+
+    @Test
+    static void getWorldPopulationTestEmpty() {
+        App.getWorldPopulation("");
+    }
+
+    @Test
+    static void getWorldPopulationTestNull(){
+        App.getWorldPopulation(null);
+    }
+
+    @Test
+    static void getWorldPopulationTestInvalidString(){
+        String notInt="dkfjgh";
+        assertThrows(RuntimeException.class, () -> {
+            App.getWorldPopulation(notInt);
+        });
+    }
+
+    @Test
+    static void getWorldPopulationTestNormal(){
+        App.getWorldPopulation("5");
     }
 }
