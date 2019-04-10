@@ -66,6 +66,7 @@ public class Report
                         populations.continent,
                         populations.Region,
                         populations.Capital,
+                        populations.Rural,
                         Integer.toString(populations.CityPopulation),
                         Float.toString(populations.PopulationPercentage)
                 };
