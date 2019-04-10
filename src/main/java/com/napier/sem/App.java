@@ -290,7 +290,6 @@ public class App {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Invalid number " + topN + " provided, printing all countries in scope");
-            } finally {
                 numberOfCountriesToGet = 250;
             }
         }
@@ -349,14 +348,21 @@ public class App {
 
     //Creates report line for single country
     static String[] GenerateCountryReport(Country country) {
-        return new String[]
-                {
-                        country.Code,
-                        country.Name,
-                        country.Continent,
-                        country.Region,
-                        Integer.toString(country.Population),
-                        country.Capital.Name};
+        try {
+            return new String[]
+                    {
+                            country.Code,
+                            country.Name,
+                            country.Continent,
+                            country.Region,
+                            Integer.toString(country.Population),
+                            country.Capital.Name};
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+            return new String[]{};
+        }
+
     }
 
     //Creates report line for single city
