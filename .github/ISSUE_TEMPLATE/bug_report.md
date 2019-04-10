@@ -10,6 +10,7 @@ assignees: ThomasM199 || Kaciyanov || 40317391(Leone Kelly)
 
 **To Reproduce**
 Steps to reproduce the behavior (Please follow the exact steps you previously done):
+
 *Example below* 
 1. Go to '...' 
 2. Click on '....'
