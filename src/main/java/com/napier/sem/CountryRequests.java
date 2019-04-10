@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.napier.sem.App.countries;
-import static com.napier.sem.Report.GenerateCountryReports;
+import static com.napier.sem.ReportGenerator.GenerateCountryReports;
 
 public class CountryRequests
 {
@@ -20,15 +20,15 @@ public class CountryRequests
     public static void getWorldPopulation(String topN)
     {
         int numberOfCountriesToGet;
-        if (topN == null || topN == "all" || topN == "") {
-            numberOfCountriesToGet = 250;
+        if (topN == null || topN.equals("all") || topN.equals("")) {
+            numberOfCountriesToGet = countries.size();
         } else {
             try {
                 numberOfCountriesToGet = Integer.parseInt(topN);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Invalid number " + topN + " provided, printing all countries in scope");
-                numberOfCountriesToGet = 250;
+                numberOfCountriesToGet = countries.size();
             }
         }
         List<Country> requestedCountries = GetCountriesInAreaByPopulation(countries, Scope.World, "", numberOfCountriesToGet);
@@ -37,7 +37,7 @@ public class CountryRequests
 
         String filepath = "top" + numberOfCountriesToGet + "CountriesInWorld.csv";
 
-        Report.writeToCSV(filepath, reports);
+        ReportGenerator.writeToCSV(filepath, reports);
     }
 
     //returns list of countries in given area sorted by population

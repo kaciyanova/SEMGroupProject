@@ -8,13 +8,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Report
+public class ReportGenerator
 {
     //Creates country report from given list of countries
     public static ArrayList<String[]> GenerateCountryReports(List<Country> requestedCountries)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
+        //ReportGenerator header
         report.add(new String[]{"Country Code", "Name", "Continent", "Region", "Population", "Capital"});
 
         requestedCountries.forEach(country -> report.add(GenerateCountryReport(country)));
@@ -26,7 +26,7 @@ public class Report
     public ArrayList<String[]> GenerateCityReports(List<City> cities)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
+        //ReportGenerator header
         report.add(new String[]{"Name", "Country", "Population"});
 
         cities.forEach(city -> report.add(GenerateCityReport(city)));

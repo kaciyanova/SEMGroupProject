@@ -1,24 +1,7 @@
 package com.napier.sem;
 
-import com.opencsv.CSVWriter;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
-
-import static com.napier.sem.CountryRequests.GetCountriesInAreaByPopulation;
-import static com.napier.sem.Report.GenerateCountryReports;
 
 public class App
 {
