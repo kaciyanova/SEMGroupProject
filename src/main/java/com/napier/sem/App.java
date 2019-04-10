@@ -1,21 +1,8 @@
 package com.napier.sem;
 
-import com.opencsv.CSVWriter;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
-@SpringBootApplication
-@RestController
 public class App
 {
     public static ArrayList<Country> countries;
@@ -33,8 +20,6 @@ public class App
             connect(args[0]);
         }
 
-        SpringApplication.run(App.class, args);
-
         countries = getCountries();
         cities = getCities();
         languages = getLanguages();
@@ -43,16 +28,14 @@ public class App
 
         assignCapitalsAndCountries(countries, cities);
 
+        InputController.RequestReport(countries,cities);
     }
 
-    /**
-     * Connection to MySQL database.
-     */
+
+    //      Connection to MySQL database.
     private static Connection con = null;
 
-    /**
-     * connect to the MySQL database.
-     */
+    //     connect to the MySQL database.
     public static void connect(String location)
     {
         try {
@@ -82,10 +65,7 @@ public class App
         }
     }
 
-
-    /**
-     * disconnect from the MySQL database.
-     */
+    //      disconnect from the MySQL database.
     public static void disconnect()
     {
         if (con != null) {
@@ -219,20 +199,23 @@ public class App
             System.out.println("Cities and/or countries null");
             return;
         }
-        countries.forEach(country -> country.Capital = getCapitalCity(country, cities));
-        cities.forEach(city -> city.Country = getCountry(city, countries));
+        countries.forEach(country -> country.setCapital(getCapitalCity(country, cities)));
+        cities.forEach(city -> city.setCountry(getCountry(city, countries)));
+        Country one = countries.get(1);
     }
 
     //gets capital city of country
     public static City getCapitalCity(Country country, ArrayList<City> cities)
     {
-        if (country == null || cities == null) {
-            System.out.println("City and/or countries null");
-            return null;
-        }
-
+        City capital;
         try {
-            City capital = cities.stream()
+            if (country == null || cities == null) {
+                System.out.println("City and/or countries null");
+                return null;
+            }
+
+
+            capital = cities.stream()
                     .filter((city) -> city.ID == country.CapitalID)
                     .findFirst()
                     .orElse(null);
@@ -240,7 +223,7 @@ public class App
             if (capital == null) {
                 System.out.println("Capital city of " + country.Name + " not found");
             } else {
-                System.out.println("Capital city of " + country.Name + " is " + country.Capital.Name);
+                System.out.println("Capital city of " + country.Name + " is " + capital.Name);
 
             }
 //TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
@@ -255,16 +238,17 @@ public class App
     //gets capital city of country
     static Country getCountry(City city, ArrayList<Country> countries)
     {
+        Country cityCountry;
         try {
-            Country cityCountry = countries.stream()
-                    .filter((country) -> country.Code == city.CountryCode)
+            cityCountry = countries.stream()
+                    .filter((country) -> country.Code.equals(city.CountryCode))
                     .findFirst()
                     .orElse(null);
 
             if (cityCountry == null) {
                 System.out.println("Country of " + city.Name + " not found");
             } else {
-                System.out.println("Country of " + city.Name + " is " + city.Country.Name);
+                System.out.println("Country of " + city.Name + " is " + cityCountry.Name);
 
             }
 //TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
@@ -273,130 +257,6 @@ public class App
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-
-    public enum Scope
-    {
-        World,
-        Continent,
-        Region
-    }
-
-    @RequestMapping("world")
-    public static String getWorldPopulation(@RequestParam(value = "topN", defaultValue = "250") String topNStr)
-    {
-        int topN;
-        try {
-            topN = Integer.parseInt(topNStr);
-        } catch (Exception ex) {
-            System.out.println("String cannot be converted to int");
-            topN = 250;
-        }
-        ArrayList<Country> requestedCountries= GetCountriesInAreaByPopulation(countries, Scope.World, "", topN);
-
-        ArrayList<String[]> reportArray=GenerateCountryReports(requestedCountries);
-        return "test";
-        //return (Arrays.toString(reportArray));
-    }
-
-    public static ArrayList<Country> GetCountriesInAreaByPopulation(ArrayList<Country> countries, Scope scope, String Area, int topN)
-    {
-        //ensures countries are in order of population descending
-        countries.stream().sorted((c1, c2) -> c2.Population - (c1.Population));
-
-        switch (scope) {
-            case World:
-                return countries;
-            case Continent:
-                return (ArrayList<Country>) countries.stream()
-                        .filter((country) -> country.Continent == Area).collect(Collectors.toList());
-
-            case Region:
-                return (ArrayList<Country>) countries.stream()
-                        .filter((country) -> country.Region == Area).collect(Collectors.toList());
-            default: {
-                return countries;
-            }
-        }
-    }
-
-
-
-
-    //Creates country report from given list of countries
-    public static ArrayList<String[]> GenerateCountryReports(ArrayList<Country> requestedCountries)
-    {
-        ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
-        report.add(new String[]{"Country Code", "Name", "Continent", "Region", "Population", "Capital"});
-
-        requestedCountries.forEach(country -> report.add(GenerateCountryReport(country)));
-
-        return report;
-    }
-
-    //Creates country report from given list of cities
-    public ArrayList<String[]> GenerateCityReports(ArrayList<City> cities)
-    {
-        ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
-        report.add(new String[]{"Name", "Country", "Population"});
-
-        cities.forEach(city -> report.add(GenerateCityReport(city)));
-
-        return report;
-    }
-
-    //Creates report line for single country
-    static String[] GenerateCountryReport(Country country)
-    {
-        return new String[]
-                {
-                        country.Code,
-                        country.Name,
-                        country.Continent,
-                        country.Region,
-                        Integer.toString(country.Population),
-                        country.Capital.Name};
-    }
-
-    //Creates report line for single city
-    static String[] GenerateCityReport(City city)
-    {
-        return new String[]
-                {city.Name,
-                        city.Country.Name,
-                        Integer.toString(city.Population)
-                };
-    }
-
-
-    //writes string array to CSV file
-    public static void writeToCSV(String filePath, ArrayList<String[]> report)
-    {
-
-        // first create file object for file placed at location
-        // specified by filepath
-        File file = new File(filePath);
-
-        try {
-            // create FileWriter object with file as parameter
-            FileWriter outputfile = new FileWriter(file);
-
-            // create CSVWriter object filewriter object as parameter
-            CSVWriter writer = new CSVWriter(outputfile);
-
-            // create a List which contains String array
-
-            writer.writeAll(report);
-
-            // closing writer connection
-            writer.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 }

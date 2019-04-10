@@ -1,35 +1,35 @@
 package com.napier.sem;
 
 import com.opencsv.CSVWriter;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Report
+public class ReportGenerator
 {
     //Creates country report from given list of countries
-    public static ArrayList<String[]> GenerateCountryReports(ArrayList<Country> countries, ArrayList<City> cities)
+    public static ArrayList<String[]> GenerateCountryReports(List<Country> requestedCountries)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
+        //ReportGenerator header
         report.add(new String[]{"Country Code", "Name", "Continent", "Region", "Population", "Capital"});
 
-        countries.forEach(country -> report.add(GenerateCountryReport(country)));
+        requestedCountries.forEach(country -> report.add(GenerateCountryReport(country)));
 
         return report;
     }
 
     //Creates country report from given list of cities
-    public ArrayList<String[]> GenerateCityReports(ArrayList<City> cities, ArrayList<Country> countries)
+    public ArrayList<String[]> GenerateCityReports(List<City> cities)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
+        //ReportGenerator header
         report.add(new String[]{"Name", "Country", "Population"});
 
-        cities.forEach(city -> report.add(GenerateCityReport(city, countries)));
+        cities.forEach(city -> report.add(GenerateCityReport(city)));
 
         return report;
     }
@@ -37,20 +37,34 @@ public class Report
     //Creates report line for single country
     static String[] GenerateCountryReport(Country country)
     {
-        return new String[]
-                {
-                        country.Code,
-                        country.Name,
-                        country.Continent,
-                        country.Region,
-                        Integer.toString(country.Population),
-                        country.Capital.Name};
+        try {
+            String capitalName;
+
+            if (country.Capital == null) {
+                capitalName = "N/A";
+            } else {
+                capitalName = country.Capital.Name;
+            }
+
+            return new String[]
+                    {
+                            country.Code,
+                            country.Name,
+                            country.Continent,
+                            country.Region,
+                            Integer.toString(country.Population),
+                            capitalName};
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return new String[]{};
+        }
+
     }
 
     //Creates report line for single city
-    static String[] GenerateCityReport(City city, ArrayList<Country> countries)
+    static String[] GenerateCityReport(City city)
     {
-              return new String[]
+        return new String[]
                 {city.Name,
                         city.Country.Name,
                         Integer.toString(city.Population)
@@ -85,5 +99,3 @@ public class Report
         }
     }
 }
-
-

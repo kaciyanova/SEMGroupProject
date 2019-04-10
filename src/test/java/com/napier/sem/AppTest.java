@@ -1,59 +1,76 @@
 package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-public class AppTest {
+import java.util.ArrayList;
+
+import static com.napier.sem.App.*;
+import static com.napier.sem.CountryRequests.getWorldPopulation;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class AppTest
+{
 
     @BeforeAll
-    static void init() {
+    static void init()
+    {
 
     }
 
+    @Test
+    void getCapitalCityTestNull()
+    {
+        getCapitalCity(null, null);
+    }
+
+    @Test
+    void getCapitalCityTestEmpty()
+    {
+        Country country = new Country();
+        ArrayList<City> cities = new ArrayList<City>();
+        getCapitalCity(country, cities);
+    }
+
+    @Test
+    void assignCapitalsAndCountriesTestNull()
+    {
+        assignCapitalsAndCountries(null, null);
+    }
+
 //    @Test
-//    static void getCapitalCityTestNull() {
-//        App.getCapitalCity(null, null);
-//    }
-//
-//    @Test
-//    static void getCapitalCityTestEmpty() {
-//        Country country = new Country();
-//        ArrayList<City> cities = new ArrayList<City>();
-//        App.getCapitalCity(country, cities);
-//    }
-//
-//    @Test
-//    static void assignCapitalsAndCountriesTestNull() {
-//        App.assignCapitalsAndCountries(null, null);
-//    }
-//
-//    @Test
-//    static void assignCapitalsAndCountriesTestEmpty() {
+//    void assignCapitalsAndCountriesTestEmpty()
+//    {
 //        ArrayList<Country> countries = new ArrayList<Country>();
 //        ArrayList<City> cities = new ArrayList<City>();
 //
-//        App.assignCapitalsAndCountries(countries, cities);
+//        assignCapitalsAndCountries(countries, cities);
 //    }
 
 //    @Test
-//    static void getWorldPopulationTestEmpty() {
-//        App.getWorldPopulation("");
+//    void getWorldPopulationTestEmpty()
+//    {
+//        getWorldPopulation("");
 //    }
 //
 //    @Test
-//    static void getWorldPopulationTestNull(){
-//        App.getWorldPopulation(null);
+//    void getWorldPopulationTestNull()
+//    {
+//        getWorldPopulation(null);
 //    }
-//
+
+    @Test
+    void getWorldPopulationTestInvalidString()
+    {
+        String notInt = "dkfjgh";
+        assertThrows(RuntimeException.class, () -> {
+            getWorldPopulation(notInt);
+        });
+    }
+
 //    @Test
-//    static void getWorldPopulationTestInvalidString(){
-//        String notInt="dkfjgh";
-//        assertThrows(RuntimeException.class, () -> {
-//            App.getWorldPopulation(notInt);
-//        });
-//    }
-//
-//    @Test
-//    static void getWorldPopulationTestNormal(){
-//        App.getWorldPopulation("5");
+//    void getWorldPopulationTestNormal()
+//    {
+//        getWorldPopulation("5");
 //    }
 }
