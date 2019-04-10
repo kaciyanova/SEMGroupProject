@@ -9,7 +9,7 @@ public class AppIntegrationTest
 {
 
     @BeforeAll
-     void init()
+     static void init()
     {
         App.connect("localhost:33060");
     }
