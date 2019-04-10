@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static com.napier.sem.CountryRequests.GetCountriesInAreaByPopulation;
+import static com.napier.sem.Report.GenerateCountryReports;
+
 public class App
 {
     public static ArrayList<Country> countries;
@@ -42,23 +45,14 @@ public class App
 
         assignCapitalsAndCountries(countries, cities);
 
-        Scanner in = new Scanner(System.in);
-
-        System.out.println("Enter how many countries to report");
-        String topN = in.nextLine();
-
-        getWorldPopulation(topN);
-
+        InputController.RequestReport(countries,cities);
     }
 
-    /**
-     * Connection to MySQL database.
-     */
+
+    //      Connection to MySQL database.
     private static Connection con = null;
 
-    /**
-     * connect to the MySQL database.
-     */
+    //     connect to the MySQL database.
     public static void connect(String location)
     {
         try {
@@ -88,9 +82,7 @@ public class App
         }
     }
 
-    /**
-     * disconnect from the MySQL database.
-     */
+    //      disconnect from the MySQL database.
     public static void disconnect()
     {
         if (con != null) {
@@ -234,26 +226,26 @@ public class App
     {
         City capital;
         try {
-        if (country == null || cities == null) {
-            System.out.println("City and/or countries null");
-            return null;
-        }
+            if (country == null || cities == null) {
+                System.out.println("City and/or countries null");
+                return null;
+            }
 
 
-        capital = cities.stream()
-                .filter((city) -> city.ID == country.CapitalID)
-                .findFirst()
-                .orElse(null);
+            capital = cities.stream()
+                    .filter((city) -> city.ID == country.CapitalID)
+                    .findFirst()
+                    .orElse(null);
 
-        if (capital == null) {
-            System.out.println("Capital city of " + country.Name + " not found");
-        } else {
-            System.out.println("Capital city of " + country.Name + " is " + capital.Name);
+            if (capital == null) {
+                System.out.println("Capital city of " + country.Name + " not found");
+            } else {
+                System.out.println("Capital city of " + country.Name + " is " + capital.Name);
 
-        }
+            }
 //TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
 
-        return capital;
+            return capital;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -282,152 +274,6 @@ public class App
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    //enum for area scopes
-    public enum Scope
-    {
-        World,
-        Continent,
-        Region
-    }
-
-    //COUNTRY REPORTS
-
-    //Gets all or top n country reports in world and writes to csv file
-    public static void getWorldPopulation(String topN)
-    {
-        int numberOfCountriesToGet;
-        if (topN == null || topN == "all" || topN == "") {
-            numberOfCountriesToGet = 250;
-        } else {
-            try {
-                numberOfCountriesToGet = Integer.parseInt(topN);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                System.out.println("Invalid number " + topN + " provided, printing all countries in scope");
-                numberOfCountriesToGet = 250;
-            }
-        }
-        List<Country> requestedCountries = GetCountriesInAreaByPopulation(countries, Scope.World, "", numberOfCountriesToGet);
-
-        ArrayList<String[]> reports = GenerateCountryReports(requestedCountries);
-
-        String filepath = "top" + numberOfCountriesToGet + "CountriesInWorld.csv";
-
-        writeToCSV(filepath, reports);
-    }
-
-    //returns list of countries in given area sorted by population
-    public static List<Country> GetCountriesInAreaByPopulation(ArrayList<Country> countries, Scope scope, String Area, int n)
-    {
-        //ensures countries are in order of population descending
-        countries.stream().sorted((c1, c2) -> c2.Population - (c1.Population));
-
-        switch (scope) {
-            case World:
-                return countries.subList(0, n);
-            case Continent:
-                return countries.stream()
-                        .filter((country) -> country.Continent == Area).collect(Collectors.toList());
-
-            case Region:
-                return countries.stream()
-                        .filter((country) -> country.Region == Area).collect(Collectors.toList());
-            default: {
-                return countries;
-            }
-        }
-    }
-
-
-    //Creates country report from given list of countries
-    public static ArrayList<String[]> GenerateCountryReports(List<Country> requestedCountries)
-    {
-        ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
-        report.add(new String[]{"Country Code", "Name", "Continent", "Region", "Population", "Capital"});
-
-        requestedCountries.forEach(country -> report.add(GenerateCountryReport(country)));
-
-        return report;
-    }
-
-    //Creates country report from given list of cities
-    public ArrayList<String[]> GenerateCityReports(List<City> cities)
-    {
-        ArrayList<String[]> report = new ArrayList<String[]>();
-        //Report header
-        report.add(new String[]{"Name", "Country", "Population"});
-
-        cities.forEach(city -> report.add(GenerateCityReport(city)));
-
-        return report;
-    }
-
-    //Creates report line for single country
-    static String[] GenerateCountryReport(Country country)
-    {
-        try {
-            String capitalName;
-
-            if (country.Capital == null) {
-                capitalName = "N/A";
-            } else {
-                capitalName = country.Capital.Name;
-            }
-
-            return new String[]
-                    {
-                            country.Code,
-                            country.Name,
-                            country.Continent,
-                            country.Region,
-                            Integer.toString(country.Population),
-                            capitalName};
-        } catch (Exception ex) {
-            System.out.println(ex);
-            return new String[]{};
-        }
-
-    }
-
-    //Creates report line for single city
-    static String[] GenerateCityReport(City city)
-    {
-        return new String[]
-                {city.Name,
-                        city.Country.Name,
-                        Integer.toString(city.Population)
-                };
-    }
-
-
-    //writes string array to CSV file
-    public static void writeToCSV(String filePath, ArrayList<String[]> report)
-    {
-
-        // first create file object for file placed at location
-        // specified by filepath
-        File file = new File(filePath);
-
-        try {
-            // create FileWriter object with file as parameter
-            FileWriter outputfile = new FileWriter(file);
-
-            // create CSVWriter object filewriter object as parameter
-            CSVWriter writer = new CSVWriter(outputfile);
-
-            // create a List which contains String array
-
-            writer.writeAll(report);
-
-            // closing writer connection
-            writer.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 }
