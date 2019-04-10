@@ -42,5 +42,5 @@ If applicable, add clear screenshots to help explain your problem.
 **Additional context**
 Add any other context about the problem here.
 
-Bug reporting template(/bug_report.md)
+Bug reporting template(ISSUE_TEMPLATE/bug_report.md)
 
