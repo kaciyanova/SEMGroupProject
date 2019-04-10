@@ -226,31 +226,34 @@ public class App
         }
         countries.forEach(country -> country.setCapital(getCapitalCity(country, cities)));
         cities.forEach(city -> city.setCountry(getCountry(city, countries)));
+        Country one = countries.get(1);
     }
 
     //gets capital city of country
     public static City getCapitalCity(Country country, ArrayList<City> cities)
     {
+        City capital;
+        try {
         if (country == null || cities == null) {
             System.out.println("City and/or countries null");
             return null;
         }
 
-        try {
-            City capital = cities.stream()
-                    .filter((city) -> city.ID == country.CapitalID)
-                    .findFirst()
-                    .orElse(null);
 
-            if (capital == null) {
-                System.out.println("Capital city of " + country.Name + " not found");
-            } else {
-                System.out.println("Capital city of " + country.Name + " is " + country.Capital.Name);
+        capital = cities.stream()
+                .filter((city) -> city.ID == country.CapitalID)
+                .findFirst()
+                .orElse(null);
 
-            }
+        if (capital == null) {
+            System.out.println("Capital city of " + country.Name + " not found");
+        } else {
+            System.out.println("Capital city of " + country.Name + " is " + capital.Name);
+
+        }
 //TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
 
-            return capital;
+        return capital;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -260,16 +263,17 @@ public class App
     //gets capital city of country
     static Country getCountry(City city, ArrayList<Country> countries)
     {
+        Country cityCountry;
         try {
-            Country cityCountry = countries.stream()
-                    .filter((country) -> country.Code == city.CountryCode)
+            cityCountry = countries.stream()
+                    .filter((country) -> country.Code.equals(city.CountryCode))
                     .findFirst()
                     .orElse(null);
 
             if (cityCountry == null) {
                 System.out.println("Country of " + city.Name + " not found");
             } else {
-                System.out.println("Country of " + city.Name + " is " + city.Country.Name);
+                System.out.println("Country of " + city.Name + " is " + cityCountry.Name);
 
             }
 //TODO a few countries don't seem to have capital cities, like Antarctica which is included here as a country for reasons unknown
