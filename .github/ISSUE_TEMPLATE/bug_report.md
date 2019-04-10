@@ -42,3 +42,5 @@ If applicable, add clear screenshots to help explain your problem.
 **Additional context**
 Add any other context about the problem here.
 
+Bug reporting template(SEMGroupProject/.github/ISSUE_TEMPLATE/bug_report.md)
+
