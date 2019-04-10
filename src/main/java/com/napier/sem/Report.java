@@ -57,6 +57,23 @@ public class Report
     }
 
 
+    //Creates report line for single population (In progress)
+    static String[] GeneratePopulationsReport(Populations populations)
+    {
+        return new String[]
+                {
+                        populations.Name,
+                        populations.continent,
+                        populations.Region,
+                        populations.Capital,
+                        Integer.toString(populations.CityPopulation),
+                        Float.toString(populations.PopulationPercentage)
+                };
+
+
+    }
+
+
     //writes string array to CSV file
     public static void writeToCSV(String filePath, ArrayList<String[]> report)
     {
