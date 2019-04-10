@@ -67,12 +67,29 @@ public class Report
                         populations.Region,
                         populations.Capital,
                         populations.Rural,
+                        populations.Country,
                         Integer.toString(populations.CityPopulation),
                         Float.toString(populations.PopulationPercentage)
                 };
 
 
     }
+
+    //Creating population report from giving list (In progress)
+    public static ArrayList<String[]> GeneratePopulationReports(ArrayList<Populations> population)
+    {
+        ArrayList<String[]> report = new ArrayList<String[]>();
+        //Report header
+        report.add(new String[]{"Name", "Country", "Population%", "Continent", "Region", "Rural", "City Population"});
+
+        population.forEach(populations -> report.add(GeneratePopulationsReport(populations)));
+
+        return report;
+    }
+
+
+
+
 
 
     //writes string array to CSV file
