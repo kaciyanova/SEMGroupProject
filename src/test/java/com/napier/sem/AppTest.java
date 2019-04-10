@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class AppTest {
 
     @BeforeAll
@@ -39,26 +37,26 @@ public class AppTest {
         App.assignCapitalsAndCountries(countries, cities);
     }
 
-    @Test
-    static void getWorldPopulationTestEmpty() {
-        App.getWorldPopulation("");
-    }
-
-    @Test
-    static void getWorldPopulationTestNull(){
-        App.getWorldPopulation(null);
-    }
-
-    @Test
-    static void getWorldPopulationTestInvalidString(){
-        String notInt="dkfjgh";
-        assertThrows(RuntimeException.class, () -> {
-            App.getWorldPopulation(notInt);
-        });
-    }
-
-    @Test
-    static void getWorldPopulationTestNormal(){
-        App.getWorldPopulation("5");
-    }
+//    @Test
+//    static void getWorldPopulationTestEmpty() {
+//        App.getWorldPopulation("");
+//    }
+//
+//    @Test
+//    static void getWorldPopulationTestNull(){
+//        App.getWorldPopulation(null);
+//    }
+//
+//    @Test
+//    static void getWorldPopulationTestInvalidString(){
+//        String notInt="dkfjgh";
+//        assertThrows(RuntimeException.class, () -> {
+//            App.getWorldPopulation(notInt);
+//        });
+//    }
+//
+//    @Test
+//    static void getWorldPopulationTestNormal(){
+//        App.getWorldPopulation("5");
+//    }
 }
