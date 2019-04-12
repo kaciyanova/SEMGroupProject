@@ -59,14 +59,14 @@ public class AppTest
 //        getWorldPopulation(null);
 //    }
 
-    @Test
-    void getWorldPopulationTestInvalidString()
-    {
-        String notInt = "dkfjgh";
-        assertThrows(RuntimeException.class, () -> {
-            getWorldPopulation(notInt);
-        });
-    }
+//    @Test
+//    void getWorldPopulationTestInvalidString()
+//    {
+//        String notInt = "dkfjgh";
+//        assertThrows(RuntimeException.class, () -> {
+//            getWorldPopulation(notInt);
+//        });
+//    }
 
 //    @Test
 //    void getWorldPopulationTestNormal()

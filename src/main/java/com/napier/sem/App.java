@@ -28,7 +28,7 @@ public class App
 
         assignCapitalsAndCountries(countries, cities);
 
-        InputController.RequestReport(countries,cities);
+        InputController.RequestReport();
     }
 
 

@@ -27,9 +27,13 @@ public class Country
      */
     public int Population;
 
+    //ID of Country's capital
     public int CapitalID;
 
+    //Country's capital
     public City Capital;
+    //gets capital
     public City getCapital() { return this.Capital; }
+    //sets capital
     public void setCapital(City Capital) { this.Capital = Capital; }
 }
