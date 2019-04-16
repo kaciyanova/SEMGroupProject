@@ -2,6 +2,8 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class App
 {
@@ -193,7 +195,7 @@ public class App
     }
 
     //Assigns capital cities to each country & vice versa
-    public static void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
+    static void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
     {
         if (countries == null || cities == null) {
             System.out.println("Cities and/or countries null");
@@ -201,10 +203,12 @@ public class App
         }
         countries.forEach(country -> country.setCapital(getCapitalCity(country, cities)));
         cities.forEach(city -> city.setCountry(getCountry(city, countries)));
+
+
     }
 
     //gets capital city of country
-    public static City getCapitalCity(Country country, ArrayList<City> cities)
+    static City getCapitalCity(Country country, ArrayList<City> cities)
     {
         City capital;
         try {
@@ -217,6 +221,8 @@ public class App
                     .filter((city) -> city.ID == country.CapitalID)
                     .findFirst()
                     .orElse(null);
+
+            capital.setCapital(true);
 
             return capital;
         } catch (Exception e) {

@@ -11,7 +11,7 @@ import java.util.List;
 public class ReportGenerator
 {
     //Creates country report from given list of countries
-    public static ArrayList<String[]> GenerateCountryReports(List<Country> requestedCountries)
+    static ArrayList<String[]> GenerateCountryReports(List<Country> requestedCountries)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //ReportGenerator header
@@ -23,13 +23,25 @@ public class ReportGenerator
     }
 
     //Creates country report from given list of cities
-    public ArrayList<String[]> GenerateCityReports(List<City> cities)
+    static ArrayList<String[]> GenerateCityReports(List<City> requestedCities)
+    {
+        ArrayList<String[]> report = new ArrayList<String[]>();
+        //ReportGenerator header
+        report.add(new String[]{"Name", "Country", "District", "Population"});
+
+        requestedCities.forEach(city -> report.add(GenerateCityReport(city)));
+
+        return report;
+    }
+
+    //Creates country report from given list of cities
+    static ArrayList<String[]> GenerateCapitalReports(List<City> requestedCities)
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //ReportGenerator header
         report.add(new String[]{"Name", "Country", "Population"});
 
-        cities.forEach(city -> report.add(GenerateCityReport(city)));
+        requestedCities.forEach(city -> report.add(GenerateCityReport(city)));
 
         return report;
     }
@@ -67,13 +79,24 @@ public class ReportGenerator
         return new String[]
                 {city.Name,
                         city.Country.Name,
+                        city.District,
+                        Integer.toString(city.Population)
+                };
+    }
+
+    //Creates report line for single capital city
+    static String[] GenerateCapitalReport(City city)
+    {
+        return new String[]
+                {city.Name,
+                        city.Country.Name,
                         Integer.toString(city.Population)
                 };
     }
 
 
     //writes string array to CSV file
-    public static void writeToCSV(String filePath, ArrayList<String[]> report)
+    static void writeToCSV(String filePath, ArrayList<String[]> report)
     {
 
         // first create file object for file placed at location
@@ -94,7 +117,7 @@ public class ReportGenerator
             // closing writer connection
             writer.close();
 
-            System.out.println("Printed to report: "+filePath);
+            System.out.println("Printed to report: " + filePath);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

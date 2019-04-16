@@ -27,13 +27,20 @@ public class CountryRequests
         List<Country> countriesToReturn;
 
         switch (scope) {
+            //checks if top n countries given is out of range, returns all in area if true, same for sub-areas
             case World:
                 if (numberOfCountriesToGet == 0) {
                     return countries;
                 }
-                return countries.subList(0, numberOfCountriesToGet);
-            case Continent:
-                //checks if top n countries given is out of range, returns all in area if true, same for region
+//TODO merge these two into a single if
+                if (countries.size() >= numberOfCountriesToGet) {
+                    return countries.subList(0, numberOfCountriesToGet);
+                }
+
+                System.out.println("Number of countries requested more than number of countries in the world; returning all countries in the world");
+                return countries;
+
+                case Continent:
                 countriesToReturn = countries.stream()
                         .filter((country) -> country.Continent.equals(area)).collect(Collectors.toList());
 

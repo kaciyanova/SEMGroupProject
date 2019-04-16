@@ -34,5 +34,10 @@ public class City
     public Country Country;
     public Country getCountry() { return this.Country; }
     public void setCountry(Country Country) { this.Country = Country; }
+
+    public boolean IsCapital;
+    public boolean getCapital() { return this.IsCapital; }
+    public void setCapital(boolean IsCapital) { this.IsCapital = IsCapital; }
+
 }
 
