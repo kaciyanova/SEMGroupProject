@@ -27,17 +27,11 @@ public class CountryRequests
         List<Country> countriesToReturn;
 
         switch (scope) {
-            //checks if top n countries given is out of range, returns all in area if true, same for sub-areas
+            //checks if top n countries given is out of range, returns all in area if true or if number of countries to get is 0, same for sub-areas
             case World:
-                if (numberOfCountriesToGet == 0) {
-                    return countries;
-                }
-//TODO merge these two into a single if
-                if (countries.size() >= numberOfCountriesToGet) {
+                if (countries.size() >= numberOfCountriesToGet && numberOfCountriesToGet != 0) {
                     return countries.subList(0, numberOfCountriesToGet);
                 }
-
-                System.out.println("Number of countries requested more than number of countries in the world; returning all countries in the world");
                 return countries;
 
                 case Continent:
@@ -49,15 +43,9 @@ public class CountryRequests
                     getContinentPopulation(numberOfCountriesToGet);
                 }
 
-                if (numberOfCountriesToGet == 0) {
-                    return countriesToReturn;
-                }
-
-                if (countriesToReturn.size() >= numberOfCountriesToGet) {
+                if (countriesToReturn.size() >= numberOfCountriesToGet && numberOfCountriesToGet != 0) {
                     return countriesToReturn.subList(0, numberOfCountriesToGet);
                 }
-
-                System.out.println("Number of countries requested more than number of countries on continent; returning all countries on continent");
                 return countriesToReturn;
 
             case Region:
@@ -69,15 +57,9 @@ public class CountryRequests
                     getRegionPopulation(numberOfCountriesToGet);
                 }
 
-                if (numberOfCountriesToGet == 0) {
-                    return countriesToReturn;
-                }
-
-                if (countriesToReturn.size() >= numberOfCountriesToGet) {
+                if (countriesToReturn.size() >= numberOfCountriesToGet && numberOfCountriesToGet != 0) {
                     return countriesToReturn.subList(0, numberOfCountriesToGet);
                 }
-
-                System.out.println("Number of countries requested more than number of countries in region; returning all countries in region");
                 return countriesToReturn;
 
             default: {
