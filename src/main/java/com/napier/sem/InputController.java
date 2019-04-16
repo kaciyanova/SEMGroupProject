@@ -3,15 +3,8 @@ package com.napier.sem;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class InputController
+class InputController
 {
-    public enum ReportType
-    {
-        Country,
-        City,
-        Language
-    }
-
     //reads in user input for report requests
     static void RequestReport()
     {
@@ -106,9 +99,9 @@ public class InputController
                 CountryRequests.getWorldPopulation(numberOfCountriesToGet);
                 break;
 
-                case 2:
+            case 2:
                 CountryRequests.getContinentPopulation(numberOfCountriesToGet);
-                    break;
+                break;
 
             case 3:
                 CountryRequests.getRegionPopulation(numberOfCountriesToGet);
@@ -123,7 +116,6 @@ public class InputController
             }
         }
     }
-
 
 
 }
