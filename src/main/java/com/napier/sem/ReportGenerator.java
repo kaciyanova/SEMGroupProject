@@ -93,6 +93,9 @@ public class ReportGenerator
 
             // closing writer connection
             writer.close();
+
+            System.out.println("Printed to report: "+filePath);
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

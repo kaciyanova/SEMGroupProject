@@ -13,7 +13,7 @@ public class InputController
     }
 
     //reads in user input for report requests
-    public static void RequestReport()
+    static void RequestReport()
     {
         Scanner in = new Scanner(System.in);
 
@@ -36,19 +36,35 @@ public class InputController
         switch (reportType) {
             case 1:
                 RequestCountryReport();
+                break;
             case 2:
 //                RequestCityReport();
+                break;
 
             case 3:
 //                RequestLanguageReport();
+                break;
 
             case 4:
 //                RequestPopulationReport();
+                break;
         }
+
+        System.out.println("Would you like to request another report? (y/n)");
+        in.nextLine();
+        String again = in.nextLine();
+
+
+        if (!again.equals("y")) {
+            System.out.println("Exiting program");
+            return;
+        }
+        System.out.println("Requesting another report \n");
+        RequestReport();
     }
 
     //gets input for country report scope and number of countries desired
-    public static void RequestCountryReport()
+    static void RequestCountryReport()
     {
 
         Scanner in = new Scanner(System.in);
@@ -88,16 +104,26 @@ public class InputController
         switch (scope) {
             case 1:
                 CountryRequests.getWorldPopulation(numberOfCountriesToGet);
-            case 2:
+                break;
+
+                case 2:
                 CountryRequests.getContinentPopulation(numberOfCountriesToGet);
+                    break;
+
             case 3:
                 CountryRequests.getRegionPopulation(numberOfCountriesToGet);
+                break;
+
             default: {
-                System.out.println("Scope is "+scope);
+                System.out.println("Scope is " + scope);
 
                 System.out.println("How did you manage to sneak past my int check! Villain! Back to the beginning of the method with you.");
                 RequestReport();
+                break;
             }
         }
     }
+
+
+
 }
