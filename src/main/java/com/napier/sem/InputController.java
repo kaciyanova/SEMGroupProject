@@ -41,6 +41,9 @@ class InputController
             case 4:
 //                RequestPopulationReport();
                 break;
+            case 5:
+//                RequestPopulationNumbers();
+                break;
         }
 
         System.out.println("Would you like to request another report? (y/n)");
@@ -186,4 +189,57 @@ class InputController
             }
         }
     }
-}
+
+    //gets input for city report scope and number of cities desired + whether to only return capitals or not
+    static void RequestPopulationNumbers()
+    {
+        Scanner in = new Scanner(System.in);
+
+        //validates input to be an int and within the correct menu range
+        int scope;
+        do {
+            System.out.println("Please enter the area scope for which you'd like a population count:");
+            System.out.println("1: World");
+            System.out.println("2: Continent");
+            System.out.println("3: Region");
+            System.out.println("4: District");
+            System.out.println("5: City");
+            while (!in.hasNextInt()) {
+                String invalid = in.next();
+                System.out.println(invalid + " is not a number");
+                System.out.println("Please pick a number from the menu (1-5):");
+            }
+            scope = in.nextInt();
+        }
+        while (!(scope >= 1 && scope <= 5));
+
+
+        switch (scope) {
+            case 1:
+                CityRequests.getWorldPopulation(numberOfCitiesToGet,capitals);
+                break;
+
+            case 2:
+                CityRequests.getContinentPopulation(numberOfCitiesToGet,capitals);
+                break;
+
+            case 3:
+                CityRequests.getRegionPopulation(numberOfCitiesToGet,capitals);
+                break;
+
+            case 4:
+                CityRequests.getDistrictPopulation(numberOfCitiesToGet,capitals);
+                break;
+            case 5:
+                CityRequests.getDistrictPopulation(numberOfCitiesToGet,capitals);
+                break;
+
+            default: {
+                System.out.println("Scope is " + scope);
+
+                System.out.println("How did you manage to sneak past my int check! Villain! Back to the beginning of the method with you.");
+                RequestReport();
+                break;
+            }
+        }
+    }}
