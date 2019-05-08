@@ -39,7 +39,7 @@ public class CountryRequests
                         .filter((country) -> country.Continent.equals(area)).collect(Collectors.toList());
 
                 if (countriesToReturn.isEmpty()) {
-                    System.out.println("No countries found on " + area + ". Please enter a different area.");
+                    System.out.println("No countries found in " + area + ". Please enter a different area.\n");
                     getContinentPopulation(numberOfCountriesToGet);
                 }
 
@@ -53,7 +53,7 @@ public class CountryRequests
                         .filter((country) -> country.Region.equals(area)).collect(Collectors.toList());
 
                 if (countriesToReturn.isEmpty()) {
-                    System.out.println("No countries found on " + area + ". Please enter a different area.");
+                    System.out.println("No countries found in " + area + ". Please enter a different area.\n");
                     getRegionPopulation(numberOfCountriesToGet);
                 }
 
@@ -91,7 +91,7 @@ public class CountryRequests
     //Gets all or top n country reports in a given continent and writes to csv file
     static void getContinentPopulation(Integer numberOfCountriesToGet)
     {
-        System.out.println("Please enter which continent you want to get report for: ");
+        System.out.println("Please enter which continent you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
         String continent = in.nextLine();
@@ -104,7 +104,7 @@ public class CountryRequests
     //Gets all or top n country reports in a given region and writes to csv file
     static void getRegionPopulation(Integer numberOfCountriesToGet)
     {
-        System.out.println("Please enter which region you want to get report for: ");
+        System.out.println("Please enter which region you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
         String region = in.nextLine();

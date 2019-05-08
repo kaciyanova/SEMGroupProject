@@ -1,7 +1,6 @@
 package com.napier.sem;
 
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 class InputController
 {
@@ -17,6 +16,7 @@ class InputController
             System.out.println("2: City");
             System.out.println("3: Language");
             System.out.println("4: Population");
+            System.out.println("5: Population Numbers");
             while (!in.hasNextInt()) {
                 String invalid = in.next();
                 System.out.println(invalid + " is not a number");
@@ -24,7 +24,7 @@ class InputController
             }
             reportType = in.nextInt();
         }
-        while (!(reportType >= 1 && reportType <= 4));
+        while (!(reportType >= 1 && reportType <= 5));
 
         switch (reportType) {
             case 1:
@@ -42,21 +42,11 @@ class InputController
 //                RequestPopulationReport();
                 break;
             case 5:
-//                RequestPopulationNumbers();
+                RequestPopulationNumbers();
                 break;
         }
 
-        System.out.println("Would you like to request another report? (y/n)");
-        in.nextLine();
-        String again = in.nextLine();
-
-
-        if (!again.equals("y")) {
-            System.out.println("Exiting program");
-            return;
-        }
-        System.out.println("Requesting another report \n");
-        RequestReport();
+        RepeatRequest(in);
     }
 
     //gets input for country report scope and number of countries desired
@@ -113,7 +103,7 @@ class InputController
             default: {
                 System.out.println("Scope is " + scope);
 
-                System.out.println("How did you manage to sneak past my int check! Villain! Back to the beginning of the method with you.");
+                System.out.println("Unknown scope entered, redirecting to menu start...");
                 RequestReport();
                 break;
             }
@@ -165,32 +155,32 @@ class InputController
 
         switch (scope) {
             case 1:
-                CityRequests.getWorldPopulation(numberOfCitiesToGet,capitals);
+                CityRequests.getWorldPopulation(numberOfCitiesToGet, capitals);
                 break;
 
             case 2:
-                CityRequests.getContinentPopulation(numberOfCitiesToGet,capitals);
+                CityRequests.getContinentPopulation(numberOfCitiesToGet, capitals);
                 break;
 
             case 3:
-                CityRequests.getRegionPopulation(numberOfCitiesToGet,capitals);
+                CityRequests.getRegionPopulation(numberOfCitiesToGet, capitals);
                 break;
 
             case 4:
-                CityRequests.getDistrictPopulation(numberOfCitiesToGet,capitals);
+                CityRequests.getDistrictPopulation(numberOfCitiesToGet, capitals);
                 break;
 
             default: {
                 System.out.println("Scope is " + scope);
 
-                System.out.println("How did you manage to sneak past my int check! Villain! Back to the beginning of the method with you.");
+                System.out.println("Unknown scope entered, redirecting to menu start...");
                 RequestReport();
                 break;
             }
         }
     }
 
-    //gets input for city report scope and number of cities desired + whether to only return capitals or not
+    //gets input for population number scope
     static void RequestPopulationNumbers()
     {
         Scanner in = new Scanner(System.in);
@@ -216,30 +206,46 @@ class InputController
 
         switch (scope) {
             case 1:
-                CityRequests.getWorldPopulation(numberOfCitiesToGet,capitals);
+                PopulationNumbers.GetWorldPopulation();
                 break;
 
             case 2:
-                CityRequests.getContinentPopulation(numberOfCitiesToGet,capitals);
+                PopulationNumbers.GetContinentPopulation();
                 break;
 
             case 3:
-                CityRequests.getRegionPopulation(numberOfCitiesToGet,capitals);
+                PopulationNumbers.GetRegionPopulation();
                 break;
 
             case 4:
-                CityRequests.getDistrictPopulation(numberOfCitiesToGet,capitals);
+                PopulationNumbers.GetDistrictPopulation();
                 break;
             case 5:
-                CityRequests.getDistrictPopulation(numberOfCitiesToGet,capitals);
+                PopulationNumbers.GetCityPopulation();
                 break;
-
             default: {
                 System.out.println("Scope is " + scope);
 
-                System.out.println("How did you manage to sneak past my int check! Villain! Back to the beginning of the method with you.");
+                System.out.println("Unknown scope entered, redirecting to menu start...");
                 RequestReport();
                 break;
             }
         }
-    }}
+
+    }
+
+    //Asks if another report is requested
+    private static void RepeatRequest(Scanner in)
+    {
+        System.out.println("Would you like to request another report? (y/n)");
+        in.nextLine();
+        String again = in.nextLine();
+
+        if (!again.equals("y")) {
+            System.out.println("Exiting program");
+            return;
+        }
+        System.out.println("Requesting another report \n");
+        RequestReport();
+    }
+}

@@ -43,7 +43,7 @@ class CityRequests
                         .filter((city) -> city.Country.Continent.equals(area)).collect(Collectors.toList());
 
                 if (citiesToReturn.isEmpty()) {
-                    System.out.println("No cities found on " + area + ". Please enter a different continent.");
+                    System.out.println("No cities found in " + area + ". Please enter a different continent.\n");
                     getContinentPopulation(numberOfCitiesToGet, capitals);
                 }
 
@@ -58,7 +58,7 @@ class CityRequests
                         .filter((city) -> city.Country.Region.equals(area)).collect(Collectors.toList());
 
                 if (citiesToReturn.isEmpty()) {
-                    System.out.println("No cities found in " + area + ". Please enter a different region.");
+                    System.out.println("No cities found in " + area + ". Please enter a different region.\n");
                     getRegionPopulation(numberOfCitiesToGet, capitals);
                 }
 
@@ -73,7 +73,7 @@ class CityRequests
                         .filter((city) -> city.District.equals(area)).collect(Collectors.toList());
 
                 if (citiesToReturn.isEmpty()) {
-                    System.out.println("No cities found on " + area + ". Please enter a different district.");
+                    System.out.println("No cities found in " + area + ". Please enter a different district.\n");
                     getDistrictPopulation(numberOfCitiesToGet, capitals);
                 }
 
@@ -83,7 +83,7 @@ class CityRequests
                 break;
 
             default: {
-                System.out.println("Unknown option entered, returning all cities");
+                System.out.println("Unknown option entered, returning all cities\n");
                 citiesToReturn = cities;
                 break;
             }
@@ -126,7 +126,7 @@ class CityRequests
     //Gets all or top n city reports in a given continent and writes to csv file
     static void getContinentPopulation(Integer numberOfCitiesToGet, boolean capitals)
     {
-        System.out.println("Please enter which continent you want to get report for: ");
+        System.out.println("Please enter which continent you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
         String continent = in.nextLine();
@@ -139,7 +139,7 @@ class CityRequests
     //Gets all or top n city reports in a given region and writes to csv file
     static void getRegionPopulation(Integer numberOfCitiesToGet, boolean capitals)
     {
-        System.out.println("Please enter which region you want to get report for: ");
+        System.out.println("Please enter which region you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
         String region = in.nextLine();
@@ -152,7 +152,7 @@ class CityRequests
     //Gets all or top n city reports in a given district and writes to csv file
     static void getDistrictPopulation(Integer numberOfCitiesToGet, boolean capitals)
     {
-        System.out.println("Please enter which district you want to get report for: ");
+        System.out.println("Please enter which district you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
         String district = in.nextLine();
