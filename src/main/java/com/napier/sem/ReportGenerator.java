@@ -58,6 +58,26 @@ public class ReportGenerator
         return report;
     }
 
+    //Creates population report from population statistics for an area
+    static void GeneratePopulationReport(PopulationStatistics populationStatistics)
+    {
+        ArrayList<String[]> report = new ArrayList<String[]>();
+
+        //ReportGenerator header
+        report.add(new String[]{"Area", "Total Population", "Urban Population", "Rural Population"});
+
+        report.add(new String[]
+                {
+                        populationStatistics.Area,
+                        Long.toString(populationStatistics.TotalPopulation),
+                        Long.toString(populationStatistics.UrbanPopulation),
+                        Long.toString(populationStatistics.RuralPopulation)
+                });
+
+        writeToCSV(populationStatistics.Area.replaceAll(" ","") + "PopulationStatistics.csv", report);
+    }
+
+
     //Creates report line for single country
     static String[] GenerateCountryReport(Country country)
     {
@@ -106,7 +126,7 @@ public class ReportGenerator
                 };
     }
 
-    //Creates report line for single language city
+    //Creates report line for single language
     static String[] GenerateLanguageReport(LanguageSpeakers languageSpeakers)
     {
         return new String[]

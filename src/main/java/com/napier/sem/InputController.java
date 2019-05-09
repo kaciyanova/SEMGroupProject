@@ -15,9 +15,9 @@ class InputController
             System.out.println("1: Country");
             System.out.println("2: City");
             System.out.println("3: Language");
-            System.out.println("4: Population");
+            System.out.println("4: Total/Urban/Rural Population Statistics");
             System.out.println("5: Population Numbers\n");
-            reportType = getScope(in);
+            reportType = getScope(in, 5);
         }
         while (!(reportType >= 1 && reportType <= 5));
 
@@ -34,7 +34,7 @@ class InputController
                 break;
 
             case 4:
-//                RequestPopulationReport();
+                RequestPopulationReport();
                 break;
             case 5:
                 RequestPopulationNumbers();
@@ -113,7 +113,7 @@ class InputController
             System.out.println("2: Continent");
             System.out.println("3: Region");
             System.out.println("4: District\n");
-            scope = getScope(in);
+            scope = getScope(in, 4);
         }
         while (!(scope >= 1 && scope <= 4));
 
@@ -151,7 +151,7 @@ class InputController
                 break;
 
             default: {
-                System.out.println("Scope is " + scope+"\n");
+                System.out.println("Scope is " + scope + "\n");
 
                 System.out.println("Unknown scope entered, redirecting to menu start...\n");
                 RequestReport();
@@ -160,6 +160,46 @@ class InputController
         }
     }
 
+    //gets input for population number scope
+    static void RequestPopulationReport()
+    {
+        Scanner in = new Scanner(System.in);
+
+        //validates input to be an int and within the correct menu range
+        int scope;
+        do {
+            System.out.println("Please enter the area scope for which you'd like a population statistics report:\n");
+            System.out.println("1: Continent");
+            System.out.println("2: Region");
+            System.out.println("3: Country");
+            scope = getScope(in, 3);
+
+        }
+        while (!(scope >= 1 && scope <= 3));
+
+
+        switch (scope) {
+            case 1:
+                PopulationPercentages.GetContinentPopulationStats();
+                break;
+
+            case 2:
+                PopulationPercentages.GetRegionPopulationStats();
+                break;
+
+            case 3:
+                PopulationPercentages.GetCountryPopulationStats();
+                break;
+            default: {
+                System.out.println("Scope is " + scope);
+
+                System.out.println("Unknown scope entered, redirecting to menu start...\n");
+                RequestReport();
+                break;
+            }
+        }
+
+    }
 
     //gets input for population number scope
     static void RequestPopulationNumbers()
@@ -175,34 +215,29 @@ class InputController
             System.out.println("3: Region");
             System.out.println("4: District");
             System.out.println("5: City\n");
-            while (!in.hasNextInt()) {
-                String invalid = in.next();
-                System.out.println(invalid + " is not a number\n");
-                System.out.println("Please pick a number from the menu (1-5):\n");
-            }
-            scope = in.nextInt();
+            scope = getScope(in, 5);
         }
         while (!(scope >= 1 && scope <= 5));
 
 
         switch (scope) {
             case 1:
-                PopulationNumbers.GetWorldPopulation();
+                PopulationCount.GetWorldPopulation();
                 break;
 
             case 2:
-                PopulationNumbers.GetContinentPopulation();
+                PopulationCount.GetContinentPopulation();
                 break;
 
             case 3:
-                PopulationNumbers.GetRegionPopulation();
+                PopulationCount.GetRegionPopulation();
                 break;
 
             case 4:
-                PopulationNumbers.GetDistrictPopulation();
+                PopulationCount.GetDistrictPopulation();
                 break;
             case 5:
-                PopulationNumbers.GetCityPopulation();
+                PopulationCount.GetCityPopulation();
                 break;
             default: {
                 System.out.println("Scope is " + scope);
@@ -244,13 +279,13 @@ class InputController
     }
 
     //gets user input for area scope
-    private static int getScope(Scanner in)
+    private static int getScope(Scanner in, int options)
     {
         int scope;
         while (!in.hasNextInt()) {
             String invalid = in.next();
             System.out.println(invalid + " is not a number\n");
-            System.out.println("Please pick a number from the menu (1-4):\n");
+            System.out.println("Please pick a number from the menu (1-" + options + "):\n");
         }
         scope = in.nextInt();
         return scope;

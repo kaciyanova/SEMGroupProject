@@ -99,7 +99,7 @@ public class LanguageReport
             CountLanguageSpeakers();
         }
 
-        long worldPopulation = PopulationNumbers.CalculatePopulationInCountries(countries);
+        long worldPopulation = PopulationCount.CalculatePopulationInCountries(countries);
 
         for (LanguageSpeakers language : languageStatistics) {
             language.WorldPercentage = (float) language.Speakers / worldPopulation;

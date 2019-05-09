@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import static com.napier.sem.App.cities;
 import static com.napier.sem.App.countries;
 
-//handles population number requests
-public class PopulationNumbers
+//handles population count requests
+public class PopulationCount
 {
     //enum for area scopes
     public enum Scope
@@ -130,9 +130,9 @@ public class PopulationNumbers
         Scanner in = new Scanner(System.in);
         String continent = in.nextLine();
 
-        List<Country> requestedCountries = GetCountriesInArea(Scope.Continent, continent);
+        List<Country> countriesInArea = GetCountriesInArea(Scope.Continent, continent);
 
-        PrintPopulationToConsole(continent, CalculatePopulationInCountries(requestedCountries));
+        PrintPopulationToConsole(continent, CalculatePopulationInCountries(countriesInArea));
     }
 
     //Gets+prints region population
@@ -143,9 +143,9 @@ public class PopulationNumbers
         Scanner in = new Scanner(System.in);
         String region = in.nextLine();
 
-        List<Country> requestedCountries = GetCountriesInArea(Scope.Region, region);
+        List<Country> countriesInArea = GetCountriesInArea(Scope.Region, region);
 
-        PrintPopulationToConsole(region, CalculatePopulationInCountries(requestedCountries));
+        PrintPopulationToConsole(region, CalculatePopulationInCountries(countriesInArea));
     }
 
     //Gets+prints district population
@@ -156,9 +156,9 @@ public class PopulationNumbers
         Scanner in = new Scanner(System.in);
         String district = in.nextLine();
 
-        List<City> requestedCities = GetCitiesInArea(Scope.District, district);
+        List<City> citiesInArea = GetCitiesInArea(Scope.District, district);
 
-        PrintPopulationToConsole(district, CalculatePopulationInCities(requestedCities));
+        PrintPopulationToConsole(district, CalculatePopulationInCities(citiesInArea));
     }
 
     //Gets+prints city population
@@ -169,9 +169,9 @@ public class PopulationNumbers
         Scanner in = new Scanner(System.in);
         String city = in.nextLine();
 
-        List<City> requestedCities = GetCitiesInArea(Scope.City, city);
+        List<City> citiesInArea = GetCitiesInArea(Scope.City, city);
 
-        PrintPopulationToConsole(city, CalculatePopulationInCities(requestedCities));
+        PrintPopulationToConsole(city, CalculatePopulationInCities(citiesInArea));
     }
 }
 
