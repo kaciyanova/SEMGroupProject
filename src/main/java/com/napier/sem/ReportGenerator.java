@@ -41,7 +41,7 @@ public class ReportGenerator
         //ReportGenerator header
         report.add(new String[]{"Name", "Country", "Population"});
 
-        requestedCities.forEach(city -> report.add(GenerateCityReport(city)));
+        requestedCities.forEach(city -> report.add(GenerateCapitalReport(city)));
 
         return report;
     }
@@ -96,7 +96,6 @@ public class ReportGenerator
                 };
     }
 
-    //TODO UHH LOL FORGOT THIS
     //Creates report line for single capital city
     static String[] GenerateCapitalReport(City city)
     {

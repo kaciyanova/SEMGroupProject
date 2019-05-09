@@ -17,12 +17,7 @@ class InputController
             System.out.println("3: Language");
             System.out.println("4: Population");
             System.out.println("5: Population Numbers\n");
-            while (!in.hasNextInt()) {
-                String invalid = in.next();
-                System.out.println(invalid + " is not a number\n");
-                System.out.println("Please pick a number from the menu (1-4):\n");
-            }
-            reportType = in.nextInt();
+            reportType = getScope(in);
         }
         while (!(reportType >= 1 && reportType <= 5));
 
@@ -77,12 +72,7 @@ class InputController
         do {
             System.out.println("Please enter the top N countries by population you want in the report (or enter 0 to get all)\n");
 
-            while (!in.hasNextInt()) {
-                String invalid = in.next();
-                System.out.println(invalid + " is not a number\n");
-                System.out.println("Please enter a number\n");
-            }
-            numberOfCountriesToGet = in.nextInt();
+            numberOfCountriesToGet = getNumberOfCities(in);
         }
         while (numberOfCountriesToGet < 0);
 
@@ -123,12 +113,7 @@ class InputController
             System.out.println("2: Continent");
             System.out.println("3: Region");
             System.out.println("4: District\n");
-            while (!in.hasNextInt()) {
-                String invalid = in.next();
-                System.out.println(invalid + " is not a number\n");
-                System.out.println("Please pick a number from the menu (1-4):\n");
-            }
-            scope = in.nextInt();
+            scope = getScope(in);
         }
         while (!(scope >= 1 && scope <= 4));
 
@@ -137,12 +122,7 @@ class InputController
         do {
             System.out.println("Please enter the top N cities by population you want in the report (or enter 0 to get all)\n");
 
-            while (!in.hasNextInt()) {
-                String invalid = in.next();
-                System.out.println(invalid + " is not a number\n");
-                System.out.println("Please enter a number\n");
-            }
-            numberOfCitiesToGet = in.nextInt();
+            numberOfCitiesToGet = getNumberOfCities(in);
         }
         while (numberOfCitiesToGet < 0);
 
@@ -179,6 +159,7 @@ class InputController
             }
         }
     }
+
 
     //gets input for population number scope
     static void RequestPopulationNumbers()
@@ -248,4 +229,31 @@ class InputController
         System.out.println("Requesting another report \n");
         RequestReport();
     }
+
+    //gets user input for number of cities to get
+    private static Integer getNumberOfCities(Scanner in)
+    {
+        Integer numberOfCitiesToGet;
+        while (!in.hasNextInt()) {
+            String invalid = in.next();
+            System.out.println(invalid + " is not a number\n");
+            System.out.println("Please enter a number\n");
+        }
+        numberOfCitiesToGet = in.nextInt();
+        return numberOfCitiesToGet;
+    }
+
+    //gets user input for area scope
+    private static int getScope(Scanner in)
+    {
+        int scope;
+        while (!in.hasNextInt()) {
+            String invalid = in.next();
+            System.out.println(invalid + " is not a number\n");
+            System.out.println("Please pick a number from the menu (1-4):\n");
+        }
+        scope = in.nextInt();
+        return scope;
+    }
+
 }
