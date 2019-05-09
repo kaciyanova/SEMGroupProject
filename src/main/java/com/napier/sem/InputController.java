@@ -11,16 +11,16 @@ class InputController
 
         int reportType;
         do {
-            System.out.println("Enter what kind of report you'd like to generate:");
+            System.out.println("Enter what kind of report you'd like to generate:\n");
             System.out.println("1: Country");
             System.out.println("2: City");
             System.out.println("3: Language");
             System.out.println("4: Population");
-            System.out.println("5: Population Numbers");
+            System.out.println("5: Population Numbers\n");
             while (!in.hasNextInt()) {
                 String invalid = in.next();
-                System.out.println(invalid + " is not a number");
-                System.out.println("Please pick a number from the menu (1-4):");
+                System.out.println(invalid + " is not a number\n");
+                System.out.println("Please pick a number from the menu (1-4):\n");
             }
             reportType = in.nextInt();
         }
@@ -35,7 +35,7 @@ class InputController
                 break;
 
             case 3:
-//                RequestLanguageReport();
+                LanguageReport.RequestLanguageReport();
                 break;
 
             case 4:
@@ -59,14 +59,14 @@ class InputController
         //validates input to be an int and within the correct menu range
         int scope;
         do {
-            System.out.println("Please enter the area scope for which you'd like the report:");
+            System.out.println("Please enter the area scope for which you'd like the report:\n");
             System.out.println("1: World");
             System.out.println("2: Continent");
-            System.out.println("3: Region");
+            System.out.println("3: Region\n");
             while (!in.hasNextInt()) {
                 String invalid = in.next();
-                System.out.println(invalid + " is not a number");
-                System.out.println("Please pick a number from the menu (1-3):");
+                System.out.println(invalid + " is not a number\n");
+                System.out.println("Please pick a number from the menu (1-3):\n");
             }
             scope = in.nextInt();
         }
@@ -75,12 +75,12 @@ class InputController
         //validates input to be an int and within a valid range
         Integer numberOfCountriesToGet;
         do {
-            System.out.println("Please enter the top N countries by population you want in the report (or enter 0 to get all)");
+            System.out.println("Please enter the top N countries by population you want in the report (or enter 0 to get all)\n");
 
             while (!in.hasNextInt()) {
                 String invalid = in.next();
-                System.out.println(invalid + " is not a number");
-                System.out.println("Please enter a number");
+                System.out.println(invalid + " is not a number\n");
+                System.out.println("Please enter a number\n");
             }
             numberOfCountriesToGet = in.nextInt();
         }
@@ -103,7 +103,7 @@ class InputController
             default: {
                 System.out.println("Scope is " + scope);
 
-                System.out.println("Unknown scope entered, redirecting to menu start...");
+                System.out.println("Unknown scope entered, redirecting to menu start...\n");
                 RequestReport();
                 break;
             }
@@ -118,15 +118,15 @@ class InputController
         //validates input to be an int and within the correct menu range
         int scope;
         do {
-            System.out.println("Please enter the area scope for which you'd like the report:");
+            System.out.println("Please enter the area scope for which you'd like the report:\n");
             System.out.println("1: World");
             System.out.println("2: Continent");
             System.out.println("3: Region");
-            System.out.println("4: District");
+            System.out.println("4: District\n");
             while (!in.hasNextInt()) {
                 String invalid = in.next();
-                System.out.println(invalid + " is not a number");
-                System.out.println("Please pick a number from the menu (1-4):");
+                System.out.println(invalid + " is not a number\n");
+                System.out.println("Please pick a number from the menu (1-4):\n");
             }
             scope = in.nextInt();
         }
@@ -135,19 +135,19 @@ class InputController
         //validates input to be an int and within a valid range
         Integer numberOfCitiesToGet;
         do {
-            System.out.println("Please enter the top N cities by population you want in the report (or enter 0 to get all)");
+            System.out.println("Please enter the top N cities by population you want in the report (or enter 0 to get all)\n");
 
             while (!in.hasNextInt()) {
                 String invalid = in.next();
-                System.out.println(invalid + " is not a number");
-                System.out.println("Please enter a number");
+                System.out.println(invalid + " is not a number\n");
+                System.out.println("Please enter a number\n");
             }
             numberOfCitiesToGet = in.nextInt();
         }
         while (numberOfCitiesToGet < 0);
 
 
-        System.out.println("Would you like to limit your report to capital cities? (y/n)");
+        System.out.println("Would you like to limit your report to capital cities? (y/n)\n");
         in.nextLine();
         String capitalstr = in.nextLine();
         boolean capitals;
@@ -171,9 +171,9 @@ class InputController
                 break;
 
             default: {
-                System.out.println("Scope is " + scope);
+                System.out.println("Scope is " + scope+"\n");
 
-                System.out.println("Unknown scope entered, redirecting to menu start...");
+                System.out.println("Unknown scope entered, redirecting to menu start...\n");
                 RequestReport();
                 break;
             }
@@ -188,16 +188,16 @@ class InputController
         //validates input to be an int and within the correct menu range
         int scope;
         do {
-            System.out.println("Please enter the area scope for which you'd like a population count:");
+            System.out.println("Please enter the area scope for which you'd like a population count:\n");
             System.out.println("1: World");
             System.out.println("2: Continent");
             System.out.println("3: Region");
             System.out.println("4: District");
-            System.out.println("5: City");
+            System.out.println("5: City\n");
             while (!in.hasNextInt()) {
                 String invalid = in.next();
-                System.out.println(invalid + " is not a number");
-                System.out.println("Please pick a number from the menu (1-5):");
+                System.out.println(invalid + " is not a number\n");
+                System.out.println("Please pick a number from the menu (1-5):\n");
             }
             scope = in.nextInt();
         }
@@ -226,7 +226,7 @@ class InputController
             default: {
                 System.out.println("Scope is " + scope);
 
-                System.out.println("Unknown scope entered, redirecting to menu start...");
+                System.out.println("Unknown scope entered, redirecting to menu start...\n");
                 RequestReport();
                 break;
             }
@@ -237,12 +237,12 @@ class InputController
     //Asks if another report is requested
     private static void RepeatRequest(Scanner in)
     {
-        System.out.println("Would you like to request another report? (y/n)");
+        System.out.println("Would you like to request another report? (y/n)\n");
         in.nextLine();
         String again = in.nextLine();
 
         if (!again.equals("y")) {
-            System.out.println("Exiting program");
+            System.out.println("Exiting program\n");
             return;
         }
         System.out.println("Requesting another report \n");
