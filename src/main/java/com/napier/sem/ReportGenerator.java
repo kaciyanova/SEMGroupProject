@@ -51,7 +51,7 @@ public class ReportGenerator
     {
         ArrayList<String[]> report = new ArrayList<String[]>();
         //ReportGenerator header
-        report.add(new String[]{"Language", "Number of speakers", "Percentage of World Population"});
+        report.add(new String[]{"Language", "Number of Speakers", "Percentage of World Population"});
 
         requestedLanguages.forEach(language -> report.add(GenerateLanguageReport(language)));
 

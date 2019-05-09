@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import static com.napier.sem.App.countries;
-import static java.util.Collections.sort;
 
 //Handles language reports
 public class LanguageReport
@@ -21,17 +20,25 @@ public class LanguageReport
             CountLanguageSpeakers();
             CalculateWorldPercentages();
 
-            languageStatistics = languageStatistics;
-
             //creates comparator for language sorting
             Comparator<LanguageSpeakers> comparator = Comparator.comparingLong(LanguageSpeakers::getSpeakers);
             //sorts languages by number of speakers descending
             languageStatistics.sort(comparator.reversed());
 
-            languageStatistics = languageStatistics;
-
             alreadyCountedLanguages = true;
         }
+
+        SendToWriter();
+    }
+
+    //sends language list to report writer and generates filename
+    static void SendToWriter()
+    {
+        ArrayList<String[]> reports = ReportGenerator.GenerateLanguageReports(languageStatistics);
+
+        String filename = "languages.csv";
+
+        ReportGenerator.writeToCSV(filename, reports);
     }
 
     //counts number of speakers for each language
@@ -73,7 +80,7 @@ public class LanguageReport
             }
         }
 
-        languageStatistics= new ArrayList<>();
+        languageStatistics = new ArrayList<>();
 
         languageStatistics.add(chineseSpeakers);
         languageStatistics.add(englishSpeakers);
