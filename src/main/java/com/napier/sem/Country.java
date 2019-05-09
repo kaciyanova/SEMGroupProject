@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import java.util.List;
+
 public class Country
 {
     /**
@@ -36,4 +38,12 @@ public class Country
     public City getCapital() { return this.Capital; }
     //sets capital
     public void setCapital(City Capital) { this.Capital = Capital; }
+
+    //Country's Languages
+    public List<Language> Languages;
+
+    //gets Languages
+    public List<Language> getLanguages() { return this.Languages; }
+    //sets Languages
+    public void setLanguages(List<Language> Languages) { this.Languages = Languages; }
 }
