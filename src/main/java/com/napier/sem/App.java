@@ -28,7 +28,9 @@ public class App
         // disconnect from database
         disconnect();
 
-        assignCapitalsAndCountries(countries, cities);
+        assignCapitalsToCountries();
+        assignCountriesToCapitals();
+        assignLanguagesToCountries();
 
         InputController.RequestReport();
     }
@@ -194,21 +196,38 @@ public class App
         }
     }
 
-    //Assigns capital cities to each country & vice versa
-    static void assignCapitalsAndCountries(ArrayList<Country> countries, ArrayList<City> cities)
+    //Assigns capital cities to each country
+    static void assignCapitalsToCountries()
     {
         if (countries == null || cities == null) {
             System.out.println("Cities and/or countries null");
             return;
         }
-        countries.forEach(country -> country.setCapital(getCapitalCity(country, cities)));
-        cities.forEach(city -> city.setCountry(getCountry(city, countries)));
+        countries.forEach(country -> country.setCapital(getCapitalCity(country)));
+    }
 
+    //Assigns country to each city
+    static void assignCountriesToCapitals()
+    {
+        if (countries == null || cities == null) {
+            System.out.println("Cities and/or countries null");
+            return;
+        }
+        cities.forEach(city -> city.setCountry(getCountry(city)));
+    }
 
+    //Assigns languages to each country
+    static void assignLanguagesToCountries()
+    {
+        if (countries == null || languages == null) {
+            System.out.println("Languages and/or countries null");
+            return;
+        }
+        countries.forEach(country -> country.setLanguages(getLanguages(country)));
     }
 
     //gets capital city of country
-    static City getCapitalCity(Country country, ArrayList<City> cities)
+    static City getCapitalCity(Country country)
     {
         City capital;
         try {
@@ -232,7 +251,7 @@ public class App
     }
 
     //gets capital city of country
-    static Country getCountry(City city, ArrayList<Country> countries)
+    static Country getCountry(City city)
     {
         Country cityCountry;
         try {
@@ -246,5 +265,16 @@ public class App
             e.printStackTrace();
             return null;
         }
+    }
+
+    //gets languages spoken in country
+    static List<Language> getLanguages(Country country)
+    {
+        List<Language> countryLanguages;
+
+        countryLanguages = languages.stream()
+                .filter((language) -> language.CountryCode.equals(country.Code)).collect(Collectors.toList());
+
+        return countryLanguages;
     }
 }

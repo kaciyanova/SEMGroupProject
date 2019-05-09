@@ -21,7 +21,7 @@ public class AppTest
     @Test
     void getCapitalCityTestNull()
     {
-        getCapitalCity(null, null);
+        getCapitalCity(null);
     }
 
     @Test
@@ -29,14 +29,14 @@ public class AppTest
     {
         Country country = new Country();
         ArrayList<City> cities = new ArrayList<City>();
-        getCapitalCity(country, cities);
+        getCapitalCity(country);
     }
 
-    @Test
-    void assignCapitalsAndCountriesTestNull()
-    {
-        assignCapitalsAndCountries(null, null);
-    }
+//    @Test
+//    void assignCapitalsAndCountriesTestNull()
+//    {
+//        assignCapitalsAndCountries(null, null);
+//    }
 
 //    @Test
 //    void assignCapitalsAndCountriesTestEmpty()
