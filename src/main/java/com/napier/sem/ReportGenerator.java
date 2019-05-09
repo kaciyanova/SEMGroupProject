@@ -46,6 +46,18 @@ public class ReportGenerator
         return report;
     }
 
+    //Creates language report from given list of languages
+    static ArrayList<String[]> GenerateLanguageReports(List<LanguageSpeakers> requestedLanguages)
+    {
+        ArrayList<String[]> report = new ArrayList<String[]>();
+        //ReportGenerator header
+        report.add(new String[]{"Language", "Number of speakers", "Percentage of World Population"});
+
+        requestedLanguages.forEach(language -> report.add(GenerateLanguageReport(language)));
+
+        return report;
+    }
+
     //Creates report line for single country
     static String[] GenerateCountryReport(Country country)
     {
@@ -84,6 +96,7 @@ public class ReportGenerator
                 };
     }
 
+    //TODO UHH LOL FORGOT THIS
     //Creates report line for single capital city
     static String[] GenerateCapitalReport(City city)
     {
@@ -91,6 +104,16 @@ public class ReportGenerator
                 {city.Name,
                         city.Country.Name,
                         Integer.toString(city.Population)
+                };
+    }
+
+    //Creates report line for single language city
+    static String[] GenerateLanguageReport(LanguageSpeakers languageSpeakers)
+    {
+        return new String[]
+                {languageSpeakers.LanguageName,
+                        Long.toString(languageSpeakers.Speakers),
+                        Float.toString(languageSpeakers.WorldPercentage)
                 };
     }
 
