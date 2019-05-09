@@ -1,6 +1,5 @@
 package com.napier.sem;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,31 +21,31 @@ public class PopulationNumbers
     }
 
     //Prints population to console, using BigInteger because int can't hold enough
-    static void PrintPopulationToConsole(String place, BigInteger population)
+    static void PrintPopulationToConsole(String place, long population)
     {
         System.out.println("The population of " + place + " is " + population + "\n");
     }
 
     //Returns total population of list of countries
-    static BigInteger CalculatePopulationInCountries(List<Country> countriesToCount)
+    static long CalculatePopulationInCountries(List<Country> countriesToCount)
     {
 
-        BigInteger population = new BigInteger("0");
+        long population = 0;
 
         for (Country country : countriesToCount) {
 
-            population = population.add(BigInteger.valueOf(country.Population));
+            population = population+country.Population;
         }
         return population;
     }
 
     //Returns total population of list of cities
-    static BigInteger CalculatePopulationInCities(List<City> citiesToCount)
+    static long CalculatePopulationInCities(List<City> citiesToCount)
     {
-        BigInteger population = new BigInteger("0");
+        long population = 0;
 
         for (City city : citiesToCount) {
-            population = population.add(BigInteger.valueOf(city.Population));
+            population = population+city.Population;
         }
         return population;
     }
