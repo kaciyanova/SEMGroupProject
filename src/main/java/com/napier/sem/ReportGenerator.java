@@ -70,11 +70,11 @@ public class ReportGenerator
                 {
                         populationStatistics.Area,
                         Long.toString(populationStatistics.TotalPopulation),
-                        Long.toString(populationStatistics.UrbanPopulation),
-                        Long.toString(populationStatistics.RuralPopulation)
+                        populationStatistics.UrbanPopulation + "(" + (float) populationStatistics.UrbanPopulation / populationStatistics.TotalPopulation * 100 + "%)",
+                        populationStatistics.RuralPopulation + "(" + (float) populationStatistics.RuralPopulation / populationStatistics.TotalPopulation * 100 + "%)"
                 });
 
-        writeToCSV(populationStatistics.Area.replaceAll(" ","") + "PopulationStatistics.csv", report);
+        writeToCSV(populationStatistics.Area.replaceAll(" ", "") + "PopulationStatistics.csv", report);
     }
 
 

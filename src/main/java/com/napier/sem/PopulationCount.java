@@ -93,7 +93,7 @@ public class PopulationCount
                         .filter((city) -> city.District.equals(area)).collect(Collectors.toList());
 
                 if (citiesToReturn.isEmpty()) {
-                    System.out.println("No cities found on " + area + ". Please enter a different district.");
+                    System.out.println("No cities found on " + area + ". Please enter a different district.\n");
                     GetDistrictPopulation();
                 }
                 return citiesToReturn;
@@ -103,13 +103,13 @@ public class PopulationCount
                         .filter((city) -> city.Name.equals(area)).collect(Collectors.toList());
 
                 if (citiesToReturn.isEmpty()) {
-                    System.out.println("No cities found with name " + area + ". Please enter a different city.");
+                    System.out.println("No cities found with name " + area + ". Please enter a different city.\n");
                     GetCityPopulation();
                 }
                 return citiesToReturn;
 
             default: {
-                System.out.println("Unknown option entered, returning no cities");
+                System.out.println("Unknown option entered, returning no cities\n");
                 return new ArrayList<>();
             }
         }
