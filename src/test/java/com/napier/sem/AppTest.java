@@ -29,12 +29,12 @@ public class AppTest {
     }
 
     @Test
-    void assignCapitalsAndCountriesTestNull() {
+    void assignCapitalsToCountriesTestNull() {
         assignCapitalsToCountries(null);
     }
 
     @Test
-    void assignCapitalsAndCountriesTestEmpty() {
+    void assignCapitalsToCountriesTestEmpty() {
         ArrayList<Country> countries = new ArrayList<Country>();
         ArrayList<City> cities = new ArrayList<City>();
 
