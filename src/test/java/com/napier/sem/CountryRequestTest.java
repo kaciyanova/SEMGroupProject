@@ -13,9 +13,7 @@ public class CountryRequestsTest
     @BeforeAll
     static void init()
     {
-        World,
-        Continent,
-        Region
+
     }
     @Test
     void GetCountriesInAreaByPopulationTestNull()
