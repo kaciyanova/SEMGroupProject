@@ -33,13 +33,13 @@ public class AppTest {
         assignCapitalsToCountries(null);
     }
 
-    @Test
-    void assignCapitalsToCountriesTestEmpty() {
-        ArrayList<Country> countries = new ArrayList<Country>();
-        ArrayList<City> cities = new ArrayList<City>();
-
-        assignCapitalsToCountries(App.cities);
-    }
+//     @Test
+//     void assignCapitalsToCountriesTestEmpty() {
+//         ArrayList<Country> countries = new ArrayList<Country>();
+//         ArrayList<City> cities = new ArrayList<City>();
+//
+//         assignCapitalsToCountries(App.cities);
+//     }
 
     @Test
     void getWorldPopulationTestEmpty() {
