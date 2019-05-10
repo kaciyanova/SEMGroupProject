@@ -32,32 +32,32 @@ public class AppTest
         getCapitalCity(country);
     }
 
-//    @Test
-//    void assignCapitalsAndCountriesTestNull()
-//    {
-//        assignCapitalsAndCountries(null, null);
-//    }
+    @Test
+    void assignCapitalsAndCountriesTestNull()
+    {
+        assignCapitalsToCountries(null);
+    }
 
-//    @Test
-//    void assignCapitalsAndCountriesTestEmpty()
-//    {
-//        ArrayList<Country> countries = new ArrayList<Country>();
-//        ArrayList<City> cities = new ArrayList<City>();
-//
-//        assignCapitalsAndCountries(countries, cities);
-//    }
+    @Test
+    void assignCapitalsAndCountriesTestEmpty()
+    {
+       ArrayList<Country> countries = new ArrayList<Country>();
+        ArrayList<City> cities = new ArrayList<City>();
 
-//    @Test
-//    void getWorldPopulationTestEmpty()
-//    {
-//        getWorldPopulation("");
-//    }
-//
-//    @Test
-//    void getWorldPopulationTestNull()
-//    {
-//        getWorldPopulation(null);
-//    }
+        assignCapitalsToCountries(App.cities);
+    }
+
+    @Test
+    void getWorldPopulationTestEmpty()
+    {
+        getWorldPopulation(0);
+    }
+
+    @Test
+    void getWorldPopulationTestNull()
+    {
+        getWorldPopulation(null);
+    }
 
 //    @Test
 //    void getWorldPopulationTestInvalidString()
@@ -68,9 +68,81 @@ public class AppTest
 //        });
 //    }
 
-//    @Test
-//    void getWorldPopulationTestNormal()
+    @Test
+    static void WorldPopulationTestNormal(){
+        getWorldPopulation(5);
+    }
+
+
+
+    @Test
+    void assignLanguagesToCountriesTestEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ArrayList<Language> languages = new ArrayList<Language>();
+
+        assignLanguagesToCountries(countries, languages);
+    }
+
+
+    @Test
+    void assignLanguagesToCountriesTestNull()
+    {
+        assignLanguagesToCountries(null, null);
+    }
+
+ //   @Test
+//    void getCountryTestEmpty()
 //    {
-//        getWorldPopulation("5");
+//        getCountry();
 //    }
+
+    @Test
+    void getCountryTestNull()
+    {
+        getCountry(null);
+    }
+
+//   @Test
+//   void getCountryTestInvalidString()
+//  {
+//        String notString = "123456";
+//        assertThrows(RuntimeException.class, () -> {
+//            getCountry(notString);
+//        });
+//  }
+
+
+//    @Test
+//    void getCountryTestNormal()
+//    {
+//        getCountry();
+//    }
+
+    @Test
+    void getLanguagesTestEmpty()
+    {
+        getLanguages("");
+    }
+
+    @Test
+    void getLanguagesTestNull()
+    {
+        getLanguages((String) null);
+    }
+
+    @Test
+    void getLanguagesTestInvalidString()
+    {
+        String notString = "123456";
+        assertThrows(RuntimeException.class, () -> {
+            getLanguages(notString);
+        });
+    }
+
+    @Test
+    void getLanguagesTestNormal()
+    {
+        getLanguages("English");
+    }
 }
