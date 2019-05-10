@@ -31,7 +31,7 @@ public class AppTest
         ArrayList<City> cities = new ArrayList<City>();
         getCapitalCity(country);
     }
-
+//
 //    @Test
 //    void assignCapitalsAndCountriesTestNull()
 //    {
