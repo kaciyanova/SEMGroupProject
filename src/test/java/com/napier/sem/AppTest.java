@@ -50,13 +50,13 @@ public class AppTest
 //    @Test
 //    void getWorldPopulationTestEmpty()
 //    {
-//        getWorldPopulation("");
+//        getWorldCities("");
 //    }
 //
 //    @Test
 //    void getWorldPopulationTestNull()
 //    {
-//        getWorldPopulation(null);
+//        getWorldCities(null);
 //    }
 
 //    @Test
@@ -64,13 +64,13 @@ public class AppTest
 //    {
 //        String notInt = "dkfjgh";
 //        assertThrows(RuntimeException.class, () -> {
-//            getWorldPopulation(notInt);
+//            getWorldCities(notInt);
 //        });
 //    }
 
 //    @Test
 //    void getWorldPopulationTestNormal()
 //    {
-//        getWorldPopulation("5");
+//        getWorldCities("5");
 //    }
 }
