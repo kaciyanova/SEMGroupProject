@@ -68,7 +68,7 @@ class CityRequests {
 
             case Country:
                 citiesToReturn = cities.stream()
-                        .filter((city) -> city.Country.equals(area)).collect(Collectors.toList());
+                        .filter((city) -> city.Country.Name.equals(area)).collect(Collectors.toList());
 
                 if (citiesToReturn.isEmpty()) {
                     System.out.println("No cities found in " + area + ". Please enter a different country.\n");
