@@ -5,48 +5,40 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppIntegrationTest
-{
+public class AppIntegrationTest {
 
     @BeforeAll
-     static void init()
-    {
+    static void init() {
         App.connect("localhost:33060");
     }
 
     @Test
-     void getCountriesTestEmpty()
-    {
+    static void getCountriesTestEmpty() {
         assertFalse(App.getCountries().isEmpty());
     }
 
     @Test
-     void getCountriesTestNull()
-    {
+    static void getCountriesTestNull() {
         assertNotNull(App.getCountries());
     }
 
     @Test
-     void getCitiesTestNull()
-    {
+    static void getCitiesTestNull() {
         assertNotNull(App.getCities());
     }
 
     @Test
-     void getCitiesTestEmpty()
-    {
+    static void getCitiesTestEmpty() {
         assertFalse(App.getCities().isEmpty());
     }
 
     @Test
-     void getLanguagesTestEmpty()
-    {
+    static void getLanguagesTestEmpty() {
         assertFalse(App.getLanguages().isEmpty());
     }
 
     @Test
-     void getLanguagesTestNull()
-    {
+    static void getLanguagesTestNull() {
         assertNotNull(App.getLanguages());
     }
 
