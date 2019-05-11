@@ -211,11 +211,12 @@ class InputController {
             System.out.println("1: World");
             System.out.println("2: Continent");
             System.out.println("3: Region");
-            System.out.println("4: District");
-            System.out.println("5: City\n");
-            scope = getScope(in, 5);
+            System.out.println("4: Country");
+            System.out.println("5: District");
+            System.out.println("6: City\n");
+            scope = getScope(in, 6);
         }
-        while (!(scope >= 1 && scope <= 5));
+        while (!(scope >= 1 && scope <= 6));
 
 
         switch (scope) {
@@ -232,9 +233,12 @@ class InputController {
                 break;
 
             case 4:
-                PopulationCount.GetDistrictPopulation();
+                PopulationCount.GetCountryPopulation();
                 break;
             case 5:
+                PopulationCount.GetDistrictPopulation();
+                break;
+            case 6:
                 PopulationCount.GetCityPopulation();
                 break;
             default: {

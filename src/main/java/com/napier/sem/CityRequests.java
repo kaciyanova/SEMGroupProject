@@ -66,21 +66,7 @@ class CityRequests {
 
                 break;
 
-            case Country:
-                citiesToReturn = cities.stream()
-                        .filter((city) -> city.Country.Name.equals(area)).collect(Collectors.toList());
-
-                if (citiesToReturn.isEmpty()) {
-                    System.out.println("No cities found in " + area + ". Please enter a different country.\n");
-                    getCountryCities(numberOfCitiesToGet, capitals);
-                }
-
-                if (citiesToReturn.size() >= numberOfCitiesToGet && numberOfCitiesToGet != 0) {
-                    citiesToReturn = citiesToReturn.subList(0, numberOfCitiesToGet);
-                }
-                break;
-
-            case District:
+                case District:
                 citiesToReturn = cities.stream()
                         .filter((city) -> city.District.equals(area)).collect(Collectors.toList());
 

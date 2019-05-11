@@ -75,6 +75,7 @@ public class PopulationCount
                     GetRegionPopulation();
                 }
                 return countriesToReturn;
+
             default: {
                 System.out.println("Unknown option entered, returning no countries\n");
                 return new ArrayList<>();
@@ -146,6 +147,22 @@ public class PopulationCount
         List<Country> countriesInArea = GetCountriesInArea(Scope.Region, region);
 
         PrintPopulationToConsole(region, CalculatePopulationInCountries(countriesInArea));
+    }
+
+
+    //Gets+prints region population
+    static void GetCountryPopulation()
+    {
+        System.out.println("Please enter which country you want to get the population for: \n");
+
+        Scanner in = new Scanner(System.in);
+        String countryName = in.nextLine();
+
+        List<Country> countriesInArea=new ArrayList<>();
+        countriesInArea.add(countries.stream().filter((country) -> country.Name.equals(countryName)).findFirst().orElse(null));
+
+
+        PrintPopulationToConsole(countryName, CalculatePopulationInCountries(countriesInArea));
     }
 
     //Gets+prints district population
