@@ -108,7 +108,7 @@ class InputController {
             System.out.println("1: World");
             System.out.println("2: Continent");
             System.out.println("3: Region");
-            System.out.println("4: Country\n");
+            System.out.println("4: Country");
             System.out.println("5: District\n");
             scope = getScope(in, 5);
         }
@@ -144,6 +144,9 @@ class InputController {
                 break;
 
             case 4:
+                CityRequests.getCountryCities(numberOfCitiesToGet, capitals);
+                break;
+            case 5:
                 CityRequests.getDistrictCities(numberOfCitiesToGet, capitals);
                 break;
 

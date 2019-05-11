@@ -159,7 +159,7 @@ class CityRequests {
 
     //Gets all or top n city reports in a given country and writes to csv file
     static void getCountryCities(Integer numberOfCitiesToGet, boolean capitals) {
-        System.out.println("Please enter which region you want to get report for: \n");
+        System.out.println("Please enter which country you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
         String country = in.nextLine();
