@@ -18,25 +18,25 @@ repo for the Software Engineering Methods group project
 | 1  | All the countries in the world organised by largest population to smallest.                             | Yes |            | Kaci           | 
 | 2  | All the countries in a continent organised by largest population to smallest.                           | Yes |            | Kaci           | 
 | 3  | All the countries in a region organised by largest population to smallest.                              | Yes |            | Kaci           | 
-| 4  | The top N populated countries in the world where N is provided by the user.                             | Yes |            | Kaci           | 
-| 5  | The top N populated countries in a continent where N is provided by the user.                           | Yes |            | Kaci           | 
-| 6  | The top N populated countries in a region where N is provided by the user.                              | Yes |            | Kaci           | 
+| 4  | The top N populated countries in the world where N is provided by the user.                             | Yes |            | Kaci           | 
+| 5  | The top N populated countries in a continent where N is provided by the user.                           | Yes |            | Kaci           | 
+| 6  | The top N populated countries in a region where N is provided by the user.                              | Yes |            | Kaci           | 
 | 7  | All the cities in the world organised by largest population to smallest.                                | Yes |            | Kaci           | 
 | 8  | All the cities in a continent organised by largest population to smallest.                              | Yes |            | Kaci           | 
 | 9  | All the cities in a region organised by largest population to smallest.                                 | Yes |            | Kaci           | 
 | 10 | All the cities in a country organised by largest population to smallest.                                | Yes |            | Kaci           | 
 | 11 | All the cities in a district organised by largest population to smallest.                               | Yes |            | Kaci           | 
-| 12 | The top N populated cities in the world where N is provided by the user.                                | Yes |            | Kaci           | 
-| 13 | The top N populated cities in a continent where N is provided by the user.                              | Yes |            | Kaci           | 
-| 14 | The top N populated cities in a region where N is provided by the user.                                 | Yes |            | Kaci           | 
-| 15 | The top N populated cities in a country where N is provided by the user.                                | Yes |            | Kaci           | 
-| 16 | The top N populated cities in a district where N is provided by the user.                               | Yes |            | Kaci           | 
+| 12 | The top N populated cities in the world where N is provided by the user.                                | Yes |            | Kaci           | 
+| 13 | The top N populated cities in a continent where N is provided by the user.                              | Yes |            | Kaci           | 
+| 14 | The top N populated cities in a region where N is provided by the user.                                 | Yes |            | Kaci           | 
+| 15 | The top N populated cities in a country where N is provided by the user.                                | Yes |            | Kaci           | 
+| 16 | The top N populated cities in a district where N is provided by the user.                               | Yes |            | Kaci           | 
 | 17 | All the capital cities in the world organised by largest population to smallest.                        | Yes |            | Kaci           | 
 | 18 | All the capital cities in a continent organised by largest population to smallest.                      | Yes |            | Kaci           | 
 | 19 | All the capital cities in a region organised by largest to smallest.                                    | Yes |            | Kaci           | 
-| 20 | The top N populated capital cities in the world where N is provided by the user.                        | Yes |            | Kaci           | 
-| 21 | The top N populated capital cities in a continent where N is provided by the user.                      | Yes |            | Kaci           | 
-| 22 | The top N populated capital cities in a region where N is provided by the user.                         | Yes |            | Kaci           | 
+| 20 | The top N populated capital cities in the world where N is provided by the user.                        | Yes |            | Kaci           | 
+| 21 | The top N populated capital cities in a continent where N is provided by the user.                      | Yes |            | Kaci           | 
+| 22 | The top N populated capital cities in a region where N is provided by the user.                         | Yes |            | Kaci           | 
 | 23 | "The population of people, people living in cities, and people not living in cities in each continent." | Yes |            | Kaci           | 
 | 24 | "The population of people, people living in cities, and people not living in cities in each region."    | Yes |            | Kaci           | 
 | 25 | "The population of people, people living in cities, and people not living in cities in each country."   | Yes |            | Kaci           | 
@@ -47,3 +47,10 @@ repo for the Software Engineering Methods group project
 | 30 | The population of a district.                                                                           | Yes |            | Kaci           | 
 | 31 | The population of a city.                                                                               | Yes |            | Kaci           | 
 | 32 | Language Reports                                                                                        | Yes |            | Kaci           | 
+
+
+|      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |
+|------|---------------|---------------|---------------|---------------|-------------------|-------|
+| Kaci | 0.65 | 0.58 | 0.70 | 0.80 | 0.94 | 0.734 |
+| Thomas | 0.25 | 0.5 | 0.5 | 0.25 | 0.4 | 0.38 |
+| Leone | 0.25 | 0.0 | 0.5 | 0.25 | 0.2 | 0.24 |
