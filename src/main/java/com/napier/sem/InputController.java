@@ -2,11 +2,9 @@ package com.napier.sem;
 
 import java.util.Scanner;
 
-class InputController
-{
+class InputController {
     //reads in user input for report requests
-    static void RequestReport()
-    {
+    static void RequestReport() {
         Scanner in = new Scanner(System.in);
 
         int reportType;
@@ -45,8 +43,7 @@ class InputController
     }
 
     //gets input for country report scope and number of countries desired
-    static void RequestCountryReport()
-    {
+    static void RequestCountryReport() {
 
         Scanner in = new Scanner(System.in);
 
@@ -101,8 +98,7 @@ class InputController
     }
 
     //gets input for city report scope and number of cities desired + whether to only return capitals or not
-    static void RequestCityReport()
-    {
+    static void RequestCityReport() {
         Scanner in = new Scanner(System.in);
 
         //validates input to be an int and within the correct menu range
@@ -112,10 +108,11 @@ class InputController
             System.out.println("1: World");
             System.out.println("2: Continent");
             System.out.println("3: Region");
-            System.out.println("4: District\n");
-            scope = getScope(in, 4);
+            System.out.println("4: Country\n");
+            System.out.println("5: District\n");
+            scope = getScope(in, 5);
         }
-        while (!(scope >= 1 && scope <= 4));
+        while (!(scope >= 1 && scope <= 5));
 
         //validates input to be an int and within a valid range
         Integer numberOfCitiesToGet;
@@ -135,19 +132,19 @@ class InputController
 
         switch (scope) {
             case 1:
-                CityRequests.getWorldPopulation(numberOfCitiesToGet, capitals);
+                CityRequests.getWorldCities(numberOfCitiesToGet, capitals);
                 break;
 
             case 2:
-                CityRequests.getContinentPopulation(numberOfCitiesToGet, capitals);
+                CityRequests.getContinentCities(numberOfCitiesToGet, capitals);
                 break;
 
             case 3:
-                CityRequests.getRegionPopulation(numberOfCitiesToGet, capitals);
+                CityRequests.getRegionCities(numberOfCitiesToGet, capitals);
                 break;
 
             case 4:
-                CityRequests.getDistrictPopulation(numberOfCitiesToGet, capitals);
+                CityRequests.getDistrictCities(numberOfCitiesToGet, capitals);
                 break;
 
             default: {
@@ -161,8 +158,7 @@ class InputController
     }
 
     //gets input for population number scope
-    static void RequestPopulationReport()
-    {
+    static void RequestPopulationReport() {
         Scanner in = new Scanner(System.in);
 
         //validates input to be an int and within the correct menu range
@@ -202,8 +198,7 @@ class InputController
     }
 
     //gets input for population number scope
-    static void RequestPopulationNumbers()
-    {
+    static void RequestPopulationNumbers() {
         Scanner in = new Scanner(System.in);
 
         //validates input to be an int and within the correct menu range
@@ -251,8 +246,7 @@ class InputController
     }
 
     //Asks if another report is requested
-    private static void RepeatRequest(Scanner in)
-    {
+    private static void RepeatRequest(Scanner in) {
         System.out.println("Would you like to request another report? (y/n)\n");
         in.nextLine();
         String again = in.nextLine();
@@ -266,8 +260,7 @@ class InputController
     }
 
     //gets user input for number of cities to get
-    private static Integer getNumberOfCities(Scanner in)
-    {
+    private static Integer getNumberOfCities(Scanner in) {
         Integer numberOfCitiesToGet;
         while (!in.hasNextInt()) {
             String invalid = in.next();
@@ -279,8 +272,7 @@ class InputController
     }
 
     //gets user input for area scope
-    private static int getScope(Scanner in, int options)
-    {
+    private static int getScope(Scanner in, int options) {
         int scope;
         while (!in.hasNextInt()) {
             String invalid = in.next();
