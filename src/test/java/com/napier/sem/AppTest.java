@@ -31,69 +31,69 @@ public class AppTest
         ArrayList<City> cities = new ArrayList<City>();
         getCapitalCity(country);
     }
-//
-//    @Test
-//    void assignCapitalsAndCountriesTestNull()
-//    {
-//        assignCapitalsAndCountries(null, null);
-//    }
 
-//    @Test
-//    void assignCapitalsAndCountriesTestEmpty()
-//    {
-//        ArrayList<Country> countries = new ArrayList<Country>();
-//        ArrayList<City> cities = new ArrayList<City>();
-//
-//        assignCapitalsAndCountries(countries, cities);
-//    }
+    @Test
+    void assignCapitalsToCountriesTestNull()
+    {
+        assignCapitalsToCountries();
+    }
 
-//    @Test
-//    void getWorldPopulationTestEmpty()
-//    {
-//        getWorldPopulation("");
-//    }
-//
-//    @Test
-//    void getWorldPopulationTestNull()
-//    {
-//        getWorldPopulation(null);
-//    }
+    @Test
+    void assignCapitalsToCountriesTestEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ArrayList<City> cities = new ArrayList<City>();
+//        assertFalse(App.assignCapitalsToCountries(City).isEmpty());
+
+    }
+
+   @Test
+    void getWorldPopulationTestEmpty()
+    {
+
+    }
+
+    @Test
+    void getWorldPopulationTestNull()
+    {
+       getWorldPopulation(null);
+    }
 
 //    @Test
 //    void getWorldPopulationTestInvalidString()
 //    {
 //        String notInt = "dkfjgh";
-//        assertThrows(RuntimeException.class, () -> {
+//       assertThrows(RuntimeException.class, () -> {
 //            getWorldPopulation(notInt);
 //        });
 //    }
 
-//    @Test
-//    void getWorldPopulationTestNormal()
-//    {
-//        getWorldPopulation("5");
-//    }
+    @Test
+    void getWorldPopulationTestNormal()
+    {
+        getWorldPopulation(5);
+    }
 
-//    @Test
-//    void assignLanguagesToCountriesTestEmpty()
-//    {
-//        ArrayList<Country> countries = new ArrayList<Country>();
-//        ArrayList<Language> languages = new ArrayList<Language>();
-//
+    @Test
+    void assignLanguagesToCountriesTestEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ArrayList<Language> languages = new ArrayList<Language>();
+
 //        assignLanguagesToCountries(countries);
-//    }
+   }
 
 
-//    @Test
-//    void assignLanguagesToCountriesTestNull()
-//    {
-//        assignLanguagesToCountries(null);
-//    }
+    @Test
+    void assignLanguagesToCountriesTestNull()
+    {
+//        assertNotNull(App.assignLanguagesToCountries(null));
+    }
 
 //    @Test
 //    void getCountryTestEmpty()
 //    {
-//       getCountry();
+//        ArrayList<Country> countries = new ArrayList<Country>();
 //    }
 
 //    @Test
@@ -114,7 +114,7 @@ public class AppTest
 //    @Test
 //    void getCountryTestNormal()
 //    {
-//        getCountry(null);
+//
 //    }
 
 //    @Test
@@ -123,20 +123,20 @@ public class AppTest
 //        getLanguages();
 //   }
 //
-//    @Test
-//    void getLanguagesTestNull()
-//    {
-//        getLanguages(null);
-//   }
+   @Test
+    void getLanguagesTestNull()
+    {
+        getLanguages(null);
+   }
 
-//    @Test
-//    void getLanguagesTestInvalidString()
-//    {
-//        String notString = "123456";
-//        assertThrows(RuntimeException.class, () -> {
+    @Test
+    void getLanguagesTestInvalidString()
+    {
+        String notString = "123456";
+       assertThrows(RuntimeException.class, () -> {
 //            getLanguages(notString);
-//        });
-//    }
+        });
+    }
 
 //    @Test
 //    void getLanguagesTestNormal()

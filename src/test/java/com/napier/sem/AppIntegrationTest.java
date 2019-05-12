@@ -9,45 +9,45 @@ public class AppIntegrationTest
 {
 
     @BeforeAll
-     static void init()
+    static void init()
     {
         App.connect("localhost:33060");
     }
 
     @Test
-     void getCountriesTestEmpty()
+    void getCountriesTestEmpty()
     {
         assertFalse(App.getCountries().isEmpty());
     }
 
     @Test
-     void getCountriesTestNull()
+    void getCountriesTestNull()
     {
         assertNotNull(App.getCountries());
     }
 
     @Test
-     void getCitiesTestNull()
+    void getCitiesTestNull()
     {
         assertNotNull(App.getCities());
     }
 
     @Test
-     void getCitiesTestEmpty()
+    void getCitiesTestEmpty()
     {
         assertFalse(App.getCities().isEmpty());
     }
 
     @Test
-     void getLanguagesTestEmpty()
+    void getLanguagesTestEmpty()
     {
-        assertFalse(App.getLanguages("English").isEmpty());
+        assertFalse(App.getLanguages().isEmpty());
     }
 
     @Test
-     void getLanguagesTestNull()
+    void getLanguagesTestNull()
     {
-        assertNotNull(App.getLanguages("English"));
+        assertNotNull(App.getLanguages());
     }
 
 

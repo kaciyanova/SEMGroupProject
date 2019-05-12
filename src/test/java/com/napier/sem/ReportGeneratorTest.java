@@ -23,6 +23,7 @@ public class ReportGeneratorTest {
     @Test
     void GenerateCountryReportsTestNull()
     {
+
         assertNotNull(ReportGenerator.GenerateCountryReports(null));
     }
 
