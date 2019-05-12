@@ -41,13 +41,13 @@ public class AppIntegrationTest
     @Test
      void getLanguagesTestEmpty()
     {
-        assertFalse(App.getLanguages().isEmpty());
+        assertFalse(App.getLanguages("English").isEmpty());
     }
 
     @Test
      void getLanguagesTestNull()
     {
-        assertNotNull(App.getLanguages());
+        assertNotNull(App.getLanguages("English"));
     }
 
 

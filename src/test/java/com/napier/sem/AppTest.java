@@ -73,4 +73,76 @@ public class AppTest
 //    {
 //        getWorldPopulation("5");
 //    }
+
+//    @Test
+//    void assignLanguagesToCountriesTestEmpty()
+//    {
+//        ArrayList<Country> countries = new ArrayList<Country>();
+//        ArrayList<Language> languages = new ArrayList<Language>();
+//
+//        assignLanguagesToCountries(countries);
+//    }
+
+
+//    @Test
+//    void assignLanguagesToCountriesTestNull()
+//    {
+//        assignLanguagesToCountries(null);
+//    }
+
+//    @Test
+//    void getCountryTestEmpty()
+//    {
+//       getCountry();
+//    }
+
+//    @Test
+//    void getCountryTestNull()
+//    {
+//        getCountry(null);
+//    }
+
+//   @Test
+//   void getCountryTestInvalidString()
+//  {
+//        String notString = "123456";
+//        assertThrows(RuntimeException.class, () -> {
+//            getCountry(notString);
+//        });
+//    }
+
+//    @Test
+//    void getCountryTestNormal()
+//    {
+//        getCountry(null);
+//    }
+
+//    @Test
+//    void getLanguagesTestEmpty()
+//    {
+//        getLanguages();
+//   }
+//
+//    @Test
+//    void getLanguagesTestNull()
+//    {
+//        getLanguages(null);
+//   }
+
+//    @Test
+//    void getLanguagesTestInvalidString()
+//    {
+//        String notString = "123456";
+//        assertThrows(RuntimeException.class, () -> {
+//            getLanguages(notString);
+//        });
+//    }
+
+//    @Test
+//    void getLanguagesTestNormal()
+//    {
+//        getLanguages();
+//    }
+
+
 }

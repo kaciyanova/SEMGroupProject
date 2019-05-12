@@ -90,7 +90,7 @@ public class PopulationPercentagesTests {
 //         ArrayList<Country> country  = new ArrayList<>();
 //        countryPopulationStatistics(country);
 //         PopulationStatistics countryPopulationStatistics = CalculateCountryPopulationStats(country);
-      }
+}
 
 
 
