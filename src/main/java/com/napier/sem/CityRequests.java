@@ -9,20 +9,18 @@ import static com.napier.sem.App.cities;
 import static com.napier.sem.ReportGenerator.GenerateCapitalReports;
 import static com.napier.sem.ReportGenerator.GenerateCityReports;
 
-class CityRequests
-{
+class CityRequests {
     //enum for area scopes
-    public enum Scope
-    {
+    public enum Scope {
         World,
         Continent,
         Region,
+        Country,
         District
     }
 
     //returns list of cities in given area sorted by population
-    static List<City> GetCitiesInAreaByPopulation(Scope scope, String area, int numberOfCitiesToGet, boolean capitals)
-    {
+    static List<City> GetCitiesInAreaByPopulation(Scope scope, String area, int numberOfCitiesToGet, boolean capitals) {
         //ensures cities are in order of population descending
         cities.stream().sorted((c1, c2) -> c2.Population - (c1.Population));
 
@@ -44,7 +42,7 @@ class CityRequests
 
                 if (citiesToReturn.isEmpty()) {
                     System.out.println("No cities found in " + area + ". Please enter a different continent.\n");
-                    getContinentPopulation(numberOfCitiesToGet, capitals);
+                    getContinentCities(numberOfCitiesToGet, capitals);
                 }
 
                 if (citiesToReturn.size() >= numberOfCitiesToGet && numberOfCitiesToGet != 0) {
@@ -59,7 +57,7 @@ class CityRequests
 
                 if (citiesToReturn.isEmpty()) {
                     System.out.println("No cities found in " + area + ". Please enter a different region.\n");
-                    getRegionPopulation(numberOfCitiesToGet, capitals);
+                    getRegionCities(numberOfCitiesToGet, capitals);
                 }
 
                 if (citiesToReturn.size() >= numberOfCitiesToGet && numberOfCitiesToGet != 0) {
@@ -68,13 +66,26 @@ class CityRequests
 
                 break;
 
-            case District:
+            case Country:
+                citiesToReturn = cities.stream()
+                        .filter((city) -> city.Country.Name.equals(area)).collect(Collectors.toList());
+
+                if (citiesToReturn.isEmpty()) {
+                    System.out.println("No cities found in " + area + ". Please enter a different district.\n");
+                    getDistrictCities(numberOfCitiesToGet, capitals);
+                }
+
+                if (citiesToReturn.size() >= numberOfCitiesToGet && numberOfCitiesToGet != 0) {
+                    citiesToReturn = citiesToReturn.subList(0, numberOfCitiesToGet);
+                }
+                break;
+                case District:
                 citiesToReturn = cities.stream()
                         .filter((city) -> city.District.equals(area)).collect(Collectors.toList());
 
                 if (citiesToReturn.isEmpty()) {
                     System.out.println("No cities found in " + area + ". Please enter a different district.\n");
-                    getDistrictPopulation(numberOfCitiesToGet, capitals);
+                    getDistrictCities(numberOfCitiesToGet, capitals);
                 }
 
                 if (citiesToReturn.size() >= numberOfCitiesToGet && numberOfCitiesToGet != 0) {
@@ -98,8 +109,7 @@ class CityRequests
     }
 
     //sends city list to report writer and generates filename
-    static void SendToWriter(List<City> requestedCities, String area, boolean capitals)
-    {
+    static void SendToWriter(List<City> requestedCities, String area, boolean capitals) {
         ArrayList<String[]> reports;
         String filename;
         if (capitals) {
@@ -116,16 +126,14 @@ class CityRequests
     }
 
     //Gets all or top n city reports in world and writes to csv file
-    static void getWorldPopulation(Integer numberOfCitiesToGet, boolean capitals)
-    {
-             List<City> requestedCities = GetCitiesInAreaByPopulation(CityRequests.Scope.World, "", numberOfCitiesToGet, capitals);
+    static void getWorldCities(Integer numberOfCitiesToGet, boolean capitals) {
+        List<City> requestedCities = GetCitiesInAreaByPopulation(CityRequests.Scope.World, "", numberOfCitiesToGet, capitals);
 
         SendToWriter(requestedCities, "World", capitals);
     }
 
     //Gets all or top n city reports in a given continent and writes to csv file
-    static void getContinentPopulation(Integer numberOfCitiesToGet, boolean capitals)
-    {
+    static void getContinentCities(Integer numberOfCitiesToGet, boolean capitals) {
         System.out.println("Please enter which continent you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
@@ -137,8 +145,7 @@ class CityRequests
     }
 
     //Gets all or top n city reports in a given region and writes to csv file
-    static void getRegionPopulation(Integer numberOfCitiesToGet, boolean capitals)
-    {
+    static void getRegionCities(Integer numberOfCitiesToGet, boolean capitals) {
         System.out.println("Please enter which region you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
@@ -149,9 +156,20 @@ class CityRequests
         SendToWriter(requestedCities, region, capitals);
     }
 
+    //Gets all or top n city reports in a given country and writes to csv file
+    static void getCountryCities(Integer numberOfCitiesToGet, boolean capitals) {
+        System.out.println("Please enter which country you want to get report for: \n");
+
+        Scanner in = new Scanner(System.in);
+        String country = in.nextLine();
+
+        List<City> requestedCities = GetCitiesInAreaByPopulation(Scope.Country, country, numberOfCitiesToGet, capitals);
+
+        SendToWriter(requestedCities, country, capitals);
+    }
+
     //Gets all or top n city reports in a given district and writes to csv file
-    static void getDistrictPopulation(Integer numberOfCitiesToGet, boolean capitals)
-    {
+    static void getDistrictCities(Integer numberOfCitiesToGet, boolean capitals) {
         System.out.println("Please enter which district you want to get report for: \n");
 
         Scanner in = new Scanner(System.in);
