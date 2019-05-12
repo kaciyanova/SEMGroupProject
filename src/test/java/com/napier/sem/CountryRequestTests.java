@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static com.napier.sem.CountryRequests.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 public class CountryRequestTests {
@@ -25,23 +26,24 @@ public class CountryRequestTests {
     }
 //    @Test
 //    void GetCountriesInAreaByPopulationTestNull()
-//    {
-//        GetCountriesInAreaByPopulation(null);
-//
+//   {
+//       assertNotNull(CountryRequests.GetCountriesInAreaByPopulation());
+
 //    }
 
-//    @Test
-//    void GetCountriesInAreaByPopulationTestEmpty()
-//    {
-//        ArrayList<Country> countries = new ArrayList<>();
+    @Test
+    void GetCountriesInAreaByPopulationTestEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<>();
 //        GetCountriesInAreaByPopulation(countries);
-//    }
+    }
 
-//    @Test
-//    void GetCountriesInAreaByPopulationTestNormal()
-//    {
-//        GetCountriesInAreaByPopulation(countries);
-//    }
+    @Test
+    void GetCountriesInAreaByPopulationTestNormal()
+    {
+        ArrayList<Country> countriesToReturn = new ArrayList<>();
+//        GetCountriesInAreaByPopulation(countriesToReturn);
+    }
 
 //    @Test
 //    void SendToWriterTestNull()

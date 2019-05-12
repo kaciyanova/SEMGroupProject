@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static com.napier.sem.App.*;
 import static com.napier.sem.PopulationPercentages.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //(WIP)
@@ -19,78 +19,73 @@ public class PopulationPercentagesTests {
 
     }
 
- //    @Test
- //    void GetContinentPopulationStatsTestNull()
- //    {
- //        assertNotNull(PopulationPercentages.GetContinentPopulationStats(null));
- //    }
+    @Test
+    void GetContinentPopulationStatsTestNull() {
+        GetContinentPopulationStats();
+    }
 
-//     @Test
-//    void GetContinentPopulationTestEmpty()
-//    {
-//        ArrayList<Country> countriesInArea = new ArrayList<>();
-//        GeneratePopulationReport(countriesInArea);
-//    }
+    @Test
+    void GetContinentPopulationStatsTestEmpty() {
+        ArrayList<PopulationStatistics> countriesInArea = new ArrayList<>();
+        GetContinentPopulationStats();
+//      assertFalse(PopulationPercentages.GetContinentPopulationStats(countriesInArea).isEmpty());
+    }
+
+    @Test
+    void GetContinentPopulationStatsTestNormal() {
+        PopulationPercentages.GetContinentPopulationStats();
+    }
+
+
+    @Test
+    void GetRegionPopulationStatsTestNull() {
+        GetRegionPopulationStats();
+        PopulationPercentages.GetRegionPopulationStats();
+    }
+
+    @Test
+    void GetRegionPopulationStatsTestEmpty() {
+        ArrayList<Country> countriesInArea = new ArrayList<>();
+        GetRegionPopulationStats();
+//        assertFalse(PopulationPercentages.GetRegionPopulationStats(countriesInArea).isEmpty());
+    }
+
+    @Test
+    void GetRegionPopulationStatsTestNormal() {
+        PopulationPercentages.GetRegionPopulationStats();
+    }
+
+
+    @Test
+    void GetCountryPopulationStatsTestNull(Object GetCountryPopulationStats) {
+        GetCountryPopulationStats();
+    }
+
+    @Test
+    void GetCountryPopulationStatsTestEmpty() {
+        ArrayList<Country> GetCountryPopulationStats = new ArrayList<>();
+        GetCountryPopulationStats();
+//        assertFalse(PopulationPercentages.GetCountryPopulationStats(GetCountryPopulationStats).isEmpty());
+    }
 
 //    @Test
-//    void GetContinentPopulationTestNormal()
-//    {
-//       ReportGenerator.GeneratePopulationReport(CalculateAreaPopulations(countriesInArea,continentPopulationStats));
-//    }
-//
-
-//     @Test
-//     void GetRegionPopulationStatsTestNull()
-//     {
-//         GetRegionPopulationStats(null);
-//     }
-
-//     @Test
-//    void GetRegionPopulationStatsTestEmpty()
-//    {
-//        ArrayList<Country> countriesInArea = new ArrayList<>();
-//        GeneratePopulationReport(countriesInArea);
-//    }
-
-//     @Test
-//    void GetRegionPopulationStatsTestNormal()
-//    {
-//       ReportGenerator.GeneratePopulationReport(CalculateAreaPopulations(countriesInArea,regionPopulationStats));
-//    }
-
-
-//     @Test
-//     void GetCountryPopulationStatsTestNull()
-//     {
-//         GetCountryPopulationStats(null);
-//     }
-
-//     @Test
-//    void GetCountryPopulationStatsTestEmpty()
-//    {
-//        ArrayList<Country> requestedCountry  = new ArrayList<>();
-//        GeneratePopulationReport(requestedCountry);
-//    }
-
-//     @Test
 //    void GetCountryPopulationStatsTestNormal()
 //    {
-//        ReportGenerator.GeneratePopulationReport(populationStatistics);
+//        PopulationPercentages.GetCountryPopulationStats(GetCountryPopulationStats(null));
+//   }
+
+
+    @Test
+    void CalculateAreaPopulationsTestNull() {
+        PopulationStatistics countryPopulationStatistics = CalculateCountryPopulationStats(null);
+    }
+
+//    @Test
+//    void CalculateAreaPopulationsTestNormal() {
+//        ArrayList<Country> country = new ArrayList<>();
+//        CalculateAreaPopulations(country);
+//        PopulationStatistics countryPopulationStatistics = CalculateCountryPopulationStats(country);
 //    }
-
-
-//     @Test
-//     void CalculateAreaPopulationsTestNull()
-//     {
-//         CalculateAreaPopulations(null);
-//     }
-
-//     @Test
-//     void CalculateAreaPopulationsTestNormal()
-//     {
-//         ArrayList<Country> country  = new ArrayList<>();
-//        countryPopulationStatistics(country);
-//         PopulationStatistics countryPopulationStatistics = CalculateCountryPopulationStats(country);
 }
 
 

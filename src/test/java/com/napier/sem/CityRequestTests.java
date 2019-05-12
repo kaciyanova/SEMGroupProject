@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static com.napier.sem.CityRequests.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CityRequestTests {
     //enum for area scopes
@@ -24,53 +26,41 @@ public class CityRequestTests {
 
     }
 
-//    @test
-//    void GetCitiesInAreaByPopulationTestNull();
-//    {
-//        GetCitiesInAreaByPopulation(null);
-//    }
+    @Test
+    void GetCitiesInAreaByPopulationTestEmpty() {
+        ArrayList<City> citiesToReturn = new ArrayList<>();
+//        citiesToReturn(null);
+//        assertFalse(CityRequests.GetCitiesInAreaByPopulation().isEmpty());
+    }
 
-//    @test
-//    void GetCitiesInAreaByPopulationTestEmpty();
-//    {
-//        ArrayList<City> citiesToReturn = new ArrayList<>();
-//        citiesToReturn(City);
-//    }
+    @Test
+    void SendToWriterTestNull() {ArrayList<String[]> reports = new ArrayList<>();
+        ArrayList<String[]> filename = new ArrayList<>();
+//        SendToWriter(filename, reports);
 
-//    @test
-//    void GetCitiesInAreaByPopulationTestNormal();
-//    {
-//         if (capitals) {
-//            citiesToReturn = citiesToReturn.stream().filter((city) -> city.IsCapital).collect(Collectors.toList());
-//    }
+    }
 
-//    @test
-//    void SendToWriterTestNull();
-//    {
-//        ArrayList<String[]> reports = new ArrayList<>();
-//        ArrayList<String[]> filename = new ArrayList<>();
-//        SendToWriter(filename, reports)
-//    }
 
-//    @test
+//    @Test
 //    void SendToWriterTestNormal();
 //    {
 //       ReportGenerator.writeToCSV(filename, reports)
 //    }
 
 
-//    @test
-//    void getWorldPopulationTestNull();
-//    {
-//        getWorldPopulation(null);
+//    @Test
+//    void getWorldPopulationTestNull() {
+//        //      assertFalse(getWorldPopulation(null));
 //    }
 
-//    @test
-//    void getWorldPopulationTestEmpty();
-//    {
-//        ArrayList<City> requestedCities = new ArrayList<>();
-//        requestedCities(City);
-//    }
+
+    @Test
+    void getWorldPopulationTestEmpty() {
+        ArrayList<City> requestedCities = new ArrayList<>();
+//        getWorldPopulation(requestedCities);
+
+    }
+
 
 //    @test
 //    void getWorldPopulationTestNormal();
@@ -84,12 +74,13 @@ public class CityRequestTests {
 //        getContinentPopulation(null);
 //    }
 
-//    @test
-//    void getContinentPopulationTestEmpty();
-//    {
-//        ArrayList<City> requestedCities = new ArrayList<>();
-//        requestedCities(requestedCities, continent, capitals);
-//    }
+    @Test
+    void getContinentPopulationTestEmpty() {
+        ArrayList<City> requestedCities = new ArrayList<>();
+//        getContinentPopulation(requestedCities);
+
+    }
+
 
 //    @test
 //    void getContinentPopulationTestNormal();
@@ -103,12 +94,12 @@ public class CityRequestTests {
 //        getRegionPopulation(null);
 //    }
 
-//    @test
-//    void getRegionPopulationTestEmpty();
-//    {
-//        ArrayList<City> requestedCities = new ArrayList<>();
-//        requestedCities(requestedCities, region, capitals);
-//    }
+    @Test
+    void getRegionPopulationTestEmpty() {
+        ArrayList<City> requestedCities = new ArrayList<>();
+//        getRegionPopulation(requestedCities);
+
+    }
 
 //    @test
 //    void getRegionPopulationTestNormal();
@@ -122,12 +113,12 @@ public class CityRequestTests {
 //         getDistrictPopulation(null);
 //    }
 
-//    @test
-//    void getDistrictPopulationTestEmpty();
-//    {
-//        ArrayList<City> requestedCities = new ArrayList<>();
-//        requestedCities(requestedCities, district, capitals);
-//    }
+    @Test
+    void getDistrictPopulationTestEmpty() {
+        ArrayList<City> requestedCities = new ArrayList<>();
+//        getDistrictPopulation(requestedCities)
+
+    }
 
 //    @test
 //    void getDistrictPopulationTestNormal();

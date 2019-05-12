@@ -20,15 +20,15 @@ public class LanguageReportTest {
 //    @Test
 //    void RequestLanguageReportNull()
 //   {
-//         assertNotNull(LanguageReport.RequestLanguageReport(null));
+//         LanguageReport.RequestLanguageReport();
 //   }
 
 //    @Test
 //    void RequestLanguageReportTestEmpty()
-//    {
+//   {
 //        ArrayList<LanguageSpeakers> report = new ArrayList<>();
 //        languageStatistics(LanguageSpeakers);
-
+//
 //    }
 
 //    @Test

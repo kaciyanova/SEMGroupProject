@@ -16,15 +16,15 @@ public class ReportGeneratorTest {
 
 
     @BeforeAll
-     static void init()
-     {
+    static void init()
+    {
 
-     }
-        @Test
-        void GenerateCountryReportsTestNull()
-        {
+    }
+    @Test
+    void GenerateCountryReportsTestNull()
+    {
         assertNotNull(ReportGenerator.GenerateCountryReports(null));
-        }
+    }
 
     @Test
     void GenerateCountryReportsTestEmpty()
@@ -34,8 +34,8 @@ public class ReportGeneratorTest {
         assertFalse(ReportGenerator.GenerateCountryReports(report).isEmpty());
     }
 
-        @Test
-        void GenerateCityReportsTestNull()
+    @Test
+    void GenerateCityReportsTestNull()
     {
         assertNotNull(ReportGenerator.GenerateCityReports(null));
     }
@@ -57,9 +57,9 @@ public class ReportGeneratorTest {
     @Test
     void GenerateCapitalReportsTestEmpty()
     {
-       ArrayList<City> report = new ArrayList<>();
-       GenerateCapitalReports(report);
-       assertFalse(ReportGenerator.GenerateCapitalReports(report).isEmpty());
+        ArrayList<City> report = new ArrayList<>();
+        GenerateCapitalReports(report);
+        assertFalse(ReportGenerator.GenerateCapitalReports(report).isEmpty());
     }
 
     @Test
@@ -80,32 +80,35 @@ public class ReportGeneratorTest {
     @Test
     void GenerateCountryReportTestNull()
     {
+
         assertNotNull(ReportGenerator.GenerateCountryReport(null));
     }
 
-//    @Test
-//    void GenerateCountryReportTestEmpty()
-//    {
-//        ArrayList<Country> report = new ArrayList<>();
-//        GenerateCountryReport();
-//       assertFalse(ReportGenerator.GenerateCountryReport().isEmpty());
-//    }
+   @Test
+   void GenerateCountryReportTestEmpty()
+   {
+        ArrayList<Country> report = new ArrayList<>();
+        assertFalse(ReportGenerator.GenerateCountryReports(report).isEmpty());
+    }
 
     @Test
     void GenerateCityReportTestNull()
     {
+
         assertNotNull(ReportGenerator.GenerateCityReport(null));
     }
 
     @Test
     void GenerateCapitalReportTestNull()
     {
+
         assertNotNull(ReportGenerator.GenerateCapitalReport(null));
     }
 
     @Test
     void GenerateLanguageReportTestNull()
     {
+
         assertNotNull(ReportGenerator.GenerateLanguageReport(null));
     }
 
