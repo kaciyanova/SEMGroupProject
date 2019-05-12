@@ -47,12 +47,7 @@ repo for the Software Engineering Methods group project
 | 30 | The population of a district.                                                                           | Yes |           ![Alt text](/Screenshots/30.png?raw=true) | Kaci           | 
 | 31 | The population of a city.                                                                               | Yes |           ![Alt text](/Screenshots/31.png?raw=true) | Kaci           | 
 | 32 | Language Reports                                                                                        | Yes |           ![Alt text](/Screenshots/32.png?raw=true) | Kaci           | 
-| 33 | App Tests                    | Thomas         |                                                         | Yes |            ![Alt text](/Screenshots/screenshotst1.png?raw=true)
-| 34 | Report Generator Tests       | Thomas         |                                                         | Yes |            ![Alt text](/Screenshots/screenshotst2.png?raw=true)
-| 35 | Population Percentages Tests | Thomas         |                                                         | Yes |                   
-![Alt text](/Screenshots/screenshotst3.png?raw=true)                                                          
-| 35 | City Request Tests           | Thomas         |                                                         | Yes |
-![Alt text](/Screenshots/screenshotst4.png?raw=true)
+| 33 | App Tests                                                                                                Yes |            ![Alt text](/Screenshots/32.png?raw=true)| Thomas         |                                                                                                 
                                                                                                                                                   
 
 |      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |
