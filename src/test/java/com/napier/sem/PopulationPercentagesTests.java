@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static com.napier.sem.App.*;
 import static com.napier.sem.PopulationPercentages.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //(WIP)
 
@@ -18,11 +19,11 @@ public class PopulationPercentagesTests {
 
     }
 
-//     @Test
-//     void GetContinentPopulationStatsTestNull()
-//     {
-//         GetContinentPopulationStats(null);
-//     }
+ //    @Test
+ //    void GetContinentPopulationStatsTestNull()
+ //    {
+ //        assertNotNull(PopulationPercentages.GetContinentPopulationStats(null));
+ //    }
 
 //     @Test
 //    void GetContinentPopulationTestEmpty()

@@ -8,107 +8,107 @@ import java.util.ArrayList;
 
 import static com.napier.sem.App.*;
 import static com.napier.sem.ReportGenerator.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 public class ReportGeneratorTest {
 
 
-//    @BeforeAll
-//     static void init()
-//     {
-//
-//     }
+    @BeforeAll
+     static void init()
+     {
 
-//     @Test
-//     void GenerateCountryReportsTestNull()
-//     {
-//         GenerateCountryReports(null);
-//     }
+     }
+        @Test
+        void GenerateCountryReportsTestNull()
+        {
+        assertNotNull(ReportGenerator.GenerateCountryReports(null));
+        }
 
-//     @Test
-//    void GenerateCountryReportsTestEmpty()
-//    {
-//        ArrayList<Country> report = new ArrayList<>();
-//        GenerateCountryReports(report);
-//    }
+    @Test
+    void GenerateCountryReportsTestEmpty()
+    {
+        ArrayList<Country> report = new ArrayList<>();
+        GenerateCountryReports(report);
+        assertFalse(ReportGenerator.GenerateCountryReports(report).isEmpty());
+    }
 
-//    @Test
-//    void GenerateCityReportsTestNull()
-//    {
-//        GenerateCityReports(null);
-//
+        @Test
+        void GenerateCityReportsTestNull()
+    {
+        assertNotNull(ReportGenerator.GenerateCityReports(null));
+    }
 
-//    @Test
-//    void GenerateCityReportsTestEmpty()
-//    {
-//        ArrayList<City> report = new ArrayList<>();
-//        GenerateCityReports(report);
-//    }
+    @Test
+    void GenerateCityReportsTestEmpty()
+    {
+        ArrayList<City> report = new ArrayList<>();
+        GenerateCityReports(report);
+        assertFalse(ReportGenerator.GenerateCityReports(report).isEmpty());
+    }
 
-//    @Test
-//    void GenerateCapitalReportsTestNull()
-//    {
-//        GenerateCapitalReports(null);
-//    }
+    @Test
+    void GenerateCapitalReportsTestNull()
+    {
+        assertNotNull(ReportGenerator.GenerateCapitalReports(null));
+    }
 
-//    @Test
-//    void GenerateCapitalReportsTestEmpty()
-//    {
-//        ArrayList<City> report = new ArrayList<>();
-//       GenerateCapitalReports(report);
-//    }
+    @Test
+    void GenerateCapitalReportsTestEmpty()
+    {
+       ArrayList<City> report = new ArrayList<>();
+       GenerateCapitalReports(report);
+       assertFalse(ReportGenerator.GenerateCapitalReports(report).isEmpty());
+    }
 
-//    @Test
-//    void GenerateLanguageReportsTestNull()
-//    {
-//        GenerateLanguageReports(null);
-//    }
+    @Test
+    void GenerateLanguageReportsTestNull()
+    {
+        assertNotNull(ReportGenerator.GenerateLanguageReports(null));
+    }
 
-//    @Test
-//    void GenerateLanguageReportsTestEmpty()
-//    {
-//        ArrayList<LanguageSpeakers> report = new ArrayList<>();
-//        GenerateLanguageReports(LanguageSpeakers, languageSpeakers);
-//    }
+    @Test
+    void GenerateLanguageReportsTestEmpty()
+    {
+        ArrayList<LanguageSpeakers> report = new ArrayList<>();
+        GenerateLanguageReports(report);
+        assertFalse(ReportGenerator.GenerateLanguageReports(report).isEmpty());
+    }
 
 
-//    @Test
-//    void GenerateCountryReportTestNull()
-//    {
-//        GenerateCountryReports(null);
-//    }
+    @Test
+    void GenerateCountryReportTestNull()
+    {
+        assertNotNull(ReportGenerator.GenerateCountryReport(null));
+    }
 
 //    @Test
 //    void GenerateCountryReportTestEmpty()
 //    {
 //        ArrayList<Country> report = new ArrayList<>();
-//        GenerateCountryReports(report);
+//        GenerateCountryReport();
+//       assertFalse(ReportGenerator.GenerateCountryReport().isEmpty());
 //    }
 
-//    @Test
-//    void GenerateCityReportTestNull()
-//    {
-//        GenerateCityReport(null);
-//    }
+    @Test
+    void GenerateCityReportTestNull()
+    {
+        assertNotNull(ReportGenerator.GenerateCityReport(null));
+    }
 
-//    @Test
-//    void GenerateCapitalReportTestNull()
-//    {
-//        GenerateCapitalReport(null);
-//    }
+    @Test
+    void GenerateCapitalReportTestNull()
+    {
+        assertNotNull(ReportGenerator.GenerateCapitalReport(null));
+    }
 
-//    @Test
-//    void GenerateLanguageReportTestNull()
-//    {
-//        GenerateLanguageReport(null);
-//    }
+    @Test
+    void GenerateLanguageReportTestNull()
+    {
+        assertNotNull(ReportGenerator.GenerateLanguageReport(null));
+    }
 
-//    @test
-//    void writeToCSVTestNull();
-//    {
-//        ArrayList<String[]> report = new ArrayList<String[]> report();
-//        writer.writeAll(report);
-//
 
 
 

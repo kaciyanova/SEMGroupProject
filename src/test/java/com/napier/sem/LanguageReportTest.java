@@ -19,15 +19,16 @@ public class LanguageReportTest {
 
 //    @Test
 //    void RequestLanguageReportNull()
-//    {
-//        RequestLanguageReport(null);
-//    }
+//   {
+//         assertNotNull(LanguageReport.RequestLanguageReport(null));
+//   }
 
 //    @Test
 //    void RequestLanguageReportTestEmpty()
 //    {
 //        ArrayList<LanguageSpeakers> report = new ArrayList<>();
 //        languageStatistics(LanguageSpeakers);
+
 //    }
 
 //    @Test
@@ -56,11 +57,11 @@ public class LanguageReportTest {
 
 
 
-//    @Test
-//    void CountLanguageSpeakersTestNull()
+//   @Test
+//   void CountLanguageSpeakersTestNull()
 //    {
-//        CountLanguageSpeakers(null);
-//    }
+//        assertNotNull(LanguageReport.CountLanguageSpeakers(null));
+//   }
 
 //    @Test
 //    void CountLanguageSpeakersTestEmpty()
