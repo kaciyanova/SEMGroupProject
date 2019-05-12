@@ -41,13 +41,16 @@ repo for the Software Engineering Methods group project
 | 24 | "The population of people, people living in cities, and people not living in cities in each region."    | Yes |           ![Alt text](/Screenshots/24.png?raw=true) | Kaci           | 
 | 25 | "The population of people, people living in cities, and people not living in cities in each country."   | Yes |           ![Alt text](/Screenshots/25.png?raw=true) | Kaci           | 
 | 26 | The population of the world.                                                                            | Yes |           ![Alt text](/Screenshots/26.png?raw=true) | Kaci           | 
-| 27 | The population of a continent.                                                                          | Yes |          ![Alt text](/Screenshots/27.png?raw=true)  | Kaci           | 
-| 28 | The population of a region.                                                                             | Yes |          ![Alt text](/Screenshots/28.png?raw=true)  | Kaci           | 
+| 27 | The population of a continent.                                                                          | Yes |          ![Alt text](/Screenshots/27.png?raw=true)  | Kaci          | 
+| 28 | The population of a region.                                                                             | Yes |          ![Alt text](/Screenshots/28.png?raw=true)  | Kaci          | 
 | 29 | The population of a country.                                                                            | Yes |           ![Alt text](/Screenshots/29.png?raw=true) | Kaci           | 
 | 30 | The population of a district.                                                                           | Yes |           ![Alt text](/Screenshots/30.png?raw=true) | Kaci           | 
 | 31 | The population of a city.                                                                               | Yes |           ![Alt text](/Screenshots/31.png?raw=true) | Kaci           | 
 | 32 | Language Reports                                                                                        | Yes |           ![Alt text](/Screenshots/32.png?raw=true) | Kaci           | 
-
+| 33 | App Tests                                                                                               | Yes |                                                       | Thomas         |
+| 34 | Report Generator Tests                                                                                  | Yes |                                                       | Thomas         |
+| 35 | Population Percentages Tests                                                                            | Yes |                                                       | Thomas         |   
+| 35 | City Request Tests                                                                                      | Yes |                                                       | Thomas         |
 
 |      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |
 |------|---------------|---------------|---------------|---------------|-------------------|-------|
