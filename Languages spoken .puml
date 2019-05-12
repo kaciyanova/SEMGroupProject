@@ -1,0 +1,28 @@
+@startuml
+
+
+actor User as "Member"
+
+rectangle Database
+
+rectangle "Population System" {
+
+
+    usecase UC5 as "Population%(Sort by languages spoken greatest to lowest in order)"
+
+
+
+    usecase UC4 as "English"
+
+    usecase UC6 as "Hindi"
+
+    usecase UC7 as "Spanish"
+
+    usecase UC8 as "Arabic"
+
+    User - UC5
+    UC5 ..> UC4
+    UC7 - UC6 : include
+    UC4 - UC7 : include
+   UC6 - UC8 : include
+@enduml
