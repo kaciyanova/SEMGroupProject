@@ -53,11 +53,11 @@ public class AppTest
 
     }
 
-    @Test
-    void getWorldPopulationTestNull()
-    {
-       getWorldPopulation(null);
-    }
+//    @Test
+//    void getWorldPopulationTestNull()
+//    {
+//       getWorldPopulation(null);
+//    }
 
 //    @Test
 //    void getWorldPopulationTestInvalidString()
@@ -68,11 +68,11 @@ public class AppTest
 //        });
 //    }
 
-    @Test
-    void getWorldPopulationTestNormal()
-    {
-        getWorldPopulation(5);
-    }
+//    @Test
+//    void getWorldPopulationTestNormal()
+//    {
+//        getWorldPopulation(5);
+//    }
 
     @Test
     void assignLanguagesToCountriesTestEmpty()
@@ -123,20 +123,20 @@ public class AppTest
 //        getLanguages();
 //   }
 //
-   @Test
-    void getLanguagesTestNull()
-    {
-        getLanguages(null);
-   }
+//   @Test
+//    void getLanguagesTestNull()
+//    {
+//        getLanguages(null);
+//   }
 
-    @Test
-    void getLanguagesTestInvalidString()
-    {
-        String notString = "123456";
-       assertThrows(RuntimeException.class, () -> {
+//    @Test
+//    void getLanguagesTestInvalidString()
+//    {
+//        String notString = "123456";
+//       assertThrows(RuntimeException.class, () -> {
 //            getLanguages(notString);
-        });
-    }
+//       });
+//    }
 
 //    @Test
 //    void getLanguagesTestNormal()
