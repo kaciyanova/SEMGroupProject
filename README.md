@@ -46,9 +46,8 @@ repo for the Software Engineering Methods group project
 | 29 | The population of a country.                                                                            | Yes |           ![Alt text](/Screenshots/29.png?raw=true) | Kaci           | 
 | 30 | The population of a district.                                                                           | Yes |           ![Alt text](/Screenshots/30.png?raw=true) | Kaci           | 
 | 31 | The population of a city.                                                                               | Yes |           ![Alt text](/Screenshots/31.png?raw=true) | Kaci           | 
-| 32 | Language Reports                                                                                        | Yes |           ![Alt text](/Screenshots/32.png?raw=true) | Kaci           | 
-| 33 | App Tests                                                                                                Yes |            ![Alt text](/Screenshots/32.png?raw=true)| Thomas         |                                                                                                 
-                                                                                                                                                  
+| 32 | Language Reports                                                                                        | Yes |           ![Alt text](/Screenshots/32.png?raw=true) | Kaci           |                                                                            
+| 33 | Apps Test                                                                                               | Yes |           ![Alt text](/Screenshots/screenshotst1.png?raw=true) | Thomas           |                                                                                                                                                   
 
 |      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |
 |------|---------------|---------------|---------------|---------------|-------------------|-------|
