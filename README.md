@@ -55,5 +55,5 @@ repo for the Software Engineering Methods group project
 |      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |
 |------|---------------|---------------|---------------|---------------|-------------------|-------|
 | Kaci | 0.65 | 0.58 | 0.70 | 0.66 | 0.83 | 0.68 |
-| Thomas | 0.20 | 0.15 | 0.15 | 0.20 | 0.15 | 0.17 |
-| Leone | 0.17| 0.20 | 0.15| 0.15|0.07| 0.15|
+| Thomas | 0.18 | 0.22 | 0.15 | 0.19 | 0.11 | 0.17 |
+| Leone | 0.17| 0.20 | 0.15| 0.15 | 0.07 | 0.15|
